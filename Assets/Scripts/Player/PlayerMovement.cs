@@ -6,6 +6,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    PlayerAttack _playerAttack;
+
+
+    void Awake()
+    {
+        _playerAttack = GetComponent<PlayerAttack>();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -18,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
         movement = movement.normalized;
 
-        if (movement != Vector2.zero)
+        if (movement != Vector2.zero && _playerAttack?.isAttacking == false)
         {
             if (movement.x > 0)
                 transform.rotation = Quaternion.Euler(0, 0, 0);
