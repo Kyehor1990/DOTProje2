@@ -8,6 +8,9 @@ public class Door : MonoBehaviour
     void Start()
     {
         LockDoor();
+        EnemyManager.instance.CheckEnemies();
+
+
     }
 
     public void UnlockDoor()
@@ -17,15 +20,22 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isLocked)
-        {
-            DungeonManager.instance.EnterRoom(roomType, Vector3.zero);
-            PlayerEnergy.instance.UseEnergy(10);
-        }
+    if (other.CompareTag("Player")){
+        Debug.Log("Kapı kilitli mi? " + isLocked);
+    }
+
+    if (other.CompareTag("Player") && !isLocked)
+    {
+        Debug.Log("Kapı açılıyor...");
+        DungeonManager.instance.EnterRoom(roomType, Vector3.zero);
+        PlayerEnergy.instance.UseEnergy(10); 
+    }
     }
 
     public void LockDoor()
     {
         isLocked = true;
+
     }
+
 }
