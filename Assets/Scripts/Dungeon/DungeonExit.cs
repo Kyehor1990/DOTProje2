@@ -6,9 +6,7 @@ public class DungeonExit : MonoBehaviour
 
     void Start()
     {
-        LockDoor();
-        EnemyManager.instance.CheckEnemies();
-        
+        LockDoor();    
     }
 
     public void UnlockDoor()

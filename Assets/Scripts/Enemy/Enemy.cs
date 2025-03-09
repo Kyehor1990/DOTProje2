@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 3;
+    [SerializeField] int health = 3;
 
-     void Awake()
+     void Start()
     {
         EnemyManager.instance.RegisterEnemy(gameObject);
     }

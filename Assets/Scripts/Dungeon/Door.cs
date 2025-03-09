@@ -8,9 +8,6 @@ public class Door : MonoBehaviour
     void Start()
     {
         LockDoor();
-        EnemyManager.instance.CheckEnemies();
-
-
     }
 
     public void UnlockDoor()
@@ -35,7 +32,6 @@ public class Door : MonoBehaviour
     public void LockDoor()
     {
         isLocked = true;
-
     }
 
 }

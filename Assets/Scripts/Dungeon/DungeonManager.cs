@@ -36,7 +36,6 @@ public void EnterRoom(string roomType, Vector3 spawnPosition)
         GameObject newRoom = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
         Debug.Log("Yeni oda oluşturuluyor: " + newRoom.name); 
         currentRoom = Instantiate(newRoom, spawnPosition, Quaternion.identity);
-
     }
     else
     {
