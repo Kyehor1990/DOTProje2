@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+     public DoorPosition doorPosition;
     public string roomType;
     private bool isLocked = true;
 
@@ -17,14 +18,11 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-    if (other.CompareTag("Player")){
-        Debug.Log("Kapı kilitli mi? " + isLocked);
-    }
 
     if (other.CompareTag("Player") && !isLocked)
     {
-        Debug.Log("Kapı açılıyor...");
-        DungeonManager.instance.EnterRoom(roomType, Vector3.zero);
+        Debug.Log("Kapı açılıyor: " + doorPosition);
+        DungeonManager.instance.EnterRoom(roomType, doorPosition);
         PlayerEnergy.instance.UseEnergy(10); 
     }
     }
@@ -33,5 +31,11 @@ public class Door : MonoBehaviour
     {
         isLocked = true;
     }
+
+    public void ConvertToExit()
+{
+    roomType = "Exit";
+    Debug.Log("Bu kapı artık çıkış kapısı: " + doorPosition);
+}
 
 }

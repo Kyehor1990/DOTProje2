@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class DungeonManager : MonoBehaviour
 {
+    public Transform player;
+    private DoorPosition lastEnteredDoor;
+
     public static DungeonManager instance;
 
     public List<GameObject> Rooms1;
@@ -14,14 +17,12 @@ public class DungeonManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) instance = this;
-        else Destroy(gameObject);
     }
 
-public void EnterRoom(string roomType, Vector3 spawnPosition)
+public void EnterRoom(string roomType, DoorPosition enteredDoor)
 {
     if (currentRoom != null)
     {
-        Debug.Log("Önceki oda yok ediliyor.");
         Destroy(currentRoom);
     }
 
@@ -35,11 +36,57 @@ public void EnterRoom(string roomType, Vector3 spawnPosition)
     {
         GameObject newRoom = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
         Debug.Log("Yeni oda oluşturuluyor: " + newRoom.name); 
-        currentRoom = Instantiate(newRoom, spawnPosition, Quaternion.identity);
+        currentRoom = Instantiate(newRoom, Vector3.zero, Quaternion.identity);
     }
-    else
+
+    Door[] previousDoors = FindObjectsOfType<Door>();
+    foreach (Door door in previousDoors)
     {
-        Debug.LogError("Hata! Oda listesi boş veya oda bulunamadı.");
+        if (door.doorPosition == lastEnteredDoor)
+        {
+            door.ConvertToExit();
+            break;
+        }
     }
+
+    PlacePlayerAtNewDoor(enteredDoor);
+    lastEnteredDoor = enteredDoor;
 }
+  void PlacePlayerAtNewDoor(DoorPosition enteredDoor)
+    {
+        Vector3 newPosition = Vector3.zero;
+
+        switch (enteredDoor)
+        {
+            case DoorPosition.Top:
+                newPosition = GetDoorPosition(DoorPosition.Bottom);
+                break;
+            case DoorPosition.Bottom:
+                newPosition = GetDoorPosition(DoorPosition.Top);
+                break;
+            case DoorPosition.Left:
+                newPosition = GetDoorPosition(DoorPosition.Right);
+                break;
+            case DoorPosition.Right:
+                newPosition = GetDoorPosition(DoorPosition.Left);
+                break;
+        }
+
+        player.position = newPosition;
+    }
+
+    Vector3 GetDoorPosition(DoorPosition doorPos)
+    {
+        Door[] doors = FindObjectsOfType<Door>();
+
+        foreach (Door door in doors)
+        {
+            if (door.doorPosition == doorPos)
+            {
+                return door.transform.position;
+            }
+        }
+
+        return Vector3.zero;
+    }
 }
