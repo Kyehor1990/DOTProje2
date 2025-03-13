@@ -13,7 +13,7 @@ public class DungeonManager : MonoBehaviour
 
     public static DungeonManager instance;
 
-    public Camera camera;
+    public Camera mainCamera;
 
     void Awake()
     {
@@ -33,10 +33,8 @@ public class DungeonManager : MonoBehaviour
                 GameObject newRoomPrefab = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
                 GameObject newRoom = Instantiate(newRoomPrefab, newRoomPosition, Quaternion.identity);
                 generatedRooms[newRoomPosition] = newRoom;
-
-                Debug.LogError("Invalid door position: " + enteredDoor);
-                camera.transform.position = new Vector3(newRoomPosition.x + 3.21f, newRoomPosition.y, -10);
             }
+
         }
 
         player.position = GetDoorPosition(newRoomPosition, GetOppositeDoor(enteredDoor));
@@ -80,6 +78,9 @@ public class DungeonManager : MonoBehaviour
 
 private Vector3 GetDoorPosition(Vector3 roomPosition, DoorPosition doorPos)
 {
+
+    Debug.LogError("GetDoorPosition: " + roomPosition + " " + doorPos);
+    mainCamera.transform.position = new Vector3(roomPosition.x +3.21f, roomPosition.y, -10);
     if (generatedRooms.ContainsKey(roomPosition))
     {
         Door[] doors = generatedRooms[roomPosition].GetComponentsInChildren<Door>();
