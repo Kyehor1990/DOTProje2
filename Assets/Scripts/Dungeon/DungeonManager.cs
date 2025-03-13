@@ -1,92 +1,115 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer.Internal;
 
 public class DungeonManager : MonoBehaviour
 {
     public Transform player;
-    private DoorPosition lastEnteredDoor;
+    private Dictionary<Vector3, GameObject> generatedRooms = new Dictionary<Vector3, GameObject>();
+    public List<GameObject> Rooms1, Rooms2, Rooms3;
+    public GameObject startingRoom;
+
+    private Vector3 currentRoomPosition = Vector3.zero;
 
     public static DungeonManager instance;
 
-    public List<GameObject> Rooms1;
-    public List<GameObject> Rooms2;
-    public List<GameObject> Rooms3;
-
-    public GameObject currentRoom;
+    public Camera camera;
 
     void Awake()
     {
         if (instance == null) instance = this;
+        generatedRooms[currentRoomPosition] = startingRoom;
     }
 
-public void EnterRoom(string roomType, DoorPosition enteredDoor)
-{
-    if (currentRoom != null)
+    public void EnterRoom(string roomType, DoorPosition enteredDoor)
     {
-        Destroy(currentRoom);
-    }
+        Vector3 newRoomPosition = GetNewRoomPosition(currentRoomPosition, enteredDoor);
 
-    List<GameObject> selectedRoomList = null;
-
-    if (roomType == "1") selectedRoomList = Rooms1;
-    else if (roomType == "2") selectedRoomList = Rooms2;
-    else if (roomType == "3") selectedRoomList = Rooms3;
-
-    if (selectedRoomList != null && selectedRoomList.Count > 0)
-    {
-        GameObject newRoom = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
-        Debug.Log("Yeni oda oluşturuluyor: " + newRoom.name); 
-        currentRoom = Instantiate(newRoom, Vector3.zero, Quaternion.identity);
-    }
-
-    Door[] previousDoors = FindObjectsOfType<Door>();
-    foreach (Door door in previousDoors)
-    {
-        if (door.doorPosition == lastEnteredDoor)
+        if (!generatedRooms.ContainsKey(newRoomPosition))
         {
-            door.ConvertToExit();
-            break;
+            List<GameObject> selectedRoomList = GetRoomList(roomType);
+            if (selectedRoomList != null && selectedRoomList.Count > 0)
+            {
+                GameObject newRoomPrefab = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
+                GameObject newRoom = Instantiate(newRoomPrefab, newRoomPosition, Quaternion.identity);
+                generatedRooms[newRoomPosition] = newRoom;
+
+                Debug.LogError("Invalid door position: " + enteredDoor);
+                camera.transform.position = new Vector3(newRoomPosition.x + 3.21f, newRoomPosition.y, -10);
+            }
         }
+
+        player.position = GetDoorPosition(newRoomPosition, GetOppositeDoor(enteredDoor));
+        currentRoomPosition = newRoomPosition;
     }
 
-    PlacePlayerAtNewDoor(enteredDoor);
-    lastEnteredDoor = enteredDoor;
-}
-  void PlacePlayerAtNewDoor(DoorPosition enteredDoor)
+    private List<GameObject> GetRoomList(string roomType)
     {
-        Vector3 newPosition = Vector3.zero;
+        if (roomType == "1") return Rooms1;
+        if (roomType == "2") return Rooms2;
+        if (roomType == "3") return Rooms3;
+        return null;
+    }
 
+    private Vector3 GetNewRoomPosition(Vector3 currentPosition, DoorPosition enteredDoor)
+    {
         switch (enteredDoor)
         {
-            case DoorPosition.Top:
-                newPosition = GetDoorPosition(DoorPosition.Bottom);
-                break;
-            case DoorPosition.Bottom:
-                newPosition = GetDoorPosition(DoorPosition.Top);
-                break;
-            case DoorPosition.Left:
-                newPosition = GetDoorPosition(DoorPosition.Right);
-                break;
-            case DoorPosition.Right:
-                newPosition = GetDoorPosition(DoorPosition.Left);
-                break;
+            case DoorPosition.Top: return currentPosition + new Vector3(0, 20, 0);
+            case DoorPosition.Bottom: return currentPosition + new Vector3(0, -20, 0);
+            case DoorPosition.Left: return currentPosition + new Vector3(-20, 0, 0);
+            case DoorPosition.Right: return currentPosition + new Vector3(20, 0, 0);
+
         }
 
-        player.position = newPosition;
+        return currentPosition;
+
     }
 
-    Vector3 GetDoorPosition(DoorPosition doorPos)
+    private DoorPosition GetOppositeDoor(DoorPosition door)
     {
-        Door[] doors = FindObjectsOfType<Door>();
+        switch (door)
+        {
+            case DoorPosition.Top: return DoorPosition.Bottom;
+            case DoorPosition.Bottom: return DoorPosition.Top;
+            case DoorPosition.Left: return DoorPosition.Right;
+            case DoorPosition.Right: return DoorPosition.Left;
+        }
+        return door;
+    }
 
+private Vector3 GetDoorPosition(Vector3 roomPosition, DoorPosition doorPos)
+{
+    if (generatedRooms.ContainsKey(roomPosition))
+    {
+        Door[] doors = generatedRooms[roomPosition].GetComponentsInChildren<Door>();
         foreach (Door door in doors)
         {
             if (door.doorPosition == doorPos)
             {
-                return door.transform.position;
+                Vector3 position = door.transform.position;
+
+                switch (doorPos)
+                {
+                    case DoorPosition.Top:
+                        position += new Vector3(0, -1.5f, 0);
+                        break;
+                    case DoorPosition.Bottom:
+                        position += new Vector3(0, 1.5f, 0);
+                        break;
+                    case DoorPosition.Left:
+                        position += new Vector3(1.5f, 0, 0);
+                        break;
+                    case DoorPosition.Right:
+                        position += new Vector3(-1.5f, 0, 0);
+                        break;
+                }
+
+                return position;
             }
         }
-
-        return Vector3.zero;
     }
+    return roomPosition;
+}
+
 }
