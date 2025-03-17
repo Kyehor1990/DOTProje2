@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7f4e7bdb3445648a8a36558d3abe1d, type: 3}
+  m_Name: Sosis
+  m_EditorClassIdentifier: 
+  itemID: 1
+  previewImage: {fileID: 7482667652216324306, guid: ebb1c57b93fcff84583ee66b1849784e, type: 3}
+  width: 1
+  height: 2
