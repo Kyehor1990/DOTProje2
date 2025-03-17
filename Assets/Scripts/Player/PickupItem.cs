@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class PickupItem : MonoBehaviour
 {
+    public int patates;
+    public int kısır;
+    public int sausage;
+
+    bool kisirTake = false;
+
+    public GameObject alinacak;
+
+
+
     public InventoryManager inventoryManager;
     public Item[] itemsToPickup;
 
-    void OnTriggerStay2D(Collider2D other)
-    {        
-        if (other.CompareTag("Kısır") && Input.GetKeyDown(KeyCode.E))
+    void OnTriggerEnter2D(Collider2D other)
+    {   
+        if(other.CompareTag("Kısır"))
         {
-            Debug.Log("Kısır picked up");
-            TakeItem(0, other);
+         kisirTake = true;
+        }
+        alinacak = other.gameObject;
+
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Kısır"))
+        {
+            kisirTake = false;
+        }
+    }
+
+    void Update()
+    {
+        if (kisirTake)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Kısır picked up");
+                TakeItem(0, alinacak.GetComponent<Collider2D>());
+            }
         }
     }
 
