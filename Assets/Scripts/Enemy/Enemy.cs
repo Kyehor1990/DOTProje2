@@ -25,7 +25,6 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Enemy died!");
 
-        // Loot spawn işlemi
         SpawnLoot();
 
         Destroy(gameObject);
@@ -35,7 +34,6 @@ public class Enemy : MonoBehaviour
     {
         if (lootPrefab != null)
         {
-            // Loot'u düşmanın pozisyonunda spawn et
             Instantiate(lootPrefab, transform.position, Quaternion.identity);
         }
     }
