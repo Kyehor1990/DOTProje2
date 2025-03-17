@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7f4e7bdb3445648a8a36558d3abe1d, type: 3}
   m_Name: "RusSalatas\u0131"
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
   image: {fileID: 3625043607559282579, guid: 4dd9c5e793286884fa358a3316bb4c9f, type: 3}
-  type: 2
-  range: {x: 5, y: 4}
-  width: 0
-  height: 0
+  itemName: russalatasi
+  stock: 0
+  price: 0
+  width: 2
+  height: 2

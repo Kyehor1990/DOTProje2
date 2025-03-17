@@ -49,6 +49,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Destroy(gameObject);
+                item.stock--;
             }
         }
     }

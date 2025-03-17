@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PickupItem : MonoBehaviour
 {
-    public int patates;
-    public int kisir;
-    public int sausage;
 
     bool kisirTake = false;
+    bool russalatasiTake = false;
 
     public GameObject alinacakKisir;
+    public GameObject alinacakRussalatasi;
+
+    public Item itemKisir;
 
 
 
@@ -25,6 +26,12 @@ public class PickupItem : MonoBehaviour
             alinacakKisir = other.gameObject;
         }
 
+        if(other.CompareTag("Russalatasi"))
+        {
+            russalatasiTake = true;
+            alinacakRussalatasi = other.gameObject;
+        }
+
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -32,6 +39,11 @@ public class PickupItem : MonoBehaviour
         if(collision.CompareTag("Kisir"))
         {
             kisirTake = false;
+        }
+
+        if(collision.CompareTag("Russalatasi"))
+        {
+            russalatasiTake = false;
         }
     }
 
@@ -43,7 +55,16 @@ public class PickupItem : MonoBehaviour
             {
                 Debug.Log("Kisir picked up");
                 TakeItem(0, alinacakKisir);
-                kisir++;
+                itemKisir.stock++;
+            }
+        }
+
+        if (russalatasiTake)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Russalatasi picked up");
+                TakeItem(1, alinacakRussalatasi);
             }
         }
     }
