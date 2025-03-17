@@ -6,20 +6,19 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    bool isDragging = false;
+
     public Item item;
 
     [Header("UI")]
     
-     public Image image;
+    [HideInInspector] public Image image;
     [HideInInspector] public Transform parentAfterDrag;
 
-    void Start()
-    {
-        InitialiseItem(item);
-    }
 
     public void InitialiseItem(Item newItem)
     {
+        item = newItem;
         image.sprite = newItem.image;
     }
 
@@ -32,15 +31,26 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
+        isDragging = true;
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
+    {       
+        isDragging = false;
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
     }
 
-
+    void Update()
+    {
+        if (isDragging)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 
 }
