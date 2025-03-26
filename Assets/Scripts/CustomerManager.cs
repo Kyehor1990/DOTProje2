@@ -9,7 +9,7 @@ public class CustomerManager : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine(CustomerRoutine());
+        StartCoroutine(CustomerRoutine());
     }
 
     IEnumerator CustomerRoutine()

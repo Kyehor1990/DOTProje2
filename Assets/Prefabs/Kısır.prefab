@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7652561598229571874}
   m_Layer: 0
   m_Name: "K\u0131s\u0131r"
-  m_TagString: "K\u0131s\u0131r"
+  m_TagString: Kisir
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
