@@ -15,6 +15,6 @@ MonoBehaviour:
   image: {fileID: 7482667652216324306, guid: ebb1c57b93fcff84583ee66b1849784e, type: 3}
   itemName: kisir
   stock: 0
-  price: 0
+  price: 5
   width: 1
   height: 1
