@@ -3,13 +3,20 @@ using System.Collections;
 
 public class CustomerManager : MonoBehaviour
 {
-    public StockManager stockManager; // Reference to stock system
-    public string[] possibleItems; // List of items customers can request
-    public float customerInterval = 5f; // Time between customers
+    public StockManager stockManager;
+    public string[] possibleItems;
+    public float customerInterval = 5f;
 
-    void Start()
-    {
-        StartCoroutine(CustomerRoutine());
+    public CameraControl cameraControl;
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.C) && cameraControl.Dungeon == false)
+        {
+            StartCoroutine(CustomerRoutine());
+        } else if (Input.GetKeyDown(KeyCode.C) && cameraControl.Dungeon == true)
+        {
+            StopAllCoroutines();
+        }
     }
 
     IEnumerator CustomerRoutine()
