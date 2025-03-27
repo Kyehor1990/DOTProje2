@@ -5,6 +5,10 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
 
+    public string tagItem = "item";
+
+    public CameraControl cameraControl;
+
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
@@ -29,4 +33,19 @@ public class InventoryManager : MonoBehaviour
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
+
+    void Update()
+    {
+       if(cameraControl.Dungeon == false){
+        GameObject[] items = GameObject.FindGameObjectsWithTag(tagItem);
+
+                foreach (GameObject obj in items)
+        {
+            Destroy(obj);
+        }
+       }
+    }
+
+   
 }
+

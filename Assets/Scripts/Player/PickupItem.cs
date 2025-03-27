@@ -12,6 +12,7 @@ public class PickupItem : MonoBehaviour
     public GameObject alinacakRussalatasi;
 
     public Item itemKisir;
+    public Item itemRussalatasi;
 
 
 
@@ -65,6 +66,7 @@ public class PickupItem : MonoBehaviour
             {
                 Debug.Log("Russalatasi picked up");
                 TakeItem(1, alinacakRussalatasi);
+                itemRussalatasi.stock++;
             }
         }
     }
