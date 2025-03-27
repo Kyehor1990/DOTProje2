@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
 
-    public string tagItem = "item";
+    private string tagItem = "item";
 
     public CameraControl cameraControl;
 

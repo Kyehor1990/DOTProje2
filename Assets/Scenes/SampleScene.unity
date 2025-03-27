@@ -592,7 +592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9742a144835f1439af1ad688bda42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagItem: item
   cameraControl: {fileID: 392383020}
   inventorySlots:
   - {fileID: 1319365090}
@@ -650,6 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343142254}
   - component: {fileID: 343142253}
+  - component: {fileID: 343142255}
   m_Layer: 0
   m_Name: DungeonManager
   m_TagString: Untagged
@@ -694,6 +694,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 348447090}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343142255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343142252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a937dfcc5e0c34f93ce42d9157b824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 701841963}
+  prefabRoom: {fileID: 881033160039818780, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
+  spawnPosition: {x: 0, y: 0, z: 0}
+  cameraControl: {fileID: 392383020}
 --- !u!1 &348447089
 GameObject:
   m_ObjectHideFlags: 0

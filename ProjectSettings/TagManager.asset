@@ -8,6 +8,7 @@ TagManager:
   - Kisir
   - Russalatasi
   - item
+  - room
   layers:
   - Default
   - TransparentFX
