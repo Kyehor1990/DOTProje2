@@ -1980,6 +1980,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4249510777772908310, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7062143434404659636, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
       propertyPath: doorPosition
       value: 2
@@ -2531,6 +2535,7 @@ GameObject:
   - component: {fileID: 701841969}
   - component: {fileID: 701841970}
   - component: {fileID: 701841971}
+  - component: {fileID: 701841972}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2661,7 +2666,7 @@ Transform:
   m_GameObject: {fileID: 701841963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.53, y: 0.5653, z: -0.026068186}
+  m_LocalPosition: {x: -2.78, y: 0.5653, z: -0.026068186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2733,6 +2738,21 @@ MonoBehaviour:
   itemsToPickup:
   - {fileID: 11400000, guid: 09c129ff81c365843b68b7a21ad58482, type: 2}
   - {fileID: 11400000, guid: 1d0af7e82a4dc5142ab1654d654c68f5, type: 2}
+--- !u!114 &701841972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701841963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eff421618e177f458bdad9c7848db4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  isInvincible: 0
+  invincibilityTime: 1
 --- !u!224 &730046331 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}

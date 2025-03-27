@@ -3,7 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int health = 3;
-    [SerializeField] GameObject lootPrefab; // Loot prefab'ı
+    [SerializeField] GameObject lootPrefab;
 
     void Start()
     {
