@@ -8,6 +8,8 @@ public class CameraControl : MonoBehaviour
     
     public bool Dungeon = true;
 
+    public PlayerHealth playerHealth;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C) && Dungeon) 
@@ -23,7 +25,7 @@ public class CameraControl : MonoBehaviour
             {
                 player.SetActive(false);
             }
-
+            playerHealth.currentHealth = playerHealth.maxHealth;
             Dungeon = false;
 
         }

@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 5;
-    private int currentHealth;
+    public int currentHealth;
     
     public bool isInvincible = false;
     public float invincibilityTime = 1f;
     
+    public CameraControl    cameraControl;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -42,7 +44,8 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player died!");
-        // Ölüm animasyonu, oyunu yeniden başlatma vs.
+        // Ölüm animasyonu, oyunu yeniden başlatma 
         Destroy(gameObject);
     }
+
 }

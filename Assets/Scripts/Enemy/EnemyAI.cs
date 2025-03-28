@@ -6,10 +6,12 @@ public class EnemyAI : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public int damage = 1;
-    public float attackRange;
+    public float attackRange = 1.5f;
+    public float attackCooldown = 1f;
     
     private Transform player;
-
+    private bool isAttacking = false;
+    private float lastAttackTime;
     
     void Start()
     {
@@ -18,21 +20,46 @@ public class EnemyAI : MonoBehaviour
     
     void Update()
     {
-            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-            
-            if (distanceToPlayer > attackRange)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
-            }
-    
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        
+        if (distanceToPlayer > attackRange)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        }
     }
     
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>().TakeDamage(damage);
+            AttackPlayer(other);
         }
     }
     
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            AttackPlayer(other);
+        }
+    }
+    
+    void AttackPlayer(Collider2D playerCollider)
+    {
+        if (Time.time - lastAttackTime >= attackCooldown)
+        {
+            playerCollider.GetComponent<PlayerHealth>().TakeDamage(damage);
+            lastAttackTime = Time.time;
+            
+            StartCoroutine(AttackEffect());
+        }
+    }
+    
+    IEnumerator AttackEffect()
+    {
+        isAttacking = true;
+        // Burada saldırı animasyonu veya görsel efekt
+        yield return new WaitForSeconds(0.3f); // Efekt süresi
+        isAttacking = false;
+    }
 }
