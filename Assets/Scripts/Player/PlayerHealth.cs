@@ -9,8 +9,11 @@ public class PlayerHealth : MonoBehaviour
     
     public bool isInvincible = false;
     public float invincibilityTime = 1f;
+
     
     public CameraControl    cameraControl;
+
+    public GameObject panel;
 
     void Start()
     {
@@ -44,8 +47,8 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player died!");
-        // Ölüm animasyonu, oyunu yeniden başlatma 
-        Destroy(gameObject);
+        panel.SetActive(true);
+        gameObject.SetActive(false);
     }
 
 }

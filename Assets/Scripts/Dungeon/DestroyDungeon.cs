@@ -13,9 +13,11 @@ public class DestroyDungeon : MonoBehaviour
 
     public CameraControl cameraControl;
 
+    public PlayerHealth playerHealth;
+
     void Update()
     {
-       if(cameraControl.Dungeon == true && Input.GetKeyDown(KeyCode.C)){
+       if(cameraControl.Dungeon == true && Input.GetKeyDown(KeyCode.C)&& playerHealth.currentHealth > 0){
         GameObject[] items = GameObject.FindGameObjectsWithTag(tagRoom);
 
             foreach (GameObject obj in items)

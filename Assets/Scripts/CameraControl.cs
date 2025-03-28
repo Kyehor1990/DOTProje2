@@ -12,7 +12,7 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && Dungeon) 
+        if (Input.GetKeyDown(KeyCode.C) && Dungeon && playerHealth.currentHealth > 0) 
         {
 
             Debug.Log("Dungeon'dan çikiş yapildi.");
@@ -21,10 +21,6 @@ public class CameraControl : MonoBehaviour
                 cameraTransform.position = targetPosition;
             }
 
-            if (player != null)
-            {
-                player.SetActive(false);
-            }
             playerHealth.currentHealth = playerHealth.maxHealth;
             Dungeon = false;
 
@@ -36,12 +32,7 @@ public class CameraControl : MonoBehaviour
             if (cameraTransform != null)
             {
                 cameraTransform.position = new Vector3(3.21f, 0, -10);
-            }
-
-            if (player != null)
-            {
-                player.SetActive(true);
-            }
+            } 
 
             Dungeon = true;
         }
