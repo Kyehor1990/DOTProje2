@@ -4,7 +4,9 @@ public class PlayerEnergy : MonoBehaviour
 {
     public static PlayerEnergy instance;
     public int maxEnergy = 100;
-    private int currentEnergy;
+    public int currentEnergy;
+    
+
 
     void Awake()
     {
@@ -16,13 +18,9 @@ public class PlayerEnergy : MonoBehaviour
     {
         Debug.Log("Enerji kullanıldı: " + amount);
         currentEnergy -= amount;
-        if (currentEnergy <= 0)
-        {
-            ForceExitDungeon();
-        }
     }
 
-    void ForceExitDungeon()
+   public void ForceExitDungeon()
     {
         Debug.Log("Enerjin bitti! Zindandan çıkıyorsun...");
     }

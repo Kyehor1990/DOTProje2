@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
     public List<GameObject> enemies = new List<GameObject>();
+
+    public PlayerEnergy playerEnergy;
 
     void Awake()
     {
@@ -27,6 +30,12 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Kalan düşman sayısı: " + enemies.Count);
         if (enemies.Count == 0)
         {
+            if (playerEnergy.currentEnergy <= 0)
+            {
+                Debug.LogError("Enerji KODU");
+                PlayerEnergy.instance.ForceExitDungeon();
+            }
+
             Door[] doors = FindObjectsOfType<Door>();
             foreach (Door door in doors)
             {
