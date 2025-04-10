@@ -14,6 +14,7 @@ public class PlayerEnergy : MonoBehaviour
 
     public void UseEnergy(int amount)
     {
+        Debug.Log("Enerji kullanıldı: " + amount);
         currentEnergy -= amount;
         if (currentEnergy <= 0)
         {
