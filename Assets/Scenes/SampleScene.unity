@@ -488,7 +488,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.27536482, g: 0.83396226, b: 0.31092146, a: 1}
+  m_Color: {r: 0.4339623, g: 0.32714745, b: 0.19037023, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -743,6 +743,7 @@ Transform:
   - {fileID: 392383019}
   - {fileID: 1463445165}
   - {fileID: 2142571468}
+  - {fileID: 1248564008}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &362659347
@@ -1133,7 +1134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &392383019
 Transform:
   m_ObjectHideFlags: 0
@@ -1510,6 +1511,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbaccf07674394429f66393c1ed3235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &462014658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6440218516014087039, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
+  m_PrefabInstance: {fileID: 566444157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &462014663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462014658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb1612b9e9f825478b27b256838319d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneChange: {fileID: 1248564009}
 --- !u!1 &463550825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,11 +2204,18 @@ PrefabInstance:
       propertyPath: doorPosition
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8370204818750297313, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -8351860103067812030, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6440218516014087039, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 462014663}
   m_SourcePrefab: {fileID: 100100000, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
 --- !u!1001 &575881254
 PrefabInstance:
@@ -4149,6 +4175,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216724181}
   m_CullTransparentMesh: 1
+--- !u!1 &1248564007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248564008}
+  - component: {fileID: 1248564009}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1248564008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248564007}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 348447090}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1248564009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248564007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 017e6ba81e9f62849b4777225ad2d18d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dungeon: 1
+  cameraTransform: {fileID: 519420032}
+  player: {fileID: 701841963}
+  playerHealth: {fileID: 701841972}
+  targetPosition: {x: 3.21, y: -60.5, z: -10}
 --- !u!224 &1266656035 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}

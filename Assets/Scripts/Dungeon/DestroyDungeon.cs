@@ -15,17 +15,21 @@ public class DestroyDungeon : MonoBehaviour
 
     public PlayerHealth playerHealth;
 
-    void Update()
+    public void DungeonDestroy()
     {
-       if(cameraControl.Dungeon == true && Input.GetKeyDown(KeyCode.C)&& playerHealth.currentHealth > 0){
+        if(cameraControl.Dungeon == true && Input.GetKeyDown(KeyCode.C)&& playerHealth.currentHealth > 0){
         GameObject[] items = GameObject.FindGameObjectsWithTag(tagRoom);
 
             foreach (GameObject obj in items)
         {
             Destroy(obj);
         }
-    
-       }else if(cameraControl.Dungeon == false && Input.GetKeyDown(KeyCode.C)){
+        }
+    }
+
+    public void DungeonCreate()
+    {
+        if(cameraControl.Dungeon == false && Input.GetKeyDown(KeyCode.C)){
          Instantiate(prefabRoom, spawnPosition, Quaternion.identity);
 
          player.transform.position = new Vector3(0, 0, 0);
