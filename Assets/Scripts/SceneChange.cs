@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SceneChange : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class SceneChange : MonoBehaviour
      public CustomerManager customerManager;
 
      public DayManager dayManager;
-
+     public Button dungeonButton;
 
      public void CustomerSceneChange()
      {
@@ -54,6 +55,7 @@ public class SceneChange : MonoBehaviour
                 destroyDungeon.DungeonCreate();
                 dayManager.DayCountIncrease();
                 Dungeon = true;
+                dungeonButton.gameObject.SetActive(false);
             }
      }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEditor;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class CustomerManager : MonoBehaviour
     private int customerCount;
 
     private int maxCustomers =4;
+
+    public Button dungeonButton;
 
     public IEnumerator CustomerRoutine()
     {
@@ -40,6 +43,7 @@ public class CustomerManager : MonoBehaviour
             if (customerCount >= 4)
             {
                 Debug.Log("All customers have been served!");
+                dungeonButton.gameObject.SetActive(true);
                 break;
             }
         }
