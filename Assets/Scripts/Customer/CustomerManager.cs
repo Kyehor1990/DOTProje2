@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor;
+using UnityEngine.Rendering;
 
 public class CustomerManager : MonoBehaviour
 {
@@ -7,19 +9,13 @@ public class CustomerManager : MonoBehaviour
     public string[] possibleItems;
     public float customerInterval = 5f;
 
-    public CameraControl cameraControl;
+    public SceneChange sceneChange;
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.C) && cameraControl.Dungeon == false)
-        {
-            StartCoroutine(CustomerRoutine());
-        } else if (Input.GetKeyDown(KeyCode.C) && cameraControl.Dungeon == true)
-        {
-            StopAllCoroutines();
-        }
-    }
+    private int customerCount;
 
-    IEnumerator CustomerRoutine()
+    private int maxCustomers =4;
+
+    public IEnumerator CustomerRoutine()
     {
         while (true)
         {
@@ -38,6 +34,19 @@ public class CustomerManager : MonoBehaviour
             {
                 Debug.Log("Customer is sad and leaves.");
             }
+
+            customerCount++;
+
+            if (customerCount >= 4)
+            {
+                Debug.Log("All customers have been served!");
+                break;
+            }
         }
+    }
+
+    public void ResetCustomerCount()
+    {
+        customerCount = maxCustomers;
     }
 }

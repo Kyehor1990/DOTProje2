@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9742a144835f1439af1ad688bda42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraControl: {fileID: 392383020}
+  sceneChange: {fileID: 1248564009}
   inventorySlots:
   - {fileID: 1319365090}
   - {fileID: 1607110408}
@@ -704,7 +704,7 @@ MonoBehaviour:
   player: {fileID: 701841963}
   prefabRoom: {fileID: 881033160039818780, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
-  cameraControl: {fileID: 392383020}
+  sceneChange: {fileID: 1248564009}
   playerHealth: {fileID: 701841972}
 --- !u!1 &348447089
 GameObject:
@@ -740,7 +740,6 @@ Transform:
   - {fileID: 302019819}
   - {fileID: 374725391}
   - {fileID: 1699451570}
-  - {fileID: 392383019}
   - {fileID: 1463445165}
   - {fileID: 2142571468}
   - {fileID: 1248564008}
@@ -1118,55 +1117,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
---- !u!1 &392383018
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 392383019}
-  - component: {fileID: 392383020}
-  m_Layer: 0
-  m_Name: CameraManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &392383019
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392383018}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 348447090}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &392383020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392383018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa455af9ea5fe084ca4fb76450d43fd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 519420032}
-  targetPosition: {x: 3.21, y: -60.5, z: -10}
-  player: {fileID: 701841963}
-  Dungeon: 1
-  playerHealth: {fileID: 701841972}
 --- !u!1001 &422845483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3104,7 +3054,7 @@ MonoBehaviour:
   currentHealth: 0
   isInvincible: 0
   invincibilityTime: 1
-  cameraControl: {fileID: 392383020}
+  cameraControl: {fileID: 0}
   panel: {fileID: 929836914}
 --- !u!224 &730046331 stripped
 RectTransform:
@@ -4224,6 +4174,9 @@ MonoBehaviour:
   player: {fileID: 701841963}
   playerHealth: {fileID: 701841972}
   targetPosition: {x: 3.21, y: -60.5, z: -10}
+  destroyDungeon: {fileID: 343142255}
+  playerEnergy: {fileID: 701841970}
+  customerManager: {fileID: 1699451571}
 --- !u!224 &1266656035 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
@@ -4988,7 +4941,7 @@ MonoBehaviour:
   - kisir
   - russalatasi
   customerInterval: 2
-  cameraControl: {fileID: 392383020}
+  sceneChange: {fileID: 1248564009}
 --- !u!1 &1739887869
 GameObject:
   m_ObjectHideFlags: 0

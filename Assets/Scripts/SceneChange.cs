@@ -12,6 +12,10 @@ public class SceneChange : MonoBehaviour
 
      public DestroyDungeon destroyDungeon;
 
+     public PlayerEnergy playerEnergy;
+
+     public CustomerManager customerManager;
+
 
      public void CustomerSceneChange()
      {
@@ -26,7 +30,10 @@ public class SceneChange : MonoBehaviour
                 playerHealth.currentHealth = playerHealth.maxHealth;
 
                 destroyDungeon.DungeonDestroy();
+                StartCoroutine(customerManager.CustomerRoutine());
                 Dungeon = false;
+
+                playerEnergy.currentEnergy = playerEnergy.maxEnergy;
 
             }
 
