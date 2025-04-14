@@ -10,9 +10,6 @@ public class PlayerHealth : MonoBehaviour
     public bool isInvincible = false;
     public float invincibilityTime = 1f;
 
-    
-    public CameraControl    cameraControl;
-
     public GameObject panel;
 
     void Start()

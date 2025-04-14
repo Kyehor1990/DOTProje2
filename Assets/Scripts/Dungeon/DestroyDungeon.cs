@@ -28,11 +28,10 @@ public class DestroyDungeon : MonoBehaviour
 
     public void DungeonCreate()
     {
-        if(sceneChange.Dungeon == false && Input.GetKeyDown(KeyCode.C)){
          Instantiate(prefabRoom, spawnPosition, Quaternion.identity);
 
          player.transform.position = new Vector3(0, 0, 0);
-       }
+       
     }
 
 

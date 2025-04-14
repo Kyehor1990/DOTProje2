@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class SceneChange : MonoBehaviour
@@ -15,6 +16,8 @@ public class SceneChange : MonoBehaviour
      public PlayerEnergy playerEnergy;
 
      public CustomerManager customerManager;
+
+     public DayManager dayManager;
 
 
      public void CustomerSceneChange()
@@ -36,6 +39,21 @@ public class SceneChange : MonoBehaviour
                 playerEnergy.currentEnergy = playerEnergy.maxEnergy;
 
             }
+     }
 
+     public void DungeonSceneChange()
+     {
+            if (!Dungeon && playerHealth.currentHealth > 0) 
+            {
+                Debug.Log("Customer'dan çikiş yapildi.");
+                if (cameraTransform != null)
+                {
+                    cameraTransform.position = new Vector3(3.21f, 0, -10);
+                }
+
+                destroyDungeon.DungeonCreate();
+                dayManager.DayCountIncrease();
+                Dungeon = true;
+            }
      }
 }
