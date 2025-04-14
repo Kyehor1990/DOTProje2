@@ -10,7 +10,9 @@ public class SceneChange : MonoBehaviour
      public PlayerHealth playerHealth;
      public Vector3 targetPosition;
 
-     
+     public DestroyDungeon destroyDungeon;
+
+
      public void CustomerSceneChange()
      {
             if (Dungeon && playerHealth.currentHealth > 0) 
@@ -22,7 +24,11 @@ public class SceneChange : MonoBehaviour
                 }
 
                 playerHealth.currentHealth = playerHealth.maxHealth;
+
+                destroyDungeon.DungeonDestroy();
                 Dungeon = false;
+
             }
+
      }
 }

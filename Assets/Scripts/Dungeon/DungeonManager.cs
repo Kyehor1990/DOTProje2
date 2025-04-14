@@ -79,7 +79,7 @@ public class DungeonManager : MonoBehaviour
 private Vector3 GetDoorPosition(Vector3 roomPosition, DoorPosition doorPos)
 {
 
-    Debug.LogError("GetDoorPosition: " + roomPosition + " " + doorPos);
+    Debug.Log("GetDoorPosition: " + roomPosition + " " + doorPos);
     mainCamera.transform.position = new Vector3(roomPosition.x +3.21f, roomPosition.y, -10);
     if (generatedRooms.ContainsKey(roomPosition))
     {

@@ -7,7 +7,7 @@ public class InventoryManager : MonoBehaviour
 
     private string tagItem = "item";
 
-    public CameraControl cameraControl;
+    public SceneChange sceneChange;
 
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-       if(cameraControl.Dungeon == false){
+       if(sceneChange.Dungeon == false){
         GameObject[] items = GameObject.FindGameObjectsWithTag(tagItem);
 
                 foreach (GameObject obj in items)
