@@ -52,6 +52,7 @@ public class SceneChange : MonoBehaviour
                     cameraTransform.position = new Vector3(3.21f, 0, -10);
                 }
 
+                customerManager.ResetCustomerCount();
                 destroyDungeon.DungeonCreate();
                 dayManager.DayCountIncrease();
                 Dungeon = true;

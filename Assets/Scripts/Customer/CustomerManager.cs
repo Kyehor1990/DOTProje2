@@ -14,7 +14,7 @@ public class CustomerManager : MonoBehaviour
 
     private int customerCount;
 
-    private int maxCustomers =4;
+    private int maxCustomers = 4;
 
     public Button dungeonButton;
 
@@ -40,7 +40,7 @@ public class CustomerManager : MonoBehaviour
 
             customerCount++;
 
-            if (customerCount >= 4)
+            if (customerCount >= maxCustomers)
             {
                 Debug.Log("All customers have been served!");
                 dungeonButton.gameObject.SetActive(true);
@@ -51,6 +51,6 @@ public class CustomerManager : MonoBehaviour
 
     public void ResetCustomerCount()
     {
-        customerCount = maxCustomers;
+        customerCount = 0;
     }
 }

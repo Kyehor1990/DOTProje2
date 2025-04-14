@@ -3,11 +3,13 @@ using UnityEngine;
 public class DungeonExit : MonoBehaviour
 {
     private bool isLocked = true;
-    public SceneChange sceneChange;
+    private SceneChange sceneChange;
 
     void Start()
     {
-        LockDoor();    
+        LockDoor();
+
+        sceneChange = FindObjectOfType<SceneChange>();  
     }
 
     public void UnlockDoor()
