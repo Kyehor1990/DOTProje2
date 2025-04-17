@@ -18,3 +18,4 @@ MonoBehaviour:
   price: 5
   width: 1
   height: 1
+  itemPrefab: {fileID: 2772197720356558680, guid: 9465a97add21ed941a401d526be4e2fc, type: 3}

@@ -7,13 +7,19 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     bool isDragging = false;
-
+    GameObject player;
     public Item item;
+    GameObject itemPrefab;
 
     [Header("UI")]
     
     [HideInInspector] public Image image;
     [HideInInspector] public Transform parentAfterDrag;
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
 
 
     public void InitialiseItem(Item newItem)
@@ -48,6 +54,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                if(item.itemName == "kisir"){
+                    itemPrefab = item.itemPrefab;
+                }
+                Instantiate(itemPrefab,player.transform.position, Quaternion.identity);
                 Destroy(gameObject);
                 item.stock--;
             }

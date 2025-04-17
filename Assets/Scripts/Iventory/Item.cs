@@ -12,9 +12,10 @@ public class Item : ScriptableObject
     public int stock;
     public int price;
 
-
     public int width;
     public int height;
+
+    public GameObject itemPrefab;
 
 }
 
