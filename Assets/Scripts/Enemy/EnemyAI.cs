@@ -28,32 +28,35 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    void OnTriggerEnter2D(Collider2D other)
+   void OnCollisionEnter2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            AttackPlayer(other);
-        }
+        AttackPlayer(collision.gameObject);
     }
-    
-    void OnTriggerStay2D(Collider2D other)
+}
+
+void OnCollisionStay2D(Collision2D collision)
+{
+    if (collision.gameObject.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
-        {
-            AttackPlayer(other);
-        }
+        AttackPlayer(collision.gameObject);
     }
+}
     
-    void AttackPlayer(Collider2D playerCollider)
+   void AttackPlayer(GameObject player)
+{
+    if (Time.time - lastAttackTime >= attackCooldown)
     {
-        if (Time.time - lastAttackTime >= attackCooldown)
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+        if (health != null)
         {
-            playerCollider.GetComponent<PlayerHealth>().TakeDamage(damage);
+            health.TakeDamage(damage);
             lastAttackTime = Time.time;
-            
             StartCoroutine(AttackEffect());
         }
     }
+}
     
     IEnumerator AttackEffect()
     {

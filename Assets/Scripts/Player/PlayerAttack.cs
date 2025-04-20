@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     private float lastAttackTime;
     private Vector2 attackDirection;
 
+    public Transform attackPoint;
 
     public bool isAttacking = false;
 
@@ -68,18 +69,17 @@ public class PlayerAttack : MonoBehaviour
         // Play attack animation (you can trigger this via Animator)
         // animator.SetTrigger("Attack");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, attackDirection, attackRange, enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
 
-        if (hit.collider != null)
+        foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit: " + hit.collider.name);
-            hit.collider.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
     }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3)attackDirection * attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
