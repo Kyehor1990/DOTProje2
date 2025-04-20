@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public int damage = 1;
-    public float attackRange = 1.5f;
-    public float attackCooldown = 1f;
+    [SerializeField] float moveSpeed;
+    [SerializeField] int damage;
+    [SerializeField] float attackRange;
+    [SerializeField] float attackCooldown;
     
     private Transform player;
     private bool isAttacking = false;
