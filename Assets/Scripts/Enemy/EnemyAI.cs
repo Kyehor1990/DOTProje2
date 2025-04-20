@@ -12,10 +12,14 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
     private bool isAttacking = false;
     private float lastAttackTime;
+
+    private Rigidbody2D rb;
     
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
+
     }
     
     void Update()
@@ -24,7 +28,9 @@ public class EnemyAI : MonoBehaviour
         
         if (distanceToPlayer > attackRange)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            Vector2 newPosition = Vector2.MoveTowards(rb.position, player.position, moveSpeed * Time.deltaTime);
+            rb.MovePosition(newPosition);
+
         }
     }
     
