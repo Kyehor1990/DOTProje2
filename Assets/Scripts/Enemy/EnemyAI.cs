@@ -58,7 +58,6 @@ public class EnemyAI : MonoBehaviour
     IEnumerator AttackEffect()
     {
         isAttacking = true;
-        //saldırı animasyonu
         yield return new WaitForSeconds(0.3f);
         isAttacking = false;
     }

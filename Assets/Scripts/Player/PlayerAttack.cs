@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public float attackRange = 1f;
+    public float attackRange;
     public int attackDamage = 1;
     public float attackCooldown = 0.5f;
     public LayerMask enemyLayer;
     private float lastAttackTime;
     private Vector2 attackDirection;
+
 
     public bool isAttacking = false;
 
@@ -76,7 +77,6 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
