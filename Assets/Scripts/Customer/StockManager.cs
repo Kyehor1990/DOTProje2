@@ -29,4 +29,10 @@ public class StockManager : MonoBehaviour
         Debug.Log($"Item {requestedItem} not found in stock.");
         return false;
     }
+
+        public void BuyUpgrade(int amount)
+    {
+        playerMoney -= amount;
+        Debug.Log($"Bought upgrade for {amount}. Player Money: {playerMoney}");
+    }
 }

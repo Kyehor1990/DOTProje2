@@ -48,4 +48,10 @@ public class PlayerHealth : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void UpgradeHealth(int amount)
+    {
+        maxHealth += amount;
+        Debug.Log("Upgraded health: " + maxHealth);
+    }
+
 }

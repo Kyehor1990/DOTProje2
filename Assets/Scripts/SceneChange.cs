@@ -20,6 +20,7 @@ public class SceneChange : MonoBehaviour
 
      public DayManager dayManager;
      public Button dungeonButton;
+     public GameObject UpgradePanel;
 
      public void CustomerSceneChange()
      {
@@ -30,14 +31,10 @@ public class SceneChange : MonoBehaviour
                 {
                     cameraTransform.position = targetPosition;
                 }
-
-                playerHealth.currentHealth = playerHealth.maxHealth;
-
                 destroyDungeon.DungeonDestroy();
+                player.SetActive(false);
                 StartCoroutine(customerManager.CustomerRoutine());
                 Dungeon = false;
-
-                playerEnergy.currentEnergy = playerEnergy.maxEnergy;
 
             }
      }
@@ -51,12 +48,16 @@ public class SceneChange : MonoBehaviour
                 {
                     cameraTransform.position = new Vector3(3.21f, 0, -10);
                 }
+                player.SetActive(true);
+                playerHealth.currentHealth = playerHealth.maxHealth;
+                playerEnergy.currentEnergy = playerEnergy.maxEnergy;
 
                 customerManager.ResetCustomerCount();
                 destroyDungeon.DungeonCreate();
                 dayManager.DayCountIncrease();
                 Dungeon = true;
                 dungeonButton.gameObject.SetActive(false);
+                UpgradePanel.SetActive(false);
             }
      }
 }

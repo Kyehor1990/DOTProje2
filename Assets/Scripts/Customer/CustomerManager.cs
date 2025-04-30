@@ -17,6 +17,7 @@ public class CustomerManager : MonoBehaviour
     private int maxCustomers = 4;
 
     public Button dungeonButton;
+    public GameObject UpgradePanel;
 
     public IEnumerator CustomerRoutine()
     {
@@ -43,6 +44,7 @@ public class CustomerManager : MonoBehaviour
             if (customerCount >= maxCustomers)
             {
                 Debug.Log("All customers have been served!");
+                UpgradePanel.SetActive(true);
                 dungeonButton.gameObject.SetActive(true);
                 break;
             }
