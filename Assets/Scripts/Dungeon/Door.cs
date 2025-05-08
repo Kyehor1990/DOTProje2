@@ -17,14 +17,21 @@ public class Door : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player") && !isLocked)
     {
+        Vector3 newRoomPos = DungeonManager.instance.GetNewRoomPositionFromDoor(doorPosition);
 
-    if (other.CompareTag("Player") && !isLocked && PlayerEnergy.instance.currentEnergy>0)
-    {
-        Debug.Log("Kapı açılıyor: " + doorPosition);
-        DungeonManager.instance.EnterRoom(roomType, doorPosition);
+        bool roomAlreadyExists = DungeonManager.instance.DoesRoomExistAt(newRoomPos);
+
+        if (PlayerEnergy.instance.currentEnergy > 0 || roomAlreadyExists)
+        {
+            Debug.Log("Kapı açılıyor: " + doorPosition);
+            DungeonManager.instance.EnterRoom(roomType, doorPosition);
+        }
     }
-    }
+}
+
 
     public void LockDoor()
     {

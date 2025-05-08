@@ -113,5 +113,15 @@ private Vector3 GetDoorPosition(Vector3 roomPosition, DoorPosition doorPos)
     }
     return roomPosition;
 }
+    public Vector3 GetNewRoomPositionFromDoor(DoorPosition enteredDoor)
+{
+    return GetNewRoomPosition(currentRoomPosition, enteredDoor);
+}
+public bool DoesRoomExistAt(Vector3 position)
+{
+    return generatedRooms.ContainsKey(position);
+}
+
+
 
 }
