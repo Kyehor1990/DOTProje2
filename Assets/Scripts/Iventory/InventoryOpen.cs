@@ -8,7 +8,7 @@ public class InventoryOpen : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             invetory.SetActive(!invetory.activeSelf);
         }

@@ -33,8 +33,7 @@ public class DungeonManager : MonoBehaviour
                 GameObject newRoomPrefab = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
                 GameObject newRoom = Instantiate(newRoomPrefab, newRoomPosition, Quaternion.identity);
                 generatedRooms[newRoomPosition] = newRoom;
-                PlayerEnergy.instance.UseEnergy(10); 
-
+                PlayerEnergy.instance.UseEnergy(1); 
             }
 
         }
