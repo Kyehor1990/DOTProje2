@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be2b68c9bf27bd48b511165305b0a8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
+  moveSpeed: 10
   damage: 1
   attackRange: 1
   attackCooldown: 1.01
@@ -193,6 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bb8d762d78aa146b5d1882d59d7b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 10
+  knockbackForce: 7.128
   colorChangeDuration: 0.2
-  disableAIDuration: 0.3
+  disableAIDuration: 0.163

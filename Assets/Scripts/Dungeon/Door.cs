@@ -19,11 +19,10 @@ public class Door : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-    if (other.CompareTag("Player") && !isLocked)
+    if (other.CompareTag("Player") && !isLocked && PlayerEnergy.instance.currentEnergy>0)
     {
         Debug.Log("Kapı açılıyor: " + doorPosition);
         DungeonManager.instance.EnterRoom(roomType, doorPosition);
-        PlayerEnergy.instance.UseEnergy(10); 
     }
     }
 

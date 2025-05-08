@@ -28,11 +28,13 @@ public class DungeonManager : MonoBehaviour
         if (!generatedRooms.ContainsKey(newRoomPosition))
         {
             List<GameObject> selectedRoomList = GetRoomList(roomType);
-            if (selectedRoomList != null && selectedRoomList.Count > 0)
+            if (selectedRoomList != null && selectedRoomList.Count > 0 && PlayerEnergy.instance.currentEnergy>0)
             {
                 GameObject newRoomPrefab = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
                 GameObject newRoom = Instantiate(newRoomPrefab, newRoomPosition, Quaternion.identity);
                 generatedRooms[newRoomPosition] = newRoom;
+                PlayerEnergy.instance.UseEnergy(10); 
+
             }
 
         }
