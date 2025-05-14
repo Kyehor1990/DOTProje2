@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3625043607559282579, guid: 4dd9c5e793286884fa358a3316bb4c9f, type: 3}
   itemName: russalatasi
-  stock: 6
+  stock: 17
   price: 10
+  itemPrefab: {fileID: 3813131547773724080, guid: 08c33bb67fb5a1d43a2624fd4e7c944f, type: 3}
   width: 2
   height: 2
-  itemPrefab: {fileID: 3813131547773724080, guid: 08c33bb67fb5a1d43a2624fd4e7c944f, type: 3}

@@ -11,11 +11,11 @@ public class Item : ScriptableObject
     public string itemName;
     public int stock;
     public int price;
-
-    public int width;
-    public int height;
-
     public GameObject itemPrefab;
+
+    [Header("Inventory Size")]
+    public int width = 1;
+    public int height = 1;
 
 }
 
