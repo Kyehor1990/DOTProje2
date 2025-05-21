@@ -92,7 +92,7 @@ public bool CheckSpace(int startX, int startY, int width, int height)
 
 void PlaceItem(Item item, int startX, int startY)
 {
-    // Grid işaretle
+    // Grid işaretle (ilk yerleştirmede item.width/height kullanabiliriz)
     OccupySpace(startX, startY, item.width, item.height);
 
     // Slotları bul
@@ -111,10 +111,13 @@ void PlaceItem(Item item, int startX, int startY)
     InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
     inventoryItem.InitialiseItem(item);
 
-    // Eşyanın pozisyon bilgisini kaydet
+    // ✅ Başlangıç konum ve boyutları kaydet
     inventoryItem.posX = startX;
     inventoryItem.posY = startY;
+    inventoryItem.currentWidth = item.width;
+    inventoryItem.currentHeight = item.height;
 }
+
 
 public void ClearSpace(int startX, int startY, int width, int height)
 {

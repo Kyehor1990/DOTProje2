@@ -21,6 +21,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
 [HideInInspector] public int posX;
 [HideInInspector] public int posY;
+[HideInInspector] public int currentWidth;
+[HideInInspector] public int currentHeight;
+
 
 
 
@@ -30,11 +33,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
 
-    public void InitialiseItem(Item newItem)
-    {
-        item = newItem;
-        image.sprite = newItem.image;
-    }
+public void InitialiseItem(Item newItem)
+{
+    item = newItem;
+    image.sprite = newItem.image;
+
+    currentWidth = item.width;
+    currentHeight = item.height;
+}
+
 
 public void OnBeginDrag(PointerEventData eventData)
 {
@@ -47,7 +54,8 @@ public void OnBeginDrag(PointerEventData eventData)
 
     // Grid boşalt (drag başladığında)
     InventoryManager manager = FindObjectOfType<InventoryManager>();
-    manager.ClearSpace(posX, posY, item.width, item.height);
+    // eski alanı boşalt
+    manager.ClearSpace(posX, posY, currentWidth, currentHeight);
 }
 
 
@@ -63,9 +71,10 @@ public void OnEndDrag(PointerEventData eventData)
     isDragging = false;
     image.raycastTarget = true;
 
-    InventorySlot targetSlot = null;
-    
+    InventoryManager manager = FindObjectOfType<InventoryManager>();
+
     // Fare altındaki slotu bul
+    InventorySlot targetSlot = null;
     PointerEventData pointerData = new PointerEventData(EventSystem.current)
     {
         position = Input.mousePosition
@@ -81,63 +90,89 @@ public void OnEndDrag(PointerEventData eventData)
             break;
     }
 
-    if (targetSlot != null)
+    if (targetSlot != null && manager != null)
     {
-        InventoryManager manager = FindObjectOfType<InventoryManager>();
-        bool canPlace = manager.CheckSpace(targetSlot.x, targetSlot.y, item.width, item.height);
+        // Yeni konumda yer var mı kontrol et
+        bool canPlace = manager.CheckSpace(targetSlot.x, targetSlot.y, currentWidth, currentHeight);
 
-if (canPlace)
-{
-    // Grid güncelle
-    manager.ClearSpace(posX, posY, item.width, item.height); // eski alanı boşalt
-    manager.OccupySpace(targetSlot.x, targetSlot.y, item.width, item.height); // yeni alanı doldur
-
-    // Yeni konumu kaydet
-    posX = targetSlot.x;
-    posY = targetSlot.y;
-
-    // Eşyayı slotun üzerine yerleştir
-    transform.SetParent(targetSlot.transform);
-    transform.position = targetSlot.transform.position;
-    parentAfterDrag = targetSlot.transform;
-    return;
-}
-
-    }
-
-    // Uygun değilse geri dön
-    Debug.Log("Uygun alan yok");
-    transform.SetParent(originalParent);
-    transform.position = originalPosition;
-
-    InventoryManager manager1 = FindObjectOfType<InventoryManager>();
-    manager1.OccupySpace(posX, posY, item.width, item.height);
-}
-
-
-    void Update()
-    {
-        if (isDragging)
+        if (canPlace)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                if(item.itemName == "kisir"){
-                    itemPrefab = item.itemPrefab;
-                }
-                Instantiate(itemPrefab,player.transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                item.stock--;
-            }
+            // Yeni yer uygun → grid güncelle
+            manager.OccupySpace(targetSlot.x, targetSlot.y, currentWidth, currentHeight);
+
+            // Item’in yeni pozisyonunu kaydet
+            posX = targetSlot.x;
+            posY = targetSlot.y;
+
+            // UI’da yerleştir
+            transform.SetParent(targetSlot.transform);
+            transform.position = targetSlot.transform.position;
+            parentAfterDrag = targetSlot.transform;
+            return;
         }
     }
 
-    public void RotateItem()
+    // Yeni yer uygun değil → eski yere geri dön ve grid'i geri yaz
+    manager.OccupySpace(posX, posY, currentWidth, currentHeight);
+    transform.SetParent(originalParent);
+    transform.position = originalPosition;
+}
+
+
+
+    void Update()
+{
+    if (isDragging)
     {
-        int temp = item.width;
-        item.width = item.height;
-        item.height = temp;
-        // UI'da döndürmek için RectTransform.rotation da ayarlanabilir
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if(item.itemName == "kisir"){
+            itemPrefab = item.itemPrefab;
+            }
+            Instantiate(itemPrefab, player.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            item.stock--;
+        } 
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RotateItem();
+        }
     }
+}
+
+public void RotateItem()
+{
+    InventoryManager manager = FindObjectOfType<InventoryManager>();
+
+    int oldWidth = currentWidth;
+    int oldHeight = currentHeight;
+
+    int newWidth = oldHeight;
+    int newHeight = oldWidth;
+
+    manager.ClearSpace(posX, posY, currentWidth, currentHeight);
+
+
+    if (manager.CheckSpace(posX, posY, newWidth, newHeight))
+    {
+        currentWidth = newWidth;
+        currentHeight = newHeight;
+
+        RectTransform rect = GetComponent<RectTransform>();
+        rect.Rotate(0, 0, 90);
+
+        manager.OccupySpace(posX, posY, currentWidth, currentHeight);
+    }
+    else
+    {
+        manager.OccupySpace(posX, posY, oldWidth, oldHeight);
+        Debug.Log("Dönüş başarısız: yeni konuma sığmıyor.");
+    }
+}
+
+
+
 
 
 }
