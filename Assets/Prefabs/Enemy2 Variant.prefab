@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.87058824
       objectReference: {fileID: 0}
+    - target: {fileID: 8070662013752557724, guid: e1ed2b06c911fde49925ec7efbee8617, type: 3}
+      propertyPath: attackRange
+      value: 1.1
+      objectReference: {fileID: 0}
     - target: {fileID: 9180745296669807698, guid: e1ed2b06c911fde49925ec7efbee8617, type: 3}
       propertyPath: m_Radius
       value: 0.55
