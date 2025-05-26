@@ -22,9 +22,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 [HideInInspector] public int posX;
 [HideInInspector] public int posY;
 [HideInInspector] public int currentWidth;
-[HideInInspector] public int currentHeight;
+    [HideInInspector] public int currentHeight;
 
-
+private int dragStartWidth;
+private int dragStartHeight;
 
 
     void Start()
@@ -45,6 +46,7 @@ public void InitialiseItem(Item newItem)
 
 public void OnBeginDrag(PointerEventData eventData)
 {
+    isDragging = true;
     image.raycastTarget = false;
 
     originalParent = transform.parent;
@@ -52,11 +54,13 @@ public void OnBeginDrag(PointerEventData eventData)
     parentAfterDrag = transform.parent;
     transform.SetParent(transform.root);
 
-    // Grid boşalt (drag başladığında)
     InventoryManager manager = FindObjectOfType<InventoryManager>();
-    // eski alanı boşalt
-    manager.ClearSpace(posX, posY, currentWidth, currentHeight);
+
+    // ✅ BOYUTU HAFIZAYA AL
+    dragStartWidth = currentWidth;
+    dragStartHeight = currentHeight;
 }
+
 
 
 
@@ -73,7 +77,10 @@ public void OnEndDrag(PointerEventData eventData)
 
     InventoryManager manager = FindObjectOfType<InventoryManager>();
 
-    // Fare altındaki slotu bul
+    // 1️⃣ ESKİ KONUMU TEMİZLE (her durumda)
+    manager.ClearSpace(posX, posY, currentWidth, currentHeight);
+
+    // 2️⃣ Fare altındaki slotu bul
     InventorySlot targetSlot = null;
     PointerEventData pointerData = new PointerEventData(EventSystem.current)
     {
@@ -90,33 +97,27 @@ public void OnEndDrag(PointerEventData eventData)
             break;
     }
 
-    if (targetSlot != null && manager != null)
+    // 3️⃣ Yeni pozisyon uygunsa yerleştir
+    if (targetSlot != null && manager.CheckSpace(targetSlot.x, targetSlot.y, currentWidth, currentHeight))
     {
-        // Yeni konumda yer var mı kontrol et
-        bool canPlace = manager.CheckSpace(targetSlot.x, targetSlot.y, currentWidth, currentHeight);
+        posX = targetSlot.x;
+        posY = targetSlot.y;
 
-        if (canPlace)
-        {
-            // Yeni yer uygun → grid güncelle
-            manager.OccupySpace(targetSlot.x, targetSlot.y, currentWidth, currentHeight);
+        transform.SetParent(targetSlot.transform);
+        transform.position = targetSlot.transform.position;
 
-            // Item’in yeni pozisyonunu kaydet
-            posX = targetSlot.x;
-            posY = targetSlot.y;
-
-            // UI’da yerleştir
-            transform.SetParent(targetSlot.transform);
-            transform.position = targetSlot.transform.position;
-            parentAfterDrag = targetSlot.transform;
-            return;
-        }
+        manager.OccupySpace(posX, posY, currentWidth, currentHeight);
     }
+    else
+    {
+        // 4️⃣ Uygun değilse eski yerine geri dön ve eski konumu yeniden işaretle
+        transform.SetParent(originalParent);
+        transform.position = originalPosition;
 
-    // Yeni yer uygun değil → eski yere geri dön ve grid'i geri yaz
-    manager.OccupySpace(posX, posY, currentWidth, currentHeight);
-    transform.SetParent(originalParent);
-    transform.position = originalPosition;
+        manager.OccupySpace(posX, posY, currentWidth, currentHeight);
+    }
 }
+
 
 
 
@@ -145,31 +146,36 @@ public void RotateItem()
 {
     InventoryManager manager = FindObjectOfType<InventoryManager>();
 
-    int oldWidth = currentWidth;
-    int oldHeight = currentHeight;
-
-    int newWidth = oldHeight;
-    int newHeight = oldWidth;
-
+    // Dönmeden önce eski alanı temizle
     manager.ClearSpace(posX, posY, currentWidth, currentHeight);
 
+    // Boyutları değiştir
+    int temp = currentWidth;
+    currentWidth = currentHeight;
+    currentHeight = temp;
 
-    if (manager.CheckSpace(posX, posY, newWidth, newHeight))
+    // UI'da döndür
+    RectTransform rect = GetComponent<RectTransform>();
+    rect.Rotate(0, 0, 90);
+
+    // Yeni boyutla eski pozisyon sığabiliyor mu?
+    if (manager.CheckSpace(posX, posY, currentWidth, currentHeight))
     {
-        currentWidth = newWidth;
-        currentHeight = newHeight;
-
-        RectTransform rect = GetComponent<RectTransform>();
-        rect.Rotate(0, 0, 90);
-
-        manager.OccupySpace(posX, posY, currentWidth, currentHeight);
+        manager.OccupySpace(posX, posY, currentWidth, currentHeight); // Yeni boyutu işaretle
     }
     else
     {
-        manager.OccupySpace(posX, posY, oldWidth, oldHeight);
-        Debug.Log("Dönüş başarısız: yeni konuma sığmıyor.");
+        // Eğer sığmıyorsa geri döndür
+        currentHeight = temp;
+        currentWidth = currentHeight;
+        rect.Rotate(0, 0, -90); // Geri çevir
+
+        manager.OccupySpace(posX, posY, currentWidth, currentHeight); // Eski haliyle geri yerleştir
+
+        Debug.Log("Dönüş başarısız: bu pozisyona yeni boyut sığmıyor.");
     }
 }
+
 
 
 
