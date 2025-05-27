@@ -38,8 +38,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+void FixedUpdate()
+{
+    if (_playerAttack != null && _playerAttack.isAttacking)
+    {
+        rb.velocity = Vector2.zero;
+    }
+    else
     {
         rb.velocity = movement * moveSpeed;
     }
+}
+
 }

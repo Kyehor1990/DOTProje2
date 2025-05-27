@@ -18,11 +18,10 @@ void Start()
 
     if (spriteRenderer == null)
     {
-        Debug.LogError("Door.cs: SpriteRenderer bulunamadı!");
         return;
     }
 
-    LockDoor(); // ya da UnlockDoor(), başlangıç durumuna göre
+    LockDoor();
 }
 
 
