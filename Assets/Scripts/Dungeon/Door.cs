@@ -2,19 +2,37 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-     public DoorPosition doorPosition;
+    public DoorPosition doorPosition;
     public string roomType;
     private bool isLocked = true;
 
-    void Start()
+    [SerializeField] Sprite closedSprite;
+    [SerializeField] Sprite openSprite;
+
+    private SpriteRenderer spriteRenderer;
+
+
+void Start()
+{
+    spriteRenderer = GetComponent<SpriteRenderer>();
+
+    if (spriteRenderer == null)
     {
-        LockDoor();
+        Debug.LogError("Door.cs: SpriteRenderer bulunamadı!");
+        return;
     }
 
-    public void UnlockDoor()
-    {
-        isLocked = false;
-    }
+    LockDoor(); // ya da UnlockDoor(), başlangıç durumuna göre
+}
+
+
+public void UnlockDoor()
+{
+    isLocked = false;
+
+    if (spriteRenderer != null && openSprite != null)
+        spriteRenderer.sprite = openSprite;
+}
 
     void OnTriggerEnter2D(Collider2D other)
 {
@@ -33,10 +51,14 @@ public class Door : MonoBehaviour
 }
 
 
-    public void LockDoor()
-    {
-        isLocked = true;
-    }
+public void LockDoor()
+{
+    isLocked = true;
+
+    if (spriteRenderer != null && closedSprite != null)
+        spriteRenderer.sprite = closedSprite;
+}
+
 
     public void ConvertToExit()
 {
