@@ -28,7 +28,7 @@ void Update()
     movement = movement.normalized;
 
     // Pass movement to Animator
-    animator.SetFloat("MoveX", movement.x);
+    animator.SetBool("IsMovingX", Mathf.Abs(movement.x) > 0.01f);
     animator.SetFloat("MoveY", movement.y);
     animator.SetFloat("Speed", movement.sqrMagnitude);
 
