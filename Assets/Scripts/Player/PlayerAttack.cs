@@ -49,22 +49,37 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void SetAttackVisual(Vector2 direction)
+{
+    // Flip sprite for horizontal attacks
+    if (direction.x != 0)
     {
-        // Flip sprite for left/right
-        if (direction.x != 0)
-        {
-            Vector3 scale = transform.localScale;
-            scale.x = direction.x > 0 ? 1 : -1;
-            transform.localScale = scale;
-        }
-
-        // Set animator direction
-        int dirIndex = direction == Vector2.down ? 0 :
-                       direction == Vector2.up ? 1 :
-                       direction == Vector2.left ? 2 :
-                       3; // right
-        animator.SetInteger("AttackDirection", dirIndex);
+        Vector3 scale = transform.localScale;
+        scale.x = direction.x > 0 ? 1 : -1;
+        transform.localScale = scale;
     }
+
+    // Set animator direction index
+    int dirIndex = direction == Vector2.down ? 0 :
+                   direction == Vector2.up ? 1 :
+                   direction == Vector2.left ? 2 :
+                   3; // right
+    animator.SetInteger("AttackDirection", dirIndex);
+
+    // Set attackPoint position based on direction
+    Vector2 offset = Vector2.zero;
+    float distance = 0.5f; // adjust based on your sprite scale
+
+    if (direction == Vector2.up)
+        offset = new Vector2(0, distance);
+    else if (direction == Vector2.down)
+        offset = new Vector2(0, -distance);
+    else if (direction == Vector2.left)
+        offset = new Vector2(-distance, 0);
+    else if (direction == Vector2.right)
+        offset = new Vector2(distance, 0);
+
+    attackPoint.localPosition = offset;
+}
 
     IEnumerator AttackRoutine()
     {
