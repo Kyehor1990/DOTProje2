@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    private Animator animator;
+
     PlayerAttack _playerAttack;
 
 
@@ -16,27 +18,29 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
-    void Update()
+void Update()
+{
+    movement.x = Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.A) ? -1 : 0;
+    movement.y = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
+    movement = movement.normalized;
+
+    // Pass movement to Animator
+    animator.SetFloat("MoveX", movement.x);
+    animator.SetFloat("MoveY", movement.y);
+    animator.SetFloat("Speed", movement.sqrMagnitude);
+
+    // Flip horizontally if moving left/right
+    if (movement.x != 0)
     {
-
-        movement.x = Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.A) ? -1 : 0;
-        movement.y = Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0;
-        movement = movement.normalized;
-
-        if (movement != Vector2.zero && _playerAttack?.isAttacking == false)
-        {
-            if (movement.x > 0)
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            else if (movement.x < 0)
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-            else if (movement.y > 0)
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-            else if (movement.y < 0)
-                transform.rotation = Quaternion.Euler(0, 0, -90);
-        }
+        Vector3 scale = transform.localScale;
+        scale.x = movement.x > 0 ? 1 : -1;
+        transform.localScale = scale;
     }
+}
+
 
 void FixedUpdate()
 {
