@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -9,11 +9,13 @@ public class PlayerAttack : MonoBehaviour
     public float attackCooldown = 0.5f;
     public LayerMask enemyLayer;
 
-    private bool isOnCooldown = false;
+    public Transform attackPoint;
     public bool isAttacking = false;
 
     private Vector2 attackDirection;
-    public Transform attackPoint;
+    private bool isOnCooldown = false;
+
+    [SerializeField] private Animator animator;
 
     void Update()
     {
@@ -23,66 +25,75 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             attackDirection = Vector2.up;
-            RotatePlayer(attackDirection);
+            SetAttackVisual(Vector2.up);
             StartCoroutine(AttackRoutine());
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
             attackDirection = Vector2.down;
-            RotatePlayer(attackDirection);
+            SetAttackVisual(Vector2.down);
             StartCoroutine(AttackRoutine());
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             attackDirection = Vector2.left;
-            RotatePlayer(attackDirection);
+            SetAttackVisual(Vector2.left);
             StartCoroutine(AttackRoutine());
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             attackDirection = Vector2.right;
-            RotatePlayer(attackDirection);
+            SetAttackVisual(Vector2.right);
             StartCoroutine(AttackRoutine());
         }
     }
 
-void RotatePlayer(Vector2 direction)
-{
-    // Horizontal attacks flip sprite
-    if (direction.x != 0)
+    void SetAttackVisual(Vector2 direction)
     {
-        Vector3 scale = transform.localScale;
-        scale.x = direction.x > 0 ? 1 : -1;
-        transform.localScale = scale;
+        // Flip sprite for left/right
+        if (direction.x != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = direction.x > 0 ? 1 : -1;
+            transform.localScale = scale;
+        }
+
+        // Set animator direction
+        int dirIndex = direction == Vector2.down ? 0 :
+                       direction == Vector2.up ? 1 :
+                       direction == Vector2.left ? 2 :
+                       3; // right
+        animator.SetInteger("AttackDirection", dirIndex);
     }
-
-}
-
 
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
 
-        // Burada animasyon tetiklenebilir
-        // animator.SetTrigger("Attack");
+        // Trigger attack animation
+        animator.SetTrigger("Attack");
 
-        // Hasarı bu anda uygula
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
-            Vector2 knockbackDir = enemy.transform.position - transform.position;
-            enemy.GetComponent<EnemyFeedback>().TakeHit(knockbackDir);
-        }
-
-        yield return new WaitForSeconds(attackDuration); // Saldırı süresi
+        yield return new WaitForSeconds(attackDuration);
 
         isAttacking = false;
         isOnCooldown = true;
 
-        yield return new WaitForSeconds(attackCooldown); // Cooldown
+        yield return new WaitForSeconds(attackCooldown);
 
         isOnCooldown = false;
+    }
+
+    // Called from animation event
+    public void ApplyAttackDamage()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+
+            Vector2 knockbackDir = enemy.transform.position - transform.position;
+            enemy.GetComponent<EnemyFeedback>().TakeHit(knockbackDir);
+        }
     }
 
     private void OnDrawGizmosSelected()
