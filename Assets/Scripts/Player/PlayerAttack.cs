@@ -46,11 +46,18 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    void RotatePlayer(Vector2 direction)
+void RotatePlayer(Vector2 direction)
+{
+    // Horizontal attacks flip sprite
+    if (direction.x != 0)
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        Vector3 scale = transform.localScale;
+        scale.x = direction.x > 0 ? 1 : -1;
+        transform.localScale = scale;
     }
+
+}
+
 
     IEnumerator AttackRoutine()
     {
