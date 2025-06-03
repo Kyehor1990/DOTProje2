@@ -21,7 +21,7 @@ public class DungeonExit : MonoBehaviour
     {
         if (other.CompareTag("Player") && !isLocked)
         {   
-            sceneChange.CustomerSceneChange();
+            sceneChange.BeforeCustomerSceneChange();
         }
     }
 

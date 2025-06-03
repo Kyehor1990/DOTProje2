@@ -26,6 +26,7 @@ public class SceneChange : MonoBehaviour
     [SerializeField] GameObject player2;
     private Vector3 target;
     [SerializeField] Transform targetTransform;
+    [SerializeField] Transform startTransform;
     public float duration = 1f;
 
     public void CustomerSceneChange()
@@ -33,12 +34,12 @@ public class SceneChange : MonoBehaviour
         if (Dungeon && playerHealth.currentHealth > 0)
         {
             Debug.Log("Dungeon'dan çikiş yapildi.");
+            player2.SetActive(false);
+
             if (cameraTransform != null)
             {
                 cameraTransform.position = targetPosition;
             }
-            destroyDungeon.DungeonDestroy();
-            player.SetActive(false);
             StartCoroutine(customerManager.CustomerRoutine());
             Dungeon = false;
 
@@ -50,6 +51,8 @@ public class SceneChange : MonoBehaviour
         if (!Dungeon && playerHealth.currentHealth > 0)
         {
             Debug.Log("Customer'dan çikiş yapildi.");
+            player2.SetActive(false);
+            
             if (cameraTransform != null)
             {
                 cameraTransform.position = new Vector3(3.21f, 0, -10);
@@ -67,14 +70,16 @@ public class SceneChange : MonoBehaviour
 
     public void BeforeDungeonSceneChange()
 {
-    if (!Dungeon)
-    {
-        player2.SetActive(true);
-
-        if (cameraTransform != null)
+        if (!Dungeon)
         {
-            cameraTransform.position = new Vector3(3.7f, -75f, -10f);
-        };
+            player2.SetActive(true);
+            player2.transform.localScale = new Vector3(1f, 1, 1);            
+            player2.transform.position = startTransform.position;
+
+            if (cameraTransform != null)
+            {
+                cameraTransform.position = new Vector3(3.7f, -75f, -10f);
+            }
             dungeonButton.gameObject.SetActive(false);
             UpgradePanel.SetActive(false);
             customerManager.ResetCustomerCount();
@@ -89,13 +94,33 @@ public class SceneChange : MonoBehaviour
     public void BeforeCustomerSceneChange()
     {
 
+        if (Dungeon)
+        {
+            player2.SetActive(true);
+            player2.transform.localScale = new Vector3(-1f, 1, 1);
+            player2.transform.position = targetTransform.position;
+
+            if (cameraTransform != null)
+            {
+                cameraTransform.position = new Vector3(3.7f, -75f, -10f);
+            }
+            destroyDungeon.DungeonDestroy();
+            player.SetActive(false);
+
+            target = startTransform.position;
+            player2.transform.DOMoveX(target.x, duration)
+            .SetEase(Ease.InOutSine)
+            .OnComplete(CustomerSceneChange);
+
+
+        }
     }
     
         void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            CustomerSceneChange();
+            BeforeCustomerSceneChange();
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
