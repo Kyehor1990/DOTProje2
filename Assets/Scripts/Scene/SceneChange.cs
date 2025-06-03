@@ -60,16 +60,4 @@ public class SceneChange : MonoBehaviour
                 UpgradePanel.SetActive(false);
             }
      }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            CustomerSceneChange();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DungeonSceneChange();
-        }
-    }
 }
