@@ -50,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
 
     void SetAttackVisual(Vector2 direction)
 {
-    // Flip sprite for horizontal attacks
+    // Flip player if horizontal
     if (direction.x != 0)
     {
         Vector3 scale = transform.localScale;
@@ -58,16 +58,16 @@ public class PlayerAttack : MonoBehaviour
         transform.localScale = scale;
     }
 
-    // Set animator direction index
+    // Set animator direction
     int dirIndex = direction == Vector2.down ? 0 :
                    direction == Vector2.up ? 1 :
                    direction == Vector2.left ? 2 :
                    3; // right
     animator.SetInteger("AttackDirection", dirIndex);
 
-    // Set attackPoint position based on direction
+    // Calculate world offset
     Vector2 offset = Vector2.zero;
-    float distance = 0.5f; // adjust based on your sprite scale
+    float distance = 0.5f;
 
     if (direction == Vector2.up)
         offset = new Vector2(0, distance);
@@ -78,14 +78,13 @@ public class PlayerAttack : MonoBehaviour
     else if (direction == Vector2.right)
         offset = new Vector2(distance, 0);
 
-    attackPoint.localPosition = offset;
+    // Use world-space position so it's not affected by flipping
+    attackPoint.position = transform.position + (Vector3)offset;
 }
 
     IEnumerator AttackRoutine()
     {
         isAttacking = true;
-
-        // Trigger attack animation
         animator.SetTrigger("Attack");
 
         yield return new WaitForSeconds(attackDuration);
@@ -98,8 +97,7 @@ public class PlayerAttack : MonoBehaviour
         isOnCooldown = false;
     }
 
-    // Called from animation event
-    public void ApplyAttackDamage()
+    public void ApplyAttackDamage() // Called by animation event
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
