@@ -1410,6 +1410,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3420207333342992770, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420207333342992770, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: attackRange
       value: 1
       objectReference: {fileID: 0}
