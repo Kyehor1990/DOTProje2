@@ -7,23 +7,40 @@ public class EnemyFeedback : MonoBehaviour
     private Color originalColor;
     public float knockbackForce = 5f;
     public float colorChangeDuration = 0.2f;
-    private Rigidbody2D rb;
-    private EnemyAI aiScript;
     public float disableAIDuration = 0.5f;
 
+    public bool isKinematic = true;
+
+    private Rigidbody2D rb;
+    private EnemyAI aiScript;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         rb = GetComponent<Rigidbody2D>();
+        if (isKinematic)
+        {
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        }
         aiScript = GetComponent<EnemyAI>();
     }
 
     public void TakeHit(Vector2 hitDirection)
     {
-        rb.velocity = Vector2.zero;
-        rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+        StopAllCoroutines();
+        StartCoroutine(FlashWhite());
+
+        if (rb != null)
+        {
+            if (isKinematic)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
+            rb.velocity = Vector2.zero;
+            rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+        }
 
         if (aiScript != null)
         {
@@ -31,8 +48,7 @@ public class EnemyFeedback : MonoBehaviour
             Invoke(nameof(EnableAI), disableAIDuration);
         }
 
-        StopAllCoroutines();
-        StartCoroutine(FlashWhite());
+        Invoke(nameof(ResetRigidbody), disableAIDuration);
     }
 
     void EnableAI()
@@ -40,6 +56,15 @@ public class EnemyFeedback : MonoBehaviour
         if (aiScript != null)
         {
             aiScript.enabled = true;
+        }
+    }
+
+    void ResetRigidbody()
+    {
+        if (rb != null && isKinematic)
+        {
+            rb.velocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
     }
 

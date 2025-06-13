@@ -9,6 +9,7 @@ TagManager:
   - Russalatasi
   - item
   - room
+  - Wall
   layers:
   - Default
   - TransparentFX
