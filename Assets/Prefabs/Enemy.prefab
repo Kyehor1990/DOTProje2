@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 147815578369752781}
   - component: {fileID: 8022917372331230743}
   - component: {fileID: 2544811609841399580}
-  - component: {fileID: 5648988721117706026}
   - component: {fileID: 7894576291381701707}
   - component: {fileID: 8070662013752557724}
   - component: {fileID: 1080109509065704881}
+  - component: {fileID: -8358882079707085981}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -78,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.87169814, g: 0.11677466, b: 0.11677466, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ef83c59115f3c0047a24c88a655138aa, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.138, y: 1.726}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,41 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   lootPrefab: {fileID: 2772197720356558680, guid: 9465a97add21ed941a401d526be4e2fc, type: 3}
---- !u!58 &5648988721117706026
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7208417835857127148}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &7894576291381701707
 Rigidbody2D:
   serializedVersion: 4
@@ -197,3 +162,38 @@ MonoBehaviour:
   colorChangeDuration: 0.2
   disableAIDuration: 0.163
   isKinematic: 0
+--- !u!70 &-8358882079707085981
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7208417835857127148}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0019231439, y: -0.0076926947}
+  m_Size: {x: 0.93414176, y: 1.625994}
+  m_Direction: 0

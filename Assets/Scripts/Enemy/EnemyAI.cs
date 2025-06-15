@@ -20,20 +20,26 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+void Update()
+{
+    float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer > attackRange)
-        {
-            // Hedef yönü hesapla (her karede)
-            movement = (player.position - transform.position).normalized;
-        }
-        else
-        {
-            movement = Vector2.zero;
-        }
+    if (distanceToPlayer > attackRange)
+    {
+        // Hedef yönü hesapla (her karede)
+        movement = (player.position - transform.position).normalized;
     }
+    else
+    {
+        movement = Vector2.zero;
+    }
+
+    // Oyuncuya X ekseninde dön
+    Vector3 scale = transform.localScale;
+    scale.x = player.position.x > transform.position.x ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+    transform.localScale = scale;
+}
+
 
     void FixedUpdate()
     {
