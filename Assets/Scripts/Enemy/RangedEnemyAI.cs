@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class RangedEnemyAI : MonoBehaviour
@@ -11,10 +10,12 @@ public class RangedEnemyAI : MonoBehaviour
 
     private Transform player;
     private float lastAttackTime;
+    private Animator animator;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,18 +29,29 @@ public class RangedEnemyAI : MonoBehaviour
             if (Time.time - lastAttackTime >= attackCooldown)
             {
                 lastAttackTime = Time.time;
-                ShootProjectile();
+                StartAttack();
             }
         }
+
+        // Oyuncuya dön
+        Vector3 scale = transform.localScale;
+        scale.x = player.position.x > transform.position.x ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
 
-    void ShootProjectile()
+    void StartAttack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
+    // Bu fonksiyonu animasyonun ortasında Animation Event olarak çağır
+    public void ShootProjectile()
     {
         if (projectilePrefab != null && firePoint != null)
         {
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
             Vector2 direction = (player.position - firePoint.position).normalized;
+
+            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             projectile.GetComponent<Projectile>().Initialize(direction);
         }
     }
