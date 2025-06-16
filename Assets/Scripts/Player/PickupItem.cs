@@ -7,12 +7,15 @@ public class PickupItem : MonoBehaviour
 
     bool kisirTake = false;
     bool russalatasiTake = false;
+    bool sosisTake = false;
 
     public GameObject alinacakKisir;
     public GameObject alinacakRussalatasi;
+    public GameObject alinacakSosis;
 
     public Item itemKisir;
     public Item itemRussalatasi;
+    public Item itemSosis;
 
 
 
@@ -20,31 +23,42 @@ public class PickupItem : MonoBehaviour
     public Item[] itemsToPickup;
 
     void OnTriggerEnter2D(Collider2D other)
-    {   
-        if(other.CompareTag("Kisir"))
+    {
+        if (other.CompareTag("Kisir"))
         {
             kisirTake = true;
             alinacakKisir = other.gameObject;
         }
 
-        if(other.CompareTag("Russalatasi"))
+        if (other.CompareTag("Russalatasi"))
         {
             russalatasiTake = true;
             alinacakRussalatasi = other.gameObject;
+        }
+        
+        if (other.CompareTag("Sosis"))
+        {
+            sosisTake = true;
+            alinacakSosis = other.gameObject;
         }
 
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Kisir"))
+        if (collision.CompareTag("Kisir"))
         {
             kisirTake = false;
         }
 
-        if(collision.CompareTag("Russalatasi"))
+        if (collision.CompareTag("Russalatasi"))
         {
             russalatasiTake = false;
+        }
+        
+        if (collision.CompareTag("Sosis"))
+        {
+            sosisTake = false;
         }
     }
 
@@ -67,6 +81,16 @@ public class PickupItem : MonoBehaviour
                 Debug.Log("Russalatasi picked up");
                 TakeItem(1, alinacakRussalatasi);
                 itemRussalatasi.stock++;
+            }
+        }
+
+        if (sosisTake)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Sosis picked up");
+                TakeItem(2, alinacakSosis);
+                itemSosis.stock++;
             }
         }
     }

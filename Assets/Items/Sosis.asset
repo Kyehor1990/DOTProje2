@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7f4e7bdb3445648a8a36558d3abe1d, type: 3}
   m_Name: Sosis
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: f027b25e05e8cc847a9157b80dcf35ea, type: 3}
   itemName: sosis
-  stock: 0
-  price: 0
-  width: 1
-  height: 2
+  stock: 2
+  price: 15
+  itemPrefab: {fileID: 5817000624085076653, guid: 227570318d67d374dac8907409c32791, type: 3}
+  width: 2
+  height: 1

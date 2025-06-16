@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
-  lootPrefab: {fileID: 2772197720356558680, guid: 9465a97add21ed941a401d526be4e2fc, type: 3}
+  lootPrefab: {fileID: 5817000624085076653, guid: 227570318d67d374dac8907409c32791, type: 3}
 --- !u!50 &4406272275600503800
 Rigidbody2D:
   serializedVersion: 4

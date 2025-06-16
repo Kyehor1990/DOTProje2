@@ -10,6 +10,7 @@ TagManager:
   - item
   - room
   - Wall
+  - Sosis
   layers:
   - Default
   - TransparentFX
