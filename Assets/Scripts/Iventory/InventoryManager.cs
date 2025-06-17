@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-
     private string tagItem = "item";
 
     public SceneChange sceneChange;
@@ -16,49 +15,39 @@ public class InventoryManager : MonoBehaviour
     private int gridHeight = 4;
     private bool[,] gridUsed;
 
-void Start()
-{
-    gridUsed = new bool[gridWidth, gridHeight];
-
-int index = 0;
-for (int y = gridHeight - 1; y >= 0; y--) // YUKARIDAN AŞAĞI
-{
-    for (int x = 0; x < gridWidth; x++)
+    void Start()
     {
-        if (index < inventorySlots.Length)
+        gridUsed = new bool[gridWidth, gridHeight];
+
+        int index = 0;
+        for (int y = gridHeight - 1; y >= 0; y--)
         {
-            inventorySlots[index].x = x;
-            inventorySlots[index].y = gridHeight - 1 - y; // Y eksenini tersle
-            index++;
-        }
-    }
-}
-
-}
-
-
-public bool AddItem(Item item)
-{
-    for (int y = 0; y < gridHeight; y++)
-    {
-        for (int x = 0; x < gridWidth; x++)
-        {
-            if (CheckSpace(x, y, item.width, item.height))
+            for (int x = 0; x < gridWidth; x++)
             {
-                PlaceItem(item, x, y);
-                return true;
+                if (index < inventorySlots.Length)
+                {
+                    inventorySlots[index].x = x;
+                    inventorySlots[index].y = gridHeight - 1 - y;
+                    index++;
+                }
             }
         }
     }
-    return false; // Hiç uygun yer yoksa
-}
 
-
-    void SpawnNewItem(Item item, InventorySlot slot)
+    public bool AddItem(Item item)
     {
-        GameObject newItemGo = Instantiate(inventoryItemPrefab, slot.transform);
-        InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-        inventoryItem.InitialiseItem(item);
+        for (int y = 0; y < gridHeight; y++)
+        {
+            for (int x = 0; x < gridWidth; x++)
+            {
+                if (CheckSpace(x, y, item.width, item.height))
+                {
+                    PlaceItem(item, x, y);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     void Update()
@@ -66,81 +55,93 @@ public bool AddItem(Item item)
        if(sceneChange.Dungeon == false){
         GameObject[] items = GameObject.FindGameObjectsWithTag(tagItem);
 
-                foreach (GameObject obj in items)
+        foreach (GameObject obj in items)
         {
             Destroy(obj);
         }
        }
     }
 
-public bool CheckSpace(int startX, int startY, int width, int height)
-{
-    if (startX + width > gridWidth || startY + height > gridHeight)
-        return false;
-
-    for (int y = 0; y < height; y++)
+    public bool CheckSpace(int startX, int startY, int width, int height)
     {
-        for (int x = 0; x < width; x++)
+        if (startX + width > gridWidth || startY + height > gridHeight)
+            return false;
+
+        for (int y = 0; y < height; y++)
         {
-            if (gridUsed[startX + x, startY + y])
-                return false;
+            for (int x = 0; x < width; x++)
+            {
+                if (gridUsed[startX + x, startY + y])
+                    return false;
+            }
         }
-    }
-    return true;
-}
-
-
-void PlaceItem(Item item, int startX, int startY)
-{
-    // Grid işaretle (ilk yerleştirmede item.width/height kullanabiliriz)
-    OccupySpace(startX, startY, item.width, item.height);
-
-    // Slotları bul
-    List<InventorySlot> usedSlots = new List<InventorySlot>();
-    foreach (var slot in inventorySlots)
-    {
-        if (slot.x >= startX && slot.x < startX + item.width &&
-            slot.y >= startY && slot.y < startY + item.height)
-        {
-            usedSlots.Add(slot);
-        }
+        return true;
     }
 
-    // İlk slota prefab oluştur
-    GameObject newItemGo = Instantiate(inventoryItemPrefab, usedSlots[0].transform);
-    InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-    inventoryItem.InitialiseItem(item);
-
-    // ✅ Başlangıç konum ve boyutları kaydet
-    inventoryItem.posX = startX;
-    inventoryItem.posY = startY;
-    inventoryItem.currentWidth = item.width;
-    inventoryItem.currentHeight = item.height;
-}
-
-
-public void ClearSpace(int startX, int startY, int width, int height)
-{
-    for (int y = 0; y < height; y++)
+    void PlaceItem(Item item, int startX, int startY)
     {
-        for (int x = 0; x < width; x++)
+        // Grid işaretle
+        OccupySpace(startX, startY, item.width, item.height);
+
+        // Sol üst slotu bul (başlangıç pozisyonu)
+        InventorySlot targetSlot = null;
+        foreach (var slot in inventorySlots)
         {
-            gridUsed[startX + x, startY + y] = false;
+            if (slot.x == startX && slot.y == startY)
+            {
+                targetSlot = slot;
+                break;
+            }
+        }
+
+        if (targetSlot != null)
+        {
+            // Item prefab'ını oluştur
+            GameObject newItemGo = Instantiate(inventoryItemPrefab, targetSlot.transform);
+            InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
+            
+            // KRITIK: Pozisyon değerlerini initialize etmeden önce ata
+            inventoryItem.posX = startX;
+            inventoryItem.posY = startY;
+            inventoryItem.currentWidth = item.width;
+            inventoryItem.currentHeight = item.height;
+            
+            // Item'ı initialize et (bu UpdateItemSize'ı çağıracak)
+            inventoryItem.InitialiseItem(item);
+            
+            Debug.Log($"Item placed at ({startX}, {startY}) with size {item.width}x{item.height}");
         }
     }
-}
 
-public void OccupySpace(int startX, int startY, int width, int height)
-{
-    for (int y = 0; y < height; y++)
+    public void ClearSpace(int startX, int startY, int width, int height)
     {
-        for (int x = 0; x < width; x++)
+        for (int y = 0; y < height; y++)
         {
-            gridUsed[startX + x, startY + y] = true;
+            for (int x = 0; x < width; x++)
+            {
+                if (startX + x >= 0 && startX + x < gridWidth && 
+                    startY + y >= 0 && startY + y < gridHeight)
+                {
+                    gridUsed[startX + x, startY + y] = false;
+                }
+            }
         }
+        Debug.Log($"Cleared space at ({startX}, {startY}) with size {width}x{height}");
+    }
+
+    public void OccupySpace(int startX, int startY, int width, int height)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (startX + x >= 0 && startX + x < gridWidth && 
+                    startY + y >= 0 && startY + y < gridHeight)
+                {
+                    gridUsed[startX + x, startY + y] = true;
+                }
+            }
+        }
+        Debug.Log($"Occupied space at ({startX}, {startY}) with size {width}x{height}");
     }
 }
-
-   
-}
-
