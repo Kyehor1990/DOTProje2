@@ -33,7 +33,7 @@ public class SceneChange : MonoBehaviour
     public PickupItem pickupItem;
     public void CustomerSceneChange()
     {
-        if (Dungeon && playerHealth.currentHealth > 0)
+        if (Dungeon)
         {
             Debug.Log("Dungeon'dan çikiş yapildi.");
             player2.SetActive(false);

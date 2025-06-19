@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject panel;
 
+    public SceneChange sceneChange;
+    public PickupItem pickupItem;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -43,9 +46,11 @@ public class PlayerHealth : MonoBehaviour
     
     private void Die()
     {
-        Debug.Log("Player died!");
-        panel.SetActive(true);
-        gameObject.SetActive(false);
+        pickupItem.kisirStock = 0;
+        pickupItem.patatesStock = 0;
+        pickupItem.sosisStock = 0;
+        pickupItem.turşuStock = 0;
+        sceneChange.BeforeCustomerSceneChange();
     }
 
     public void UpgradeHealth(int amount)

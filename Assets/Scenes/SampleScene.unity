@@ -3999,6 +3999,8 @@ MonoBehaviour:
   isInvincible: 0
   invincibilityTime: 1
   panel: {fileID: 929836914}
+  sceneChange: {fileID: 1248564009}
+  pickupItem: {fileID: 701841971}
 --- !u!70 &701841973
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
