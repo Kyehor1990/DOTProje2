@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private PlayerAttack _playerAttack;
 
+    float speed2;
+
     void Awake()
     {
         _playerAttack = GetComponent<PlayerAttack>();
@@ -49,5 +51,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = movement * moveSpeed;
         }
+    }
+
+    public void upgradeSpeed()
+    {
+        speed2 = moveSpeed * 0.10f;
+        moveSpeed += speed2;
     }
 }

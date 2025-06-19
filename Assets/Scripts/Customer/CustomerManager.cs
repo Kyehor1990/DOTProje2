@@ -13,7 +13,7 @@ public class CustomerManager : MonoBehaviour
     public SceneChange sceneChange;
 
     private int customerCount;
-    private int maxCustomers = 4;
+    private int maxCustomers = 3;
 
     public Button dungeonButton;
     public GameObject UpgradePanel;
@@ -23,7 +23,7 @@ public class CustomerManager : MonoBehaviour
     public Transform orderItemsParent; // Sprite'ların yerleştirileceği parent transform
     public GameObject orderItemPrefab; // Her bir sipariş ürünü için prefab (Image componenti ile)
     public float orderDisplayTime = 3f; // Siparişin kaç saniye gösterileceği
-    
+
     private List<GameObject> currentOrderItems = new List<GameObject>(); // Şu anki sipariş UI elemanları
 
     [System.Serializable]
@@ -31,7 +31,7 @@ public class CustomerManager : MonoBehaviour
     {
         public List<string> requestedItems;
         public bool isOrderComplete;
-        
+
         public CustomerOrder()
         {
             requestedItems = new List<string>();
@@ -47,10 +47,10 @@ public class CustomerManager : MonoBehaviour
 
             // Müşteri siparişi oluştur
             CustomerOrder order = GenerateCustomerOrder();
-            
+
             // Siparişi göster
             yield return StartCoroutine(DisplayCustomerOrder(order));
-            
+
             Debug.Log($"Bir müşteri geldi! İstediği ürünler: {string.Join(", ", order.requestedItems)}");
 
             // Siparişi işle
@@ -80,7 +80,7 @@ public class CustomerManager : MonoBehaviour
     private CustomerOrder GenerateCustomerOrder()
     {
         CustomerOrder order = new CustomerOrder();
-        
+
         // Patates her zaman eklenir - önce stockManager'dan patates ismini alalım
         string potatoName = GetPotatoItemName();
         if (!string.IsNullOrEmpty(potatoName))
@@ -91,10 +91,10 @@ public class CustomerManager : MonoBehaviour
         {
             Debug.LogError("Patates ürünü StockManager'da bulunamadı! Item'ların itemName değerlerini kontrol edin.");
         }
-        
+
         // Rastgele 1-3 arasında ek ürün ekle
         int additionalItemCount = Random.Range(1, 4);
-        
+
         for (int i = 0; i < additionalItemCount; i++)
         {
             if (possibleItems.Length > 0)
@@ -103,10 +103,10 @@ public class CustomerManager : MonoBehaviour
                 order.requestedItems.Add(randomItem);
             }
         }
-        
+
         return order;
     }
-    
+
     private string GetPotatoItemName()
     {
         // StockManager'daki item'lar arasından patates'i bul
@@ -120,14 +120,14 @@ public class CustomerManager : MonoBehaviour
                 return item.itemName; // Orijinal ismi döndür
             }
         }
-        
+
         // Eğer bulunamazsa, tüm item'ları listele
         Debug.Log("=== StockManager'daki tüm item'lar ===");
         foreach (Item item in stockManager.items)
         {
             Debug.Log($"Item: '{item.itemName}' - Stok: {item.stock}");
         }
-        
+
         return null;
     }
 
@@ -137,28 +137,28 @@ public class CustomerManager : MonoBehaviour
         {
             // Önceki sipariş UI elemanlarını temizle
             ClearOrderUI();
-            
+
             // Sipariş UI'sini aktif et
             customerOrderUI.SetActive(true);
-            
+
             // Her bir sipariş ürünü için sprite oluştur
             foreach (string itemName in order.requestedItems)
             {
                 // Item'ın sprite'ını bul
                 Sprite itemSprite = GetItemSprite(itemName);
-                
+
                 if (itemSprite != null)
                 {
                     // Yeni sipariş item UI elemanı oluştur
                     GameObject orderItemUI = Instantiate(orderItemPrefab, orderItemsParent);
-                    
+
                     // Image componentini bul ve sprite'ı ata
                     UnityEngine.UI.Image imageComponent = orderItemUI.GetComponent<UnityEngine.UI.Image>();
                     if (imageComponent != null)
                     {
                         imageComponent.sprite = itemSprite;
                     }
-                    
+
                     // Listeye ekle (daha sonra temizlemek için)
                     currentOrderItems.Add(orderItemUI);
                 }
@@ -167,10 +167,10 @@ public class CustomerManager : MonoBehaviour
                     Debug.LogWarning($"Sprite bulunamadı: {itemName}");
                 }
             }
-            
+
             // Belirtilen süre kadar bekle
             yield return new WaitForSeconds(orderDisplayTime);
-            
+
             // UI'yi kapat ve temizle
             ClearOrderUI();
             customerOrderUI.SetActive(false);
@@ -182,7 +182,7 @@ public class CustomerManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
-    
+
     private Sprite GetItemSprite(string itemName)
     {
         // StockManager'daki item listesinden sprite'ı bul
@@ -195,7 +195,7 @@ public class CustomerManager : MonoBehaviour
         }
         return null;
     }
-    
+
     private void ClearOrderUI()
     {
         // Mevcut sipariş UI elemanlarını yok et
@@ -212,12 +212,17 @@ public class CustomerManager : MonoBehaviour
     public void ResetCustomerCount()
     {
         customerCount = 0;
-        
+
         // UI'yi kapat ve temizle (eğer açıksa)
         if (customerOrderUI != null)
         {
             ClearOrderUI();
             customerOrderUI.SetActive(false);
         }
+    }
+
+    public void UpgradeCustomer()
+    {
+        maxCustomers += 1;
     }
 }

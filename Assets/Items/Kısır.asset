@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 741c5002a515c21478f668ce5a2d002d, type: 3}
   itemName: kisir
-  stock: 26
-  price: 5
+  stock: 21
+  price: 4
   itemPrefab: {fileID: 877172087458204378, guid: 4a608523cceb1ed49833da14b9099757, type: 3}
   width: 2
   height: 1

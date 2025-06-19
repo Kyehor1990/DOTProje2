@@ -49,38 +49,38 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void SetAttackVisual(Vector2 direction)
-{
-    // Flip player if horizontal
-    if (direction.x != 0)
     {
-        Vector3 scale = transform.localScale;
-        scale.x = direction.x > 0 ? 1 : -1;
-        transform.localScale = scale;
+        // Flip player if horizontal
+        if (direction.x != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = direction.x > 0 ? 1 : -1;
+            transform.localScale = scale;
+        }
+
+        // Set animator direction
+        int dirIndex = direction == Vector2.down ? 0 :
+                       direction == Vector2.up ? 1 :
+                       direction == Vector2.left ? 2 :
+                       3; // right
+        animator.SetInteger("AttackDirection", dirIndex);
+
+        // Calculate world offset
+        Vector2 offset = Vector2.zero;
+        float distance = 0.5f;
+
+        if (direction == Vector2.up)
+            offset = new Vector2(0, distance);
+        else if (direction == Vector2.down)
+            offset = new Vector2(0, -distance);
+        else if (direction == Vector2.left)
+            offset = new Vector2(-distance, 0);
+        else if (direction == Vector2.right)
+            offset = new Vector2(distance, 0);
+
+        // Use world-space position so it's not affected by flipping
+        attackPoint.position = transform.position + (Vector3)offset;
     }
-
-    // Set animator direction
-    int dirIndex = direction == Vector2.down ? 0 :
-                   direction == Vector2.up ? 1 :
-                   direction == Vector2.left ? 2 :
-                   3; // right
-    animator.SetInteger("AttackDirection", dirIndex);
-
-    // Calculate world offset
-    Vector2 offset = Vector2.zero;
-    float distance = 0.5f;
-
-    if (direction == Vector2.up)
-        offset = new Vector2(0, distance);
-    else if (direction == Vector2.down)
-        offset = new Vector2(0, -distance);
-    else if (direction == Vector2.left)
-        offset = new Vector2(-distance, 0);
-    else if (direction == Vector2.right)
-        offset = new Vector2(distance, 0);
-
-    // Use world-space position so it's not affected by flipping
-    attackPoint.position = transform.position + (Vector3)offset;
-}
 
     IEnumerator AttackRoutine()
     {
@@ -116,5 +116,10 @@ public class PlayerAttack : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
+    }
+    
+    public void UpgradeAttack(int amount)
+    {
+        attackDamage += amount;
     }
 }
