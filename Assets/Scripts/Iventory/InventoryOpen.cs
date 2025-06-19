@@ -6,6 +6,7 @@ public class InventoryOpen : MonoBehaviour
 {
     public GameObject invetory;
 
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))

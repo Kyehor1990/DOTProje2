@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b7f4e7bdb3445648a8a36558d3abe1d, type: 3}
-  m_Name: "RusSalatas\u0131"
+  m_Name: Patates
   m_EditorClassIdentifier: 
-  image: {fileID: 3625043607559282579, guid: 4dd9c5e793286884fa358a3316bb4c9f, type: 3}
-  itemName: russalatasi
+  image: {fileID: 21300000, guid: 26deeb07c83b6974f935ab448a046575, type: 3}
+  itemName: patates
   stock: 0
   price: 10
-  itemPrefab: {fileID: 3813131547773724080, guid: 08c33bb67fb5a1d43a2624fd4e7c944f, type: 3}
+  itemPrefab: {fileID: 4802649517886876164, guid: 1dc5cb4d260cb49438895e805b79712f, type: 3}
   width: 2
   height: 1

@@ -6,15 +6,15 @@ public class PickupItem : MonoBehaviour
 {
 
     bool kisirTake = false;
-    bool russalatasiTake = false;
+    bool patatesTake = false;
     bool sosisTake = false;
 
     public GameObject alinacakKisir;
-    public GameObject alinacakRussalatasi;
+    public GameObject alınacakPatates;
     public GameObject alinacakSosis;
 
     public Item itemKisir;
-    public Item itemRussalatasi;
+    public Item itemPatates;
     public Item itemSosis;
 
 
@@ -30,10 +30,10 @@ public class PickupItem : MonoBehaviour
             alinacakKisir = other.gameObject;
         }
 
-        if (other.CompareTag("Russalatasi"))
+        if (other.CompareTag("Patates"))
         {
-            russalatasiTake = true;
-            alinacakRussalatasi = other.gameObject;
+            patatesTake = true;
+            alınacakPatates = other.gameObject;
         }
         
         if (other.CompareTag("Sosis"))
@@ -51,9 +51,9 @@ public class PickupItem : MonoBehaviour
             kisirTake = false;
         }
 
-        if (collision.CompareTag("Russalatasi"))
+        if (collision.CompareTag("Patates"))
         {
-            russalatasiTake = false;
+            patatesTake = false;
         }
         
         if (collision.CompareTag("Sosis"))
@@ -74,13 +74,13 @@ public class PickupItem : MonoBehaviour
             }
         }
 
-        if (russalatasiTake)
+        if (patatesTake)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Russalatasi picked up");
-                TakeItem(1, alinacakRussalatasi);
-                itemRussalatasi.stock++;
+                Debug.Log("Patates picked up");
+                TakeItem(1, alınacakPatates);
+                itemPatates.stock++;
             }
         }
 
