@@ -28,6 +28,8 @@ public class SceneChange : MonoBehaviour
     [SerializeField] Transform targetTransform;
     [SerializeField] Transform startTransform;
     public float duration = 1f;
+
+    public ScreenText screenText;
     public void CustomerSceneChange()
     {
         if (Dungeon && playerHealth.currentHealth > 0)
@@ -41,6 +43,7 @@ public class SceneChange : MonoBehaviour
             }
             StartCoroutine(customerManager.CustomerRoutine());
             Dungeon = false;
+             screenText.CustomerText();
 
         }
     }
@@ -51,7 +54,7 @@ public class SceneChange : MonoBehaviour
         {
             Debug.Log("Customer'dan çikiş yapildi.");
             player2.SetActive(false);
-            
+
             if (cameraTransform != null)
             {
                 cameraTransform.position = new Vector3(3.21f, 0, -10);
@@ -64,6 +67,8 @@ public class SceneChange : MonoBehaviour
             dayManager.DayCountIncrease();
             playerHealth.isInvincible = false;
             Dungeon = true;
+             screenText.DungeonText();
+
 
         }
     }
@@ -72,8 +77,9 @@ public class SceneChange : MonoBehaviour
 {
         if (!Dungeon)
         {
+            screenText.CustomerText();
             player2.SetActive(true);
-            player2.transform.localScale = new Vector3(1f, 1, 1);            
+            player2.transform.localScale = new Vector3(1f, 1, 1);
             player2.transform.position = startTransform.position;
 
             if (cameraTransform != null)
@@ -88,14 +94,15 @@ public class SceneChange : MonoBehaviour
             player2.transform.DOMoveX(target.x, duration)
             .SetEase(Ease.InOutSine)
             .OnComplete(DungeonSceneChange);
-    }
+        }
 }
 
     public void BeforeCustomerSceneChange()
     {
-
         if (Dungeon)
         {
+            screenText.DungeonText();
+
             player2.SetActive(true);
             player2.transform.localScale = new Vector3(-1f, 1, 1);
             player2.transform.position = targetTransform.position;
