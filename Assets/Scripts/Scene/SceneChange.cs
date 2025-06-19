@@ -28,7 +28,6 @@ public class SceneChange : MonoBehaviour
     [SerializeField] Transform targetTransform;
     [SerializeField] Transform startTransform;
     public float duration = 1f;
-
     public void CustomerSceneChange()
     {
         if (Dungeon && playerHealth.currentHealth > 0)
@@ -48,7 +47,7 @@ public class SceneChange : MonoBehaviour
 
     public void DungeonSceneChange()
     {
-        if (!Dungeon && playerHealth.currentHealth > 0)
+        if (!Dungeon)
         {
             Debug.Log("Customer'dan çikiş yapildi.");
             player2.SetActive(false);
@@ -63,6 +62,7 @@ public class SceneChange : MonoBehaviour
 
             destroyDungeon.DungeonCreate();
             dayManager.DayCountIncrease();
+            playerHealth.isInvincible = false;
             Dungeon = true;
 
         }

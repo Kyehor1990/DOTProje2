@@ -20,10 +20,14 @@ public class DestroyDungeon : MonoBehaviour
         Debug.Log("Dungeon Silindi.");
         GameObject[] items = GameObject.FindGameObjectsWithTag(tagRoom);
         GameObject[] items2 = GameObject.FindGameObjectsWithTag("Kisir");
-        GameObject[] items3 = GameObject.FindGameObjectsWithTag("Russalatasi");
-        GameObject[] combinedItems = new GameObject[items2.Length + items3.Length];
+        GameObject[] items3 = GameObject.FindGameObjectsWithTag("Patates");
+        GameObject[] items4 = GameObject.FindGameObjectsWithTag("Sosis");
+        GameObject[] items5 = GameObject.FindGameObjectsWithTag("Sosis");
+        GameObject[] combinedItems = new GameObject[items2.Length + items5.Length];
         items2.CopyTo(combinedItems, 0);
         items3.CopyTo(combinedItems, items2.Length);
+        items4.CopyTo(combinedItems, items2.Length + items3.Length);
+        items5.CopyTo(combinedItems, items2.Length + items3.Length + items4.Length);
 
         foreach (GameObject obj in combinedItems)
         {
