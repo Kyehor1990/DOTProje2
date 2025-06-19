@@ -81,8 +81,16 @@ public class CustomerManager : MonoBehaviour
     {
         CustomerOrder order = new CustomerOrder();
         
-        // Patates her zaman eklenir
-        order.requestedItems.Add("Patates");
+        // Patates her zaman eklenir - önce stockManager'dan patates ismini alalım
+        string potatoName = GetPotatoItemName();
+        if (!string.IsNullOrEmpty(potatoName))
+        {
+            order.requestedItems.Add(potatoName);
+        }
+        else
+        {
+            Debug.LogError("Patates ürünü StockManager'da bulunamadı! Item'ların itemName değerlerini kontrol edin.");
+        }
         
         // Rastgele 1-3 arasında ek ürün ekle
         int additionalItemCount = Random.Range(1, 4);
@@ -92,14 +100,35 @@ public class CustomerManager : MonoBehaviour
             if (possibleItems.Length > 0)
             {
                 string randomItem = possibleItems[Random.Range(0, possibleItems.Length)];
-                
-                // Aynı ürünü birden fazla kez eklemek için kontrol yapmazsak
-                // veya aynı üründen birden fazla isteyebilir
                 order.requestedItems.Add(randomItem);
             }
         }
         
         return order;
+    }
+    
+    private string GetPotatoItemName()
+    {
+        // StockManager'daki item'lar arasından patates'i bul
+        foreach (Item item in stockManager.items)
+        {
+            // Farklı yazım şekillerini kontrol et
+            string itemNameLower = item.itemName.ToLower().Trim();
+            if (itemNameLower == "patates" || itemNameLower == "potato" || itemNameLower == "patates kızartması")
+            {
+                Debug.Log($"Patates bulundu: '{item.itemName}' (Stok: {item.stock})");
+                return item.itemName; // Orijinal ismi döndür
+            }
+        }
+        
+        // Eğer bulunamazsa, tüm item'ları listele
+        Debug.Log("=== StockManager'daki tüm item'lar ===");
+        foreach (Item item in stockManager.items)
+        {
+            Debug.Log($"Item: '{item.itemName}' - Stok: {item.stock}");
+        }
+        
+        return null;
     }
 
     private IEnumerator DisplayCustomerOrder(CustomerOrder order)
