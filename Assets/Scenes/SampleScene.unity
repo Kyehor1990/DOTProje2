@@ -1223,6 +1223,8 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 09c129ff81c365843b68b7a21ad58482, type: 2}
   - {fileID: 11400000, guid: 1d0af7e82a4dc5142ab1654d654c68f5, type: 2}
+  - {fileID: 11400000, guid: 5d6f441afb044634f821fb3dc54b8eb8, type: 2}
+  - {fileID: 11400000, guid: 26d192f1d4375414eab5a4a92393de74, type: 2}
   playerMoney: 0
 --- !u!1001 &375239015
 PrefabInstance:
@@ -1639,8 +1641,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -232, y: 177}
-  m_SizeDelta: {x: 303.8736, y: 50}
+  m_AnchoredPosition: {x: -137.54678, y: 177}
+  m_SizeDelta: {x: 492.78, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427962155
 MonoBehaviour:
@@ -3608,6 +3610,82 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
+--- !u!1 &676137035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676137036}
+  - component: {fileID: 676137038}
+  - component: {fileID: 676137037}
+  m_Layer: 5
+  m_Name: CustomerOrder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &676137036
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676137035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1083534738}
+  m_Father: {fileID: 914736431}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 68.29776, y: 155.93}
+  m_SizeDelta: {x: -208.5131, y: -311.8665}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &676137037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676137035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &676137038
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676137035}
+  m_CullTransparentMesh: 1
 --- !u!1001 &678683876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4525,6 +4603,7 @@ RectTransform:
   - {fileID: 1511977838}
   - {fileID: 2117421306}
   - {fileID: 1659810550}
+  - {fileID: 676137036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4898,6 +4977,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbaccf07674394429f66393c1ed3235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1083534737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1083534738}
+  - component: {fileID: 1083534739}
+  m_Layer: 5
+  m_Name: OrderItemsParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1083534738
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083534737}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 676137036}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -227.1, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1083534739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083534737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1128042577
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,7 +5729,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kisir: {fileID: 11400000, guid: 09c129ff81c365843b68b7a21ad58482, type: 2}
-  russalatasi: {fileID: 11400000, guid: 1d0af7e82a4dc5142ab1654d654c68f5, type: 2}
+  patates: {fileID: 11400000, guid: 1d0af7e82a4dc5142ab1654d654c68f5, type: 2}
+  "tur\u015Fu": {fileID: 11400000, guid: 26d192f1d4375414eab5a4a92393de74, type: 2}
+  sosis: {fileID: 11400000, guid: 5d6f441afb044634f821fb3dc54b8eb8, type: 2}
   textMeshPro: {fileID: 427962155}
   stockManager: {fileID: 374725392}
 --- !u!114 &1463445167
@@ -6320,11 +6463,16 @@ MonoBehaviour:
   stockManager: {fileID: 374725392}
   possibleItems:
   - kisir
-  - russalatasi
+  - Sosis
+  - "Tur\u015Fu"
   customerInterval: 2
   sceneChange: {fileID: 1248564009}
   dungeonButton: {fileID: 1511977839}
   UpgradePanel: {fileID: 1659810549}
+  customerOrderUI: {fileID: 676137035}
+  orderItemsParent: {fileID: 1083534738}
+  orderItemPrefab: {fileID: 5776139258919161536, guid: 112217b3d84096c4a9969913658ae896, type: 3}
+  orderDisplayTime: 3
 --- !u!4 &1728087312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4943151079049051600, guid: 2edb0557560bd2044a01ee6af92d28c3, type: 3}

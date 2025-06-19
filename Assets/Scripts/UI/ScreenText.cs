@@ -8,7 +8,9 @@ public class ScreenText : MonoBehaviour
 
     public Item kisir;
 
-    public Item russalatasi;
+    public Item patates;
+    public Item turşu;
+    public Item sosis;
     public TextMeshProUGUI textMeshPro;
 
     public StockManager stockManager;
@@ -19,7 +21,7 @@ public class ScreenText : MonoBehaviour
 
     void Update()
     {
-         textMeshPro.text = "Kısır: " + kisir.stock.ToString() + "\n" + "Russalatasi: " + russalatasi.stock.ToString() + 
+         textMeshPro.text = "Kısır: " + kisir.stock.ToString() + "\n" + "Patates: " + patates.stock.ToString() + "\n" + "Turşu:" + turşu.stock.ToString() + "\n" + "Sosis: " + sosis.stock.ToString() + "\n" +
          "\n" + "Money: " + stockManager.playerMoney.ToString();
     }
 }

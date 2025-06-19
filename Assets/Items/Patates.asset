@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Patates
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 26deeb07c83b6974f935ab448a046575, type: 3}
-  itemName: patates
-  stock: 62
+  itemName: Patates
+  stock: 27
   price: 10
   itemPrefab: {fileID: 9209038962649213043, guid: 1dc5cb4d260cb49438895e805b79712f, type: 3}
   width: 1

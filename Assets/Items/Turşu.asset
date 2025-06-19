@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: 403da47286ceb8849a92eaa2c927c294, type: 3}
   itemName: "Tur\u015Fu"
-  stock: 1
+  stock: 28
   price: 10
   itemPrefab: {fileID: 6526691575487761189, guid: 1132b6026c085644eab74cbd8c96ebc1, type: 3}
   width: 2
