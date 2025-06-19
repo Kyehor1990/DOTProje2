@@ -8,14 +8,17 @@ public class PickupItem : MonoBehaviour
     bool kisirTake = false;
     bool patatesTake = false;
     bool sosisTake = false;
+    bool turşuTake = false;
 
     public GameObject alinacakKisir;
     public GameObject alınacakPatates;
     public GameObject alinacakSosis;
+    public GameObject alınacakTurşu;
 
     public Item itemKisir;
     public Item itemPatates;
     public Item itemSosis;
+    public Item itemTurşu;
 
 
 
@@ -35,11 +38,16 @@ public class PickupItem : MonoBehaviour
             patatesTake = true;
             alınacakPatates = other.gameObject;
         }
-        
+
         if (other.CompareTag("Sosis"))
         {
             sosisTake = true;
             alinacakSosis = other.gameObject;
+        }
+        if (other.CompareTag("Turşu"))
+        {
+            turşuTake = true;
+            alınacakTurşu = other.gameObject;
         }
 
     }
@@ -55,10 +63,14 @@ public class PickupItem : MonoBehaviour
         {
             patatesTake = false;
         }
-        
+
         if (collision.CompareTag("Sosis"))
         {
             sosisTake = false;
+        }
+        if (collision.CompareTag("Turşu"))
+        {
+            turşuTake = false;
         }
     }
 
@@ -91,6 +103,15 @@ public class PickupItem : MonoBehaviour
                 Debug.Log("Sosis picked up");
                 TakeItem(2, alinacakSosis);
                 itemSosis.stock++;
+            }
+        }
+        if (turşuTake)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Turşu picked up");
+                TakeItem(3, alınacakTurşu);
+                itemTurşu.stock++;
             }
         }
     }

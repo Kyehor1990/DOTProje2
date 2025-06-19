@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b7f4e7bdb3445648a8a36558d3abe1d, type: 3}
-  m_Name: "K\u0131s\u0131r"
+  m_Name: "Tur\u015Fu"
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 741c5002a515c21478f668ce5a2d002d, type: 3}
-  itemName: kisir
-  stock: 3
-  price: 5
-  itemPrefab: {fileID: 877172087458204378, guid: 4a608523cceb1ed49833da14b9099757, type: 3}
+  image: {fileID: 21300000, guid: 403da47286ceb8849a92eaa2c927c294, type: 3}
+  itemName: "Tur\u015Fu"
+  stock: 1
+  price: 10
+  itemPrefab: {fileID: 6526691575487761189, guid: 1132b6026c085644eab74cbd8c96ebc1, type: 3}
   width: 2
-  height: 1
+  height: 2

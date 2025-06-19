@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Sword
   - Kisir
-  - Russalatasi
   - item
   - room
   - Wall
   - Sosis
+  - Patates
+  - "Tur\u015Fu"
   layers:
   - Default
   - TransparentFX
