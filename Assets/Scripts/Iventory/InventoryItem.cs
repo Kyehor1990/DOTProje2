@@ -188,20 +188,45 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (isDragging)
         {
+            PickupItem pickupItem = player.GetComponent<PickupItem>();
+            InventoryManager manager = FindObjectOfType<InventoryManager>();
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if(item.itemName == "kisir"){
+
+                if (item.itemName == "kisir")
+                {
                     itemPrefab = item.itemPrefab;
+                    pickupItem.kisirStock--;
+
                 }
+                else if (item.itemName == "Patates")
+                {
+                    itemPrefab = item.itemPrefab;
+                    pickupItem.patatesStock--;
+
+                }
+                else if (item.itemName == "sosis")
+                {
+                    itemPrefab = item.itemPrefab;
+                    pickupItem.sosisStock--;
+                }
+                else if (item.itemName == "Turşu")
+                {
+                    itemPrefab = item.itemPrefab;
+                    pickupItem.turşuStock--;
+                }
+
+                manager.ClearSpace(posX, posY, currentWidth, currentHeight);
                 Instantiate(itemPrefab, player.transform.position, Quaternion.identity);
                 Destroy(gameObject);
-                item.stock--;
-            } 
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                RotateItem();
             }
+
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    RotateItem();
+                }
+            
         }
     }
 

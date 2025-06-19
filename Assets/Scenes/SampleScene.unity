@@ -3972,6 +3972,10 @@ MonoBehaviour:
   itemPatates: {fileID: 11400000, guid: 1d0af7e82a4dc5142ab1654d654c68f5, type: 2}
   itemSosis: {fileID: 11400000, guid: 5d6f441afb044634f821fb3dc54b8eb8, type: 2}
   "itemTur\u015Fu": {fileID: 11400000, guid: 26d192f1d4375414eab5a4a92393de74, type: 2}
+  kisirStock: 0
+  patatesStock: 0
+  sosisStock: 0
+  "tur\u015FuStock": 0
   inventoryManager: {fileID: 302019821}
   itemsToPickup:
   - {fileID: 11400000, guid: 09c129ff81c365843b68b7a21ad58482, type: 2}
@@ -5486,6 +5490,7 @@ MonoBehaviour:
   startTransform: {fileID: 2068564394}
   duration: 3.5
   screenText: {fileID: 1463445166}
+  pickupItem: {fileID: 701841971}
 --- !u!4 &1253422209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 511687515154134080, guid: bdb4150b8d6073e459f76d71e3c37fb3, type: 3}

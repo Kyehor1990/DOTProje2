@@ -30,6 +30,7 @@ public class SceneChange : MonoBehaviour
     public float duration = 1f;
 
     public ScreenText screenText;
+    public PickupItem pickupItem;
     public void CustomerSceneChange()
     {
         if (Dungeon && playerHealth.currentHealth > 0)
@@ -43,7 +44,7 @@ public class SceneChange : MonoBehaviour
             }
             StartCoroutine(customerManager.CustomerRoutine());
             Dungeon = false;
-             screenText.CustomerText();
+            screenText.CustomerText();
 
         }
     }
@@ -101,6 +102,7 @@ public class SceneChange : MonoBehaviour
     {
         if (Dungeon)
         {
+            pickupItem.ResetPickupItems();
             screenText.DungeonText();
 
             player2.SetActive(true);

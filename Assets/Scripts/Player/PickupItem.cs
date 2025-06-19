@@ -20,6 +20,11 @@ public class PickupItem : MonoBehaviour
     public Item itemSosis;
     public Item itemTurşu;
 
+    public int kisirStock = 0;
+    public int patatesStock = 0;
+    public int sosisStock = 0;
+    public int turşuStock = 0;
+
 
 
     public InventoryManager inventoryManager;
@@ -82,7 +87,7 @@ public class PickupItem : MonoBehaviour
             {
                 Debug.Log("Kisir picked up");
                 TakeItem(0, alinacakKisir);
-                itemKisir.stock++;
+                kisirStock++;
             }
         }
 
@@ -92,7 +97,7 @@ public class PickupItem : MonoBehaviour
             {
                 Debug.Log("Patates picked up");
                 TakeItem(1, alınacakPatates);
-                itemPatates.stock++;
+                patatesStock++;
             }
         }
 
@@ -102,7 +107,7 @@ public class PickupItem : MonoBehaviour
             {
                 Debug.Log("Sosis picked up");
                 TakeItem(2, alinacakSosis);
-                itemSosis.stock++;
+                sosisStock++;
             }
         }
         if (turşuTake)
@@ -111,21 +116,36 @@ public class PickupItem : MonoBehaviour
             {
                 Debug.Log("Turşu picked up");
                 TakeItem(3, alınacakTurşu);
-                itemTurşu.stock++;
+                turşuStock++;
             }
         }
     }
 
-    public void TakeItem(int id ,GameObject other)
+    public void TakeItem(int id, GameObject other)
     {
-       bool result = inventoryManager.AddItem(itemsToPickup[id]);
-       if(result == true)
-       {
-        Debug.Log("Item added to inventory");
-        Destroy(other.gameObject);
-       }else
-       {
-        Debug.Log("Inventory is full");
-       }
+        bool result = inventoryManager.AddItem(itemsToPickup[id]);
+        if (result == true)
+        {
+            Debug.Log("Item added to inventory");
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            Debug.Log("Inventory is full");
+        }
+    }
+    
+    public void ResetPickupItems()
+    {
+        itemKisir.stock += kisirStock;
+        itemPatates.stock += patatesStock;
+        itemSosis.stock += sosisStock;
+        itemTurşu.stock += turşuStock;
+
+        kisirStock = 0;
+        patatesStock = 0;
+        sosisStock = 0;
+        turşuStock = 0;
+
     }
 }
