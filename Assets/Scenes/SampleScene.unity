@@ -219,6 +219,12 @@ MonoBehaviour:
   playerMovement: {fileID: 701841968}
   inventoryManager: {fileID: 302019821}
   customerManager: {fileID: 1699451571}
+  singleSlotUpgradeButton: {fileID: 0}
+  multipleSlotUpgradeButton: {fileID: 0}
+  singleSlotPriceText: {fileID: 0}
+  multipleSlotPriceText: {fileID: 0}
+  slotInfoText: {fileID: 0}
+  multipleSlotCount: 5
 --- !u!4 &50076906
 Transform:
   m_ObjectHideFlags: 0
@@ -930,6 +936,8 @@ MonoBehaviour:
   - {fileID: 1297359700}
   - {fileID: 1330528593}
   inventoryItemPrefab: {fileID: 5814636545475912915, guid: b7aeca2702395614ba639cdb3b677a0b, type: 3}
+  initialActiveSlots: 14
+  slotUpgradePrice: 80
 --- !u!224 &308586665 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
@@ -1596,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282060849558634387, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4287063946142629874, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: m_IsActive
@@ -1604,7 +1612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6088278337639841416, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7038651678162408430, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: m_IsActive
@@ -2609,7 +2617,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 50076905}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: UpgradeInventorySlotButton
+        m_MethodName: UpgradeSingleSlotButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
