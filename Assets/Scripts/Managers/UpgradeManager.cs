@@ -21,10 +21,13 @@ public class UpgradeManager : MonoBehaviour
     public int kira = 10;
     public GameObject Kovuldun;
 
+    public GameObject player;
+
 
 
     void Start()
     {
+        Time.timeScale = 1f; // Oyunu başlat
         Kovuldun.SetActive(false);
         UpdateSlotUpgradeUI();
     }
@@ -38,6 +41,9 @@ public class UpgradeManager : MonoBehaviour
         if (kiraSayaç >= 3)
         {
             Kovuldun.SetActive(true);
+            Destroy(player);
+            Time.timeScale = 0f; // Oyunu durdur
+            
         }
     }
 
