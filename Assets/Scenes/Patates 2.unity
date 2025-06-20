@@ -492,6 +492,7 @@ GameObject:
   m_Component:
   - component: {fileID: 579307553}
   - component: {fileID: 579307552}
+  - component: {fileID: 579307554}
   m_Layer: 0
   m_Name: "Bo\u015Fluk"
   m_TagString: Untagged
@@ -527,6 +528,22 @@ Transform:
   - {fileID: 1101279812}
   m_Father: {fileID: 1686181630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &579307554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579307551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &646993087
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +554,7 @@ GameObject:
   m_Component:
   - component: {fileID: 646993089}
   - component: {fileID: 646993088}
+  - component: {fileID: 646993090}
   m_Layer: 0
   m_Name: Zemin
   m_TagString: Untagged
@@ -572,6 +590,22 @@ Transform:
   - {fileID: 2116070334}
   m_Father: {fileID: 1686181630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &646993090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646993087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &907350719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,6 +1832,7 @@ GameObject:
   - component: {fileID: 2009173410}
   - component: {fileID: 2009173413}
   - component: {fileID: 2009173412}
+  - component: {fileID: 2009173414}
   m_Layer: 0
   m_Name: Duvar
   m_TagString: Wall
@@ -1907,6 +1942,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &2009173414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009173409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &2116070333
 GameObject:
   m_ObjectHideFlags: 0
