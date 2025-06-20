@@ -16,12 +16,16 @@ public class UpgradeManager : MonoBehaviour
     public TextMeshProUGUI kiraText;
     public GameObject kiraButton;
 
+    public int kiraSayaç = 0;
+
     public int kira = 10;
+    public GameObject Kovuldun;
 
 
 
     void Start()
     {
+        Kovuldun.SetActive(false);
         UpdateSlotUpgradeUI();
     }
 
@@ -30,6 +34,11 @@ public class UpgradeManager : MonoBehaviour
         UpdateSlotUpgradeUI();
 
         kiraText.text = "Kira: " + kira.ToString();
+
+        if (kiraSayaç >= 3)
+        {
+            Kovuldun.SetActive(true);
+        }
     }
 
     public void UpgradeHealthButton()
@@ -115,6 +124,7 @@ public class UpgradeManager : MonoBehaviour
     {
         if (stockManager.playerMoney >= kira)
         {
+            kiraSayaç--;
             stockManager.playerMoney -= kira;
             kiraButton.SetActive(false);
         }

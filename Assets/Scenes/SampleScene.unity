@@ -222,7 +222,9 @@ MonoBehaviour:
   customerManager: {fileID: 1699451571}
   kiraText: {fileID: 152897516}
   kiraButton: {fileID: 553306375}
+  "kiraSaya\xE7": 0
   kira: 10
+  Kovuldun: {fileID: 929836914}
 --- !u!4 &50076906
 Transform:
   m_ObjectHideFlags: 0
@@ -1025,6 +1027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invetory: {fileID: 1128042577}
+  sceneChange: {fileID: 1248564009}
 --- !u!114 &302019821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2174,7 +2177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU DIED
+  m_text: KOVULDUN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2183,8 +2186,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

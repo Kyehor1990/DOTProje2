@@ -31,9 +31,14 @@ public class SceneChange : MonoBehaviour
 
     public ScreenText screenText;
     public PickupItem pickupItem;
+
+    void Start()
+    {
+        Dungeon = true;
+    }
     public void CustomerSceneChange()
     {
-        if (Dungeon)
+        if (!Dungeon)
         {
             Debug.Log("Dungeon'dan çikiş yapildi.");
             player2.SetActive(false);
@@ -102,6 +107,7 @@ public class SceneChange : MonoBehaviour
     {
         if (Dungeon)
         {
+            Dungeon = false;
             pickupItem.ResetPickupItems();
             screenText.DungeonText();
 

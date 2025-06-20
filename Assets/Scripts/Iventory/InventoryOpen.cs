@@ -6,10 +6,12 @@ public class InventoryOpen : MonoBehaviour
 {
     public GameObject invetory;
 
+    public SceneChange sceneChange;
+
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && sceneChange.Dungeon)
         {
             invetory.SetActive(!invetory.activeSelf);
         }

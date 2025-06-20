@@ -12,6 +12,7 @@ public class DayManager : MonoBehaviour
     public void DayCountIncrease()
     {
         dayCount++;
+        upgradeManager.kiraSayaç++;
         Debug.Log("Day: " + dayCount);
     }
 
