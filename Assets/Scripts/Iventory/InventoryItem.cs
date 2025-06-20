@@ -206,7 +206,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     pickupItem.patatesStock--;
 
                 }
-                else if (item.itemName == "sosis")
+                else if (item.itemName == "Sosis")
                 {
                     itemPrefab = item.itemPrefab;
                     pickupItem.sosisStock--;

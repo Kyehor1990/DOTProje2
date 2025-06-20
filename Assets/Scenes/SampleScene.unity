@@ -1073,6 +1073,7 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: 5814636545475912915, guid: b7aeca2702395614ba639cdb3b677a0b, type: 3}
   initialActiveSlots: 14
   slotUpgradePrice: 80
+  inventoryPanel: {fileID: 1128042577}
 --- !u!224 &308586665 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}

@@ -14,12 +14,15 @@ public class InventoryManager : MonoBehaviour
     private int gridWidth = 7;
     private int gridHeight = 4;
     private bool[,] gridUsed;
-    
+
     // Slot satın alma sistemi için yeni değişkenler
     [Header("Slot Upgrade System")]
     public int initialActiveSlots = 14; // Başlangıçta aktif olacak slot sayısı (örn: 2x7=14)
     public int slotUpgradePrice = 75; // Her slot için fiyat
-    private bool[] slotsUnlocked; // Hangi slotların açık olduğunu takip eder
+    private bool[] slotsUnlocked;
+
+    public GameObject inventoryPanel; // Hangi slotların açık olduğunu takip eder
+    private bool hasCleared = false;
 
     void Start()
     {
@@ -40,7 +43,7 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-        
+
         // Başlangıçta belirli sayıda slot açık
         InitializeSlots();
         UpdateSlotVisibility();
@@ -68,13 +71,13 @@ public class InventoryManager : MonoBehaviour
         {
             inventorySlots[i].gameObject.SetActive(slotsUnlocked[i]);
         }
-        
+
         int unlockedCount = 0;
         for (int i = 0; i < slotsUnlocked.Length; i++)
         {
             if (slotsUnlocked[i]) unlockedCount++;
         }
-        
+
         Debug.Log($"Active slots: {unlockedCount}/{inventorySlots.Length}");
     }
 
@@ -87,12 +90,12 @@ public class InventoryManager : MonoBehaviour
         }
         return false;
     }
-    
+
     public int GetSlotUpgradePrice()
     {
         return slotUpgradePrice;
     }
-    
+
     public int GetNextSlotToUnlock()
     {
         // Bir sonraki açılacak slotun indeksini bul
@@ -102,27 +105,27 @@ public class InventoryManager : MonoBehaviour
         }
         return -1; // Tüm slotlar açık
     }
-    
+
     public bool UpgradeSlot(int playerMoney)
     {
-        if (!CanUpgradeSlots()) 
+        if (!CanUpgradeSlots())
         {
             Debug.Log("All slots are already unlocked!");
             return false;
         }
-        
+
         if (playerMoney < slotUpgradePrice)
         {
             Debug.Log($"Not enough money! Need {slotUpgradePrice}, have {playerMoney}");
             return false;
         }
-        
+
         int nextSlotIndex = GetNextSlotToUnlock();
         if (nextSlotIndex == -1) return false;
-        
+
         slotsUnlocked[nextSlotIndex] = true;
         UpdateSlotVisibility();
-        
+
         Debug.Log($"Slot {nextSlotIndex} unlocked!");
         return true;
     }
@@ -131,26 +134,26 @@ public class InventoryManager : MonoBehaviour
     public bool UpgradeMultipleSlots(int playerMoney, int slotCount)
     {
         int totalCost = slotUpgradePrice * slotCount;
-        
+
         if (playerMoney < totalCost)
         {
             Debug.Log($"Not enough money! Need {totalCost}, have {playerMoney}");
             return false;
         }
-        
+
         // Satın alınabilecek slot sayısını kontrol et
         int availableSlots = 0;
         for (int i = 0; i < slotsUnlocked.Length; i++)
         {
             if (!slotsUnlocked[i]) availableSlots++;
         }
-        
+
         if (availableSlots < slotCount)
         {
             Debug.Log($"Only {availableSlots} slots available to unlock!");
             return false;
         }
-        
+
         // Slotları aç
         int unlockedCount = 0;
         for (int i = 0; i < slotsUnlocked.Length && unlockedCount < slotCount; i++)
@@ -161,7 +164,7 @@ public class InventoryManager : MonoBehaviour
                 unlockedCount++;
             }
         }
-        
+
         UpdateSlotVisibility();
         Debug.Log($"{slotCount} slots unlocked for {totalCost} coins!");
         return true;
@@ -186,14 +189,26 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-       if(sceneChange.Dungeon == false){
-        GameObject[] items = GameObject.FindGameObjectsWithTag(tagItem);
-
-        foreach (GameObject obj in items)
+        if (sceneChange.Dungeon == false && !hasCleared)
         {
-            Destroy(obj);
+            inventoryPanel.SetActive(true);
+            GameObject[] items = GameObject.FindGameObjectsWithTag(tagItem);
+
+            foreach (GameObject obj in items)
+            {
+                Destroy(obj);
+            }
+
+            ClearAllInventory();
+            inventoryPanel.SetActive(false);
+
+            hasCleared = true; // Sadece bir kez temizleme yap
         }
-       }
+
+        if(sceneChange.Dungeon == true && hasCleared)
+        {
+            hasCleared = false; // Yeni dungeon'a geçildiğinde temizleme durumunu sıfırla
+        }
     }
 
     public bool CheckSpace(int startX, int startY, int width, int height)
@@ -209,14 +224,14 @@ public class InventoryManager : MonoBehaviour
                 int slotIndex = GetSlotIndex(startX + x, startY + y);
                 if (slotIndex == -1 || !slotsUnlocked[slotIndex])
                     return false;
-                    
+
                 if (gridUsed[startX + x, startY + y])
                     return false;
             }
         }
         return true;
     }
-    
+
     int GetSlotIndex(int x, int y)
     {
         // Grid pozisyonundan slot indeksini bul
@@ -251,16 +266,16 @@ public class InventoryManager : MonoBehaviour
             // Item prefab'ını oluştur
             GameObject newItemGo = Instantiate(inventoryItemPrefab, targetSlot.transform);
             InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
-            
+
             // KRITIK: Pozisyon değerlerini initialize etmeden önce ata
             inventoryItem.posX = startX;
             inventoryItem.posY = startY;
             inventoryItem.currentWidth = item.width;
             inventoryItem.currentHeight = item.height;
-            
+
             // Item'ı initialize et (bu UpdateItemSize'ı çağıracak)
             inventoryItem.InitialiseItem(item);
-            
+
             Debug.Log($"Item placed at ({startX}, {startY}) with size {item.width}x{item.height}");
         }
     }
@@ -271,7 +286,7 @@ public class InventoryManager : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                if (startX + x >= 0 && startX + x < gridWidth && 
+                if (startX + x >= 0 && startX + x < gridWidth &&
                     startY + y >= 0 && startY + y < gridHeight)
                 {
                     gridUsed[startX + x, startY + y] = false;
@@ -287,7 +302,7 @@ public class InventoryManager : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                if (startX + x >= 0 && startX + x < gridWidth && 
+                if (startX + x >= 0 && startX + x < gridWidth &&
                     startY + y >= 0 && startY + y < gridHeight)
                 {
                     gridUsed[startX + x, startY + y] = true;
@@ -296,7 +311,7 @@ public class InventoryManager : MonoBehaviour
         }
         Debug.Log($"Occupied space at ({startX}, {startY}) with size {width}x{height}");
     }
-    
+
     // Debug için: açık slot sayısını döndür
     public int GetUnlockedSlotCount()
     {
@@ -307,10 +322,38 @@ public class InventoryManager : MonoBehaviour
         }
         return count;
     }
-    
+
     // Debug için: toplam slot sayısını döndür
     public int GetTotalSlotCount()
     {
         return inventorySlots.Length;
     }
+    
+    // InventoryManager.cs içine eklenecek method
+public void ClearAllInventory()
+{
+    Debug.Log("Clearing all inventory items...");
+    
+    // Tüm grid'i temizle
+    gridUsed = new bool[gridWidth, gridHeight];
+    
+    // Tüm inventory item'larını yok et
+    for (int i = 0; i < inventorySlots.Length; i++)
+    {
+        if (inventorySlots[i] != null && inventorySlots[i].transform.childCount > 0)
+        {
+            // Slot içindeki tüm item'ları yok et
+            for (int j = inventorySlots[i].transform.childCount - 1; j >= 0; j--)
+            {
+                Transform child = inventorySlots[i].transform.GetChild(j);
+                if (child != null)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+    }
+    
+    Debug.Log("All inventory items cleared!");
+}
 }
