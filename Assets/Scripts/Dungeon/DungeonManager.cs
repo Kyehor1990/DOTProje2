@@ -7,7 +7,7 @@ public class DungeonManager : MonoBehaviour
 {
     public Transform player;
     private Dictionary<Vector3, GameObject> generatedRooms = new Dictionary<Vector3, GameObject>();
-    public List<GameObject> Rooms1, Rooms2, Rooms3;
+    public List<GameObject> Rooms1, Rooms2, Rooms3, Rooms4, Rooms5;
     public GameObject startingRoom;
 
     private Vector3 currentRoomPosition = Vector3.zero;
@@ -49,6 +49,8 @@ public class DungeonManager : MonoBehaviour
         if (roomType == "1") return Rooms1;
         if (roomType == "2") return Rooms2;
         if (roomType == "3") return Rooms3;
+        if (roomType == "4") return Rooms4;
+        if (roomType == "5") return Rooms5;
         return null;
     }
 
