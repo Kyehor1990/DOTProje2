@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer.Internal;
+using NavMeshPlus.Components;
 
 public class DungeonManager : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class DungeonManager : MonoBehaviour
     public static DungeonManager instance;
 
     public Camera mainCamera;
-
     void Awake()
     {
         if (instance == null) instance = this;
@@ -32,6 +32,8 @@ public class DungeonManager : MonoBehaviour
             {
                 GameObject newRoomPrefab = selectedRoomList[Random.Range(0, selectedRoomList.Count)];
                 GameObject newRoom = Instantiate(newRoomPrefab, newRoomPosition, Quaternion.identity);
+                NavMeshSurface surface = FindObjectOfType<NavMeshSurface>();
+                surface.BuildNavMesh();
                 generatedRooms[newRoomPosition] = newRoom;
                 PlayerEnergy.instance.UseEnergy(1); 
             }

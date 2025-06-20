@@ -1766,7 +1766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6088278337639841416, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7038651678162408430, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
       propertyPath: m_IsActive
@@ -5993,6 +5993,7 @@ GameObject:
   - component: {fileID: 1013615191}
   - component: {fileID: 1013615190}
   - component: {fileID: 1013615189}
+  - component: {fileID: 1013615192}
   m_Layer: 0
   m_Name: NavMesh
   m_TagString: Untagged
@@ -6062,6 +6063,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013615192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013615188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef547908f36bb8439d15a5a3939f576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1028438737
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NavMeshPlus.Components;
 
 public class DestroyDungeon : MonoBehaviour
 {
@@ -47,7 +48,8 @@ items5.CopyTo(combinedItems, items2.Length + items3.Length + items4.Length);
     public void DungeonCreate()
     {
          Instantiate(prefabRoom, spawnPosition, Quaternion.identity);
-
+        NavMeshSurface surface = FindObjectOfType<NavMeshSurface>();
+        surface.BuildNavMesh();
          player.transform.position = new Vector3(0, 0, 0);
        
     }
