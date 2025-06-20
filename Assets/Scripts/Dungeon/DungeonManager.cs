@@ -94,16 +94,16 @@ private Vector3 GetDoorPosition(Vector3 roomPosition, DoorPosition doorPos)
                 switch (doorPos)
                 {
                     case DoorPosition.Top:
-                        position += new Vector3(0, -1.5f, 0);
+                        position += new Vector3(0, -2f, 0);
                         break;
                     case DoorPosition.Bottom:
-                        position += new Vector3(0, 1.5f, 0);
+                        position += new Vector3(0, 2f, 0);
                         break;
                     case DoorPosition.Left:
-                        position += new Vector3(1.5f, 0, 0);
+                        position += new Vector3(2f, 0, 0);
                         break;
                     case DoorPosition.Right:
-                        position += new Vector3(-1.5f, 0, 0);
+                        position += new Vector3(-2f, 0, 0);
                         break;
                 }
 
