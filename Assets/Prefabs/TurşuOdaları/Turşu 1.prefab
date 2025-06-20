@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 4565972321866894420}
   m_Layer: 0
   m_Name: "Tur\u015Fu 1"
-  m_TagString: Untagged
+  m_TagString: room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

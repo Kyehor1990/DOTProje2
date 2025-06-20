@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 2301382585489541549}
   m_Layer: 0
   m_Name: "Kar\u0131\u015F\u0131k 2 4"
-  m_TagString: Untagged
+  m_TagString: room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

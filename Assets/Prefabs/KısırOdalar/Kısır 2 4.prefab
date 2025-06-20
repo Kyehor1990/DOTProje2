@@ -1326,7 +1326,7 @@ GameObject:
   - component: {fileID: 6531656233411053184}
   m_Layer: 0
   m_Name: "K\u0131s\u0131r 2 4"
-  m_TagString: Untagged
+  m_TagString: room
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

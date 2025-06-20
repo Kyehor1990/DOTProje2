@@ -9,7 +9,7 @@ public class DestroyDungeon : MonoBehaviour
     public GameObject player;
     private string tagRoom = "room";
 
-    public GameObject prefabRoom;
+    public List<GameObject> roomPrefabs;
     public Vector3 spawnPosition;
 
     public SceneChange sceneChange;
@@ -45,14 +45,29 @@ items5.CopyTo(combinedItems, items2.Length + items3.Length + items4.Length);
         }
     }
 
-    public void DungeonCreate()
+public void DungeonCreate()
+{
+    if (roomPrefabs == null || roomPrefabs.Count == 0)
     {
-         Instantiate(prefabRoom, spawnPosition, Quaternion.identity);
-        NavMeshSurface surface = FindObjectOfType<NavMeshSurface>();
-        surface.BuildNavMesh();
-         player.transform.position = new Vector3(0, 0, 0);
-       
+        Debug.LogError("Room prefab listesi boş! Inspector'dan atama yapmayı unutma.");
+        return;
     }
+
+    GameObject selectedRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
+    Instantiate(selectedRoom, spawnPosition, Quaternion.identity);
+
+    NavMeshSurface surface = FindObjectOfType<NavMeshSurface>();
+    if (surface != null)
+    {
+        surface.BuildNavMesh();
+    }
+    else
+    {
+        Debug.LogWarning("NavMeshSurface bulunamadı. NavMesh oluşturulamadı.");
+    }
+
+    player.transform.position = new Vector3(0, 0, 0);
+}
 
 
 }
