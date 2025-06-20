@@ -9,6 +9,10 @@ public class EnemyManager : MonoBehaviour
 
     public PlayerEnergy playerEnergy;
 
+    public AudioSource audioSource;
+    public AudioClip doorSound;
+    public SceneChange SceneChange;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -30,6 +34,8 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Kalan düşman sayısı: " + enemies.Count);
         if (enemies.Count == 0)
         {
+            if(SceneChange.Dungeon)
+            audioSource.PlayOneShot(doorSound);
             if (playerEnergy.currentEnergy <= 0)
             {
                 Debug.LogError("Enerji KODU");

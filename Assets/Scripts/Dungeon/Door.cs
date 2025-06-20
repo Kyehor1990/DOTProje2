@@ -12,6 +12,7 @@ public class Door : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public bool StartDoor = false;
+    
 
 
 void Start()
