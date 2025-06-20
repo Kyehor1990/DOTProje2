@@ -11,6 +11,8 @@ public class Door : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    public bool StartDoor = false;
+
 
 void Start()
 {
@@ -21,7 +23,14 @@ void Start()
         return;
     }
 
-    LockDoor();
+    if (StartDoor)
+    {
+        UnlockDoor();
+    }
+    else
+    {
+        LockDoor();
+    }
 }
 
 
