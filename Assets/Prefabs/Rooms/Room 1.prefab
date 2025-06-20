@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorPosition: 1
-  roomType: 
+  roomType: 2
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
 --- !u!1001 &1261314610266800203

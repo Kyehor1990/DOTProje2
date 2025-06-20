@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 701841963}
-  prefabRoom: {fileID: 1852176845005529224, guid: b012a08f4a26a8f47a0f0f323c0dbdb7, type: 3}
+  prefabRoom: {fileID: 3226399183272317511, guid: 949010bdeb4303f4a93e554c6967e049, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
   sceneChange: {fileID: 1248564009}
   playerHealth: {fileID: 701841972}
@@ -4873,8 +4873,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.075, y: 1.906}
+  m_Offset: {x: 0, y: -0.08726883}
+  m_Size: {x: 1.075, y: 1.4465802}
   m_Direction: 0
 --- !u!95 &701841974
 Animator:
