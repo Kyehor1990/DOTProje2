@@ -965,15 +965,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 701841967}
   Rooms1:
-  - {fileID: 881033160039818780, guid: 70f0b3fd7323f3548bdb5c098f5721fe, type: 3}
+  - {fileID: 1835257316419797826, guid: 7c551aaf001ca5c479f082088b506513, type: 3}
+  - {fileID: 4878528453050620021, guid: f7ad8077ed4b24b40ad14ecbbdf0a732, type: 3}
+  - {fileID: 5985634541795118625, guid: d8006dd1413ff9d4fa203396462f1c3f, type: 3}
+  - {fileID: 6729507658986219920, guid: 67dc9555ce9af9843a46802fc853364d, type: 3}
+  - {fileID: 4681256224755103639, guid: 0b89c1aea96225349856647a0fd8e06c, type: 3}
+  - {fileID: 6591324188613929289, guid: 142522c12bfa0b247b11bef38581a62e, type: 3}
+  - {fileID: 4777646537535416193, guid: 6ae4475fd0cdefe4182ecbdadab03c9e, type: 3}
+  - {fileID: 6012553680374808166, guid: 58ab05f633bad204aa1069e15f675f01, type: 3}
+  - {fileID: 1346485523057876088, guid: c3078b4d541464b45bab32696452d311, type: 3}
+  - {fileID: 5429597449427960570, guid: 0c18fb137b23a564ea843e3aa7d8feed, type: 3}
+  - {fileID: 5375434598925662353, guid: 5806aaa875989ba42b184c43ef1445f4, type: 3}
+  - {fileID: 2035399543478113802, guid: df605734efde833408842f2c846a3ac0, type: 3}
+  - {fileID: 4878179289825968893, guid: c69b7f6db05a79c41b463accb85dc07d, type: 3}
+  - {fileID: 162406863325763467, guid: 9a042bd88f0761c48b6324f25583daae, type: 3}
+  - {fileID: 5832674096099176481, guid: 7b3ebb96047e3184fbeeb33fa23e70b5, type: 3}
+  - {fileID: 7829915528214361826, guid: 04b603f5b0fd9604eb76622aa9743173, type: 3}
   Rooms2:
-  - {fileID: 190159450445744805, guid: 93cb612319a26c6469ce3d4266376b09, type: 3}
-  - {fileID: 5211383484576986501, guid: 6ae9d43e35bb8e94386ff5177f616bc6, type: 3}
+  - {fileID: 7284255876910500250, guid: 5d31d08f64d0d8c48a6e9b27a4ee2e05, type: 3}
+  - {fileID: 4000312062764962567, guid: 6bf2dfa6238878145911d0753e42f804, type: 3}
+  - {fileID: 4410169222740094557, guid: bcb23fa3da578be4a96827c2df950e1e, type: 3}
+  - {fileID: 1671738439020113911, guid: eacca2bda713edb4895491d6e997b101, type: 3}
+  - {fileID: 7514744988441368308, guid: e18eff8281822db4a853e389a0a59d16, type: 3}
+  - {fileID: 5689689829122839612, guid: 179a499f2cd4b824daecc8582af4619c, type: 3}
+  - {fileID: 5745684388649832556, guid: fb74e424e338b5b449bc8646ccf4d1e3, type: 3}
+  - {fileID: 1260473491644785269, guid: c6f3c15dd04191d4db53b639c3e63b36, type: 3}
+  - {fileID: 4971850263661338251, guid: 622618253bcf6fe4484eebb4faf2b0bf, type: 3}
+  - {fileID: 6545445691905535827, guid: 25a3036227adc7544988d8f4d48356d6, type: 3}
+  - {fileID: 3414999226941174101, guid: 807c0cf3e8a97c54092d834890db7837, type: 3}
+  - {fileID: 5690022415136024617, guid: 23ec8617df20e884296dc70076ac35f8, type: 3}
+  - {fileID: 7828690495981654884, guid: b21895f4ed0e46b4aa0597abb9f68c74, type: 3}
+  - {fileID: 5985986244284699659, guid: f52f05fdd1d27b847b97f38479847492, type: 3}
+  - {fileID: 820105858944204447, guid: b3480cd6d46ade542a641b8d68f46a53, type: 3}
+  - {fileID: 5522497856837777789, guid: d305abb6510c3f542a4b9d42163e5b5c, type: 3}
   Rooms3:
-  - {fileID: 5211383484576986501, guid: 6ae9d43e35bb8e94386ff5177f616bc6, type: 3}
-  Rooms4: []
-  Rooms5:
+  - {fileID: 5297191548199301604, guid: 3554d69f062a5064283d57fd804468e8, type: 3}
+  - {fileID: 5653009978671179976, guid: 3f308e52629435142ba1350a7f31c59c, type: 3}
+  - {fileID: 754671863735568969, guid: 84380353364413b4c9dc4dce581d934b, type: 3}
+  - {fileID: 4969261446717509369, guid: b32f848dd0f23bd4cbcae6a614355ef2, type: 3}
+  - {fileID: 5558886069676540958, guid: 7997dde9afd4dca458045407eafb1740, type: 3}
+  - {fileID: 1332350142012829638, guid: e0e79c75c1510f348bed712acd25d986, type: 3}
+  - {fileID: 2460990038631578117, guid: f2014f54453dcd44abfee5f528a40419, type: 3}
+  - {fileID: 3166684164742852128, guid: e33261cf2e99a844faad29688974d9bc, type: 3}
   - {fileID: 9151421756738043410, guid: 1ff4c745c4052d04d8e6e450292fead9, type: 3}
+  Rooms4:
+  - {fileID: 8311531922556623308, guid: d6c90fc879ae8824fbf96ec65256fabd, type: 3}
+  - {fileID: 5223653029471790112, guid: 16ba2e26b5387cd419a4d11982aead46, type: 3}
+  - {fileID: 8331939824072761115, guid: 8200938a4f8cdff4984f02a465c4a87e, type: 3}
+  - {fileID: 977353973437724323, guid: 06b7b3eab3c8a2646abc503de808bd81, type: 3}
+  - {fileID: 1664311448220425095, guid: 290327e39dd54184e912aeb6a4e87dfc, type: 3}
+  - {fileID: 807053317831312318, guid: f273ded8c75bd3342a563519fc596397, type: 3}
+  - {fileID: 5853220373062780843, guid: 2688218844332ea4c914facaecadd15b, type: 3}
+  - {fileID: 2254774812498930175, guid: 7b383e5859c693c45a5dfcb7a74094fd, type: 3}
+  - {fileID: 4394371716600936364, guid: 2baa3562294b80c4b90eee68f9ae7b82, type: 3}
+  - {fileID: 6813815459541691316, guid: e0bd80f135659d341865bea64930a86d, type: 3}
+  Rooms5:
+  - {fileID: 5126507301837105271, guid: 8184cf8d12bdf544081bad6e1328871b, type: 3}
+  - {fileID: 7396672998426040010, guid: 3d57236244e93774a95101e88aa114b7, type: 3}
+  - {fileID: 7626657325294498830, guid: c34a0fb193402a04d893ef36181f35a1, type: 3}
+  - {fileID: 7734904496193133055, guid: 098d80b7d47717443b7f2a12b99e46dd, type: 3}
+  - {fileID: 6686116168899560381, guid: c573aacdf494a4945bbe47c6f7a38c43, type: 3}
+  - {fileID: 995250756594518292, guid: 58bb0a23ac321b34db424cca7fc58e22, type: 3}
+  - {fileID: 8111756366271497729, guid: d807c918eb5d19c4da7b39cc378eef1b, type: 3}
+  - {fileID: 2070930411946557768, guid: a5a33da84b1120d4bba6bd4977cb80a3, type: 3}
+  - {fileID: 74399157620992142, guid: b4f04a9a33a443e4fa611871eee34b63, type: 3}
+  - {fileID: 5581095970583728197, guid: 05c8a25b6cdf3814798e659aa088175f, type: 3}
+  - {fileID: 3382571293548907069, guid: 7698a749432aa4242b3b7ee16c2d6841, type: 3}
+  - {fileID: 3713543502325312032, guid: f74964676aa69af4b8ac571a7893499e, type: 3}
+  - {fileID: 2079797572630439845, guid: adf71a907a8a02246a03f61983892e00, type: 3}
+  - {fileID: 8095773946806486531, guid: a5223ea30e7b0064db9913aefccb8520, type: 3}
+  - {fileID: 1211886188874546602, guid: 216b92fc10d791a488bc7972443a51b8, type: 3}
+  - {fileID: 3691321180710193067, guid: 4577416fc91b15d47bdd38331678e5ba, type: 3}
+  - {fileID: 7533936903352759645, guid: b42e090c5a7689245bcb657cc15b9d56, type: 3}
+  - {fileID: 5459671067975104305, guid: b12ca6cabcc5f8b4f80299eebe05c983, type: 3}
+  - {fileID: 8790224649483861570, guid: 1dd395a933f375c4f9babb31b1f9540e, type: 3}
+  - {fileID: 4954355222532465884, guid: e55225124abb3f540a6425c1297a912f, type: 3}
+  - {fileID: 5854523343409999116, guid: af9d0ff4c1c5b0848b1d1e86a420ff42, type: 3}
   startingRoom: {fileID: 3226399183272317511, guid: 949010bdeb4303f4a93e554c6967e049, type: 3}
   mainCamera: {fileID: 519420031}
 --- !u!4 &343142254
@@ -2512,6 +2579,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &502397424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2773,6 +2852,18 @@ MonoBehaviour:
       - m_Target: {fileID: 50076905}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
         m_MethodName: UpgradeCustomerButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3331,6 +3422,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &553306378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3791,6 +3894,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2142571467}
         m_TargetAssemblyTypeName: RestartGame, Assembly-CSharp
         m_MethodName: RestartCurrentScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4771,6 +4886,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
+--- !u!1 &741008476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 741008478}
+  - component: {fileID: 741008477}
+  m_Layer: 0
+  m_Name: DungeonAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &741008477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741008476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9562fa16c76f484ea26b399302bb3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonMusic: {fileID: 8300000, guid: 57843f37f3865f14f87fb7be826bbdd7, type: 3}
+--- !u!4 &741008478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741008476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 426.11655, y: 306.3494, z: -0.95193017}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &743245728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5294,6 +5454,148 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
+--- !u!1 &875527840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 875527843}
+  - component: {fileID: 875527842}
+  - component: {fileID: 875527841}
+  m_Layer: 0
+  m_Name: UIAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &875527841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875527840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5808c15ae8decec40931f16d037a6d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: 50c8ee491901bf240986c4e664dffb85, type: 3}
+--- !u!82 &875527842
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875527840}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 50c8ee491901bf240986c4e664dffb85, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &875527843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875527840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 413.66235, y: 287.37436, z: -2.8469858}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &893652640 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}
@@ -5453,7 +5755,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -469.8759, y: -166.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &929836916
@@ -5725,6 +6027,18 @@ MonoBehaviour:
       - m_Target: {fileID: 50076905}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
         m_MethodName: UpgradeAttackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6170,6 +6484,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1095203665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6432,6 +6758,18 @@ MonoBehaviour:
       - m_Target: {fileID: 50076905}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
         m_MethodName: UpgradeHealthButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7268,6 +7606,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1511977840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8007,6 +8357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699451570}
   - component: {fileID: 1699451571}
+  - component: {fileID: 1699451572}
   m_Layer: 0
   m_Name: CustomerManager
   m_TagString: Untagged
@@ -8055,6 +8406,104 @@ MonoBehaviour:
   orderItemsParent: {fileID: 1083534738}
   orderItemPrefab: {fileID: 5776139258919161536, guid: 112217b3d84096c4a9969913658ae896, type: 3}
   orderDisplayTime: 3
+  successSound: {fileID: 8300000, guid: f1fc40a6250527e4690f3f819e033d84, type: 3}
+  audioSource: {fileID: 1699451572}
+--- !u!82 &1699451572
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699451569}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f1fc40a6250527e4690f3f819e033d84, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1703947545
 GameObject:
   m_ObjectHideFlags: 0
@@ -8141,6 +8590,18 @@ MonoBehaviour:
       - m_Target: {fileID: 50076905}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
         m_MethodName: UpgradeSpeedButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 875527841}
+        m_TargetAssemblyTypeName: UIAudioManager, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9441,3 +9902,5 @@ SceneRoots:
   - {fileID: 2023690877}
   - {fileID: 1013615191}
   - {fileID: 743245728}
+  - {fileID: 875527843}
+  - {fileID: 741008478}

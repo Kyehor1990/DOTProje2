@@ -25,6 +25,10 @@ public class CustomerManager : MonoBehaviour
     public GameObject orderItemPrefab; // Her bir sipariş ürünü için prefab (Image componenti ile)
     public float orderDisplayTime = 3f; // Siparişin kaç saniye gösterileceği
 
+    public AudioClip successSound;
+    public AudioSource audioSource;
+
+    
     private List<GameObject> currentOrderItems = new List<GameObject>(); // Şu anki sipariş UI elemanları
 
     [System.Serializable]
@@ -39,6 +43,7 @@ public class CustomerManager : MonoBehaviour
             isOrderComplete = false;
         }
     }
+    
 
     public IEnumerator CustomerRoutine()
     {
@@ -60,6 +65,11 @@ public class CustomerManager : MonoBehaviour
             if (orderFulfilled)
             {
                 Debug.Log("Müşteri mutlu ve ayrılıyor.");
+                if (successSound != null && audioSource != null)
+                {
+                    Debug.Log("Başarı sesi çalınıyor.");
+                    audioSource.PlayOneShot(successSound);
+                }
             }
             else
             {

@@ -34,7 +34,7 @@ public class SceneChange : MonoBehaviour
 
     void Start()
     {
-        Dungeon = true;
+        DungeonSceneChange();
     }
     public void CustomerSceneChange()
     {
@@ -56,8 +56,6 @@ public class SceneChange : MonoBehaviour
 
     public void DungeonSceneChange()
     {
-        if (!Dungeon)
-        {
             Debug.Log("Customer'dan çikiş yapildi.");
             player2.SetActive(false);
 
@@ -73,10 +71,8 @@ public class SceneChange : MonoBehaviour
             dayManager.DayCountIncrease();
             playerHealth.isInvincible = false;
             Dungeon = true;
-             screenText.DungeonText();
-
-
-        }
+            DungeonMusicManager.instance?.PlayDungeonMusic();
+            screenText.DungeonText();
     }
 
     public void BeforeDungeonSceneChange()
@@ -108,6 +104,7 @@ public class SceneChange : MonoBehaviour
         if (Dungeon)
         {
             Dungeon = false;
+            DungeonMusicManager.instance?.StopDungeonMusic(); 
             pickupItem.ResetPickupItems();
             screenText.DungeonText();
 
