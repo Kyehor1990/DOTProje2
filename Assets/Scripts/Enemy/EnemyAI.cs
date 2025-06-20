@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -14,14 +15,20 @@ public class EnemyAI : MonoBehaviour
 
     private Vector2 movement;
 
+    NavMeshAgent agent;
+
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
     }
 
 void Update()
 {
+    /*
     float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
     if (distanceToPlayer > attackRange)
@@ -37,18 +44,20 @@ void Update()
     // Oyuncuya X ekseninde dön
     Vector3 scale = transform.localScale;
     scale.x = player.position.x > transform.position.x ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-    transform.localScale = scale;
+    transform.localScale = scale;*/
 }
 
 
     void FixedUpdate()
     {
+        agent.SetDestination(player.position);
+        /*
         // Hareketi sabit fizik update'inde uygula
         if (movement != Vector2.zero)
         {
             Vector2 newPosition = rb.position + movement * moveSpeed * Time.fixedDeltaTime;
             rb.MovePosition(newPosition);
-        }
+        }*/
     }
 
     void OnCollisionEnter2D(Collision2D collision)

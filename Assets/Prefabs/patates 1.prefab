@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7894426521048538789}
   - component: {fileID: 2708715879528959632}
   - component: {fileID: 3190357725287579177}
+  - component: {fileID: -1785499592245242540}
   m_Layer: 6
   m_Name: patates 1
   m_TagString: Untagged
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 239407270777c88439b9b54a3931b5aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -219,3 +220,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &-1785499592245242540
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352540463694170437}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.608
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.748
+  m_BaseOffset: 0.874
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
