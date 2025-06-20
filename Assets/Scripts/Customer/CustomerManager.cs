@@ -27,8 +27,10 @@ public class CustomerManager : MonoBehaviour
 
     public AudioClip successSound;
     public AudioSource audioSource;
+    public AudioSource customerRequestAudioSource; // Müşteri istek sesleri için ayrı bir AudioSource
+    [SerializeField] private AudioClip[] customerRequestSounds;
 
-    
+
     private List<GameObject> currentOrderItems = new List<GameObject>(); // Şu anki sipariş UI elemanları
 
     [System.Serializable]
@@ -43,7 +45,7 @@ public class CustomerManager : MonoBehaviour
             isOrderComplete = false;
         }
     }
-    
+
 
     public IEnumerator CustomerRoutine()
     {
@@ -53,6 +55,7 @@ public class CustomerManager : MonoBehaviour
 
             // Müşteri siparişi oluştur
             CustomerOrder order = GenerateCustomerOrder();
+            PlayRandomCustomerRequestSound();
 
             // Siparişi göster
             yield return StartCoroutine(DisplayCustomerOrder(order));
@@ -238,4 +241,17 @@ public class CustomerManager : MonoBehaviour
     {
         maxCustomers += 1;
     }
+    
+    private void PlayRandomCustomerRequestSound()
+{
+    if (customerRequestSounds != null && customerRequestSounds.Length > 0)
+    {
+        int index = Random.Range(0, customerRequestSounds.Length);
+        AudioClip clip = customerRequestSounds[index];
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+}
 }
