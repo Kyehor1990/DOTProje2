@@ -17,6 +17,7 @@ public class CustomerManager : MonoBehaviour
 
     public Button dungeonButton;
     public GameObject UpgradePanel;
+    public GameObject kiraButton;
 
     // UI elementleri müşteri isteklerini göstermek için
     public GameObject customerOrderUI; // Sipariş gösteren UI paneli
@@ -71,6 +72,8 @@ public class CustomerManager : MonoBehaviour
             {
                 Debug.Log("Tüm müşteriler hizmet aldı!");
                 UpgradePanel.SetActive(true);
+                kiraButton.SetActive(true);
+
                 dungeonButton.gameObject.SetActive(true);
                 break;
             }

@@ -5,8 +5,9 @@ using TMPro;
 
 public class DayManager : MonoBehaviour
 {
-    int dayCount = 0;
+    int dayCount = 1;
     public TextMeshProUGUI textMeshPro;
+    public UpgradeManager upgradeManager;
 
     public void DayCountIncrease()
     {
@@ -17,5 +18,10 @@ public class DayManager : MonoBehaviour
     void Update()
     {
         textMeshPro.text = "Day: " + dayCount.ToString();
+
+        if (dayCount % 7 == 0)
+        {
+            upgradeManager.kira += 5;
+        }
     }
 }
