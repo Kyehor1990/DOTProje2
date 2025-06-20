@@ -854,6 +854,7 @@ MonoBehaviour:
   roomType: 2
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
+  StartDoor: 0
 --- !u!61 &7309766935263878145
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1574,6 +1575,7 @@ MonoBehaviour:
   roomType: 5
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
+  StartDoor: 0
 --- !u!61 &1573400151874163749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1721,6 +1723,7 @@ MonoBehaviour:
   roomType: 1
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
+  StartDoor: 0
 --- !u!61 &8343716949147010265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1839,7 +1842,7 @@ Transform:
   m_GameObject: {fileID: 8865820666667520144}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 11.77, y: -0.39, z: -0.026067734}
+  m_LocalPosition: {x: 11.64, y: -0.39, z: -0.026067734}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1913,6 +1916,7 @@ MonoBehaviour:
   roomType: 4
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
+  StartDoor: 0
 --- !u!61 &4010883041075900039
 BoxCollider2D:
   m_ObjectHideFlags: 0

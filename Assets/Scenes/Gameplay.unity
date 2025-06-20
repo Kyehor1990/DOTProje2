@@ -981,6 +981,7 @@ MonoBehaviour:
   - {fileID: 162406863325763467, guid: 9a042bd88f0761c48b6324f25583daae, type: 3}
   - {fileID: 5832674096099176481, guid: 7b3ebb96047e3184fbeeb33fa23e70b5, type: 3}
   - {fileID: 7829915528214361826, guid: 04b603f5b0fd9604eb76622aa9743173, type: 3}
+  - {fileID: 3226399183272317511, guid: 949010bdeb4303f4a93e554c6967e049, type: 3}
   Rooms2:
   - {fileID: 7284255876910500250, guid: 5d31d08f64d0d8c48a6e9b27a4ee2e05, type: 3}
   - {fileID: 4000312062764962567, guid: 6bf2dfa6238878145911d0753e42f804, type: 3}
@@ -1041,7 +1042,7 @@ MonoBehaviour:
   - {fileID: 8790224649483861570, guid: 1dd395a933f375c4f9babb31b1f9540e, type: 3}
   - {fileID: 4954355222532465884, guid: e55225124abb3f540a6425c1297a912f, type: 3}
   - {fileID: 5854523343409999116, guid: af9d0ff4c1c5b0848b1d1e86a420ff42, type: 3}
-  startingRoom: {fileID: 3226399183272317511, guid: 949010bdeb4303f4a93e554c6967e049, type: 3}
+  startingRoom: {fileID: 885233201}
   mainCamera: {fileID: 519420031}
 --- !u!4 &343142254
 Transform:
@@ -5596,6 +5597,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &885233201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5158518380956910324, guid: 52231c7c8fa8e2e4fb3c043658f7577e, type: 3}
+  m_PrefabInstance: {fileID: 743245728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &893652640 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 754243355821044336, guid: 67b6d8bbcfe346a4c9df1bf0db77c80d, type: 3}

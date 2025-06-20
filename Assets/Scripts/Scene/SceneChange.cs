@@ -34,7 +34,8 @@ public class SceneChange : MonoBehaviour
 
     void Start()
     {
-        DungeonSceneChange();
+        Dungeon = true;
+        DungeonMusicManager.instance?.PlayDungeonMusic();
     }
     public void CustomerSceneChange()
     {
@@ -56,6 +57,8 @@ public class SceneChange : MonoBehaviour
 
     public void DungeonSceneChange()
     {
+        if (!Dungeon)
+        {
             Debug.Log("Customer'dan çikiş yapildi.");
             player2.SetActive(false);
 
@@ -73,6 +76,9 @@ public class SceneChange : MonoBehaviour
             Dungeon = true;
             DungeonMusicManager.instance?.PlayDungeonMusic();
             screenText.DungeonText();
+
+
+        }
     }
 
     public void BeforeDungeonSceneChange()

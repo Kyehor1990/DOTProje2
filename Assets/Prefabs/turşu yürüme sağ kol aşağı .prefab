@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2139872658010876105}
   - component: {fileID: 3266286536171321090}
   - component: {fileID: 2074500420477612308}
+  - component: {fileID: -415512004903297955}
   m_Layer: 6
   m_Name: "tur\u015Fu y\xFCr\xFCme sa\u011F kol a\u015Fa\u011F\u0131 "
   m_TagString: Untagged
@@ -219,3 +220,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &-415512004903297955
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5964861887111712826}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.599
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.758
+  m_BaseOffset: 0.879
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

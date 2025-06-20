@@ -60,8 +60,8 @@ public class DungeonManager : MonoBehaviour
         {
             case DoorPosition.Top: return currentPosition + new Vector3(0, 20, 0);
             case DoorPosition.Bottom: return currentPosition + new Vector3(0, -20, 0);
-            case DoorPosition.Left: return currentPosition + new Vector3(-20, 0, 0);
-            case DoorPosition.Right: return currentPosition + new Vector3(20, 0, 0);
+            case DoorPosition.Left: return currentPosition + new Vector3(-30, 0, 0);
+            case DoorPosition.Right: return currentPosition + new Vector3(30, 0, 0);
 
         }
 
