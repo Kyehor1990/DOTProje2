@@ -1179,7 +1179,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 701841963}
-  prefabRoom: {fileID: 3226399183272317511, guid: 949010bdeb4303f4a93e554c6967e049, type: 3}
+  roomPrefabs:
+  - {fileID: 5158518380956910324, guid: 52231c7c8fa8e2e4fb3c043658f7577e, type: 3}
+  - {fileID: 4924388911135561434, guid: a96443768f24816429abb99edba2c4f7, type: 3}
+  - {fileID: 720541702730924429, guid: c55706f1ba22b7444a100f84b8ad52ec, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
   sceneChange: {fileID: 1248564009}
   playerHealth: {fileID: 701841972}
