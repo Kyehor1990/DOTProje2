@@ -2,32 +2,25 @@ using UnityEngine;
 
 public class DungeonExit : MonoBehaviour
 {
-    private bool isLocked = true;
     private SceneChange sceneChange;
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite openSprite;
+
 
     void Start()
     {
-        LockDoor();
-
-        sceneChange = FindObjectOfType<SceneChange>();  
-    }
-
-    public void UnlockDoor()
-    {
-        isLocked = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        sceneChange = FindObjectOfType<SceneChange>(); 
+        if (spriteRenderer != null && openSprite != null)
+        spriteRenderer.sprite = openSprite; 
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isLocked)
+        if (other.CompareTag("Player"))
         {   
             sceneChange.BeforeCustomerSceneChange();
         }
     }
 
-        public void LockDoor()
-    {
-        isLocked = true;
-
-    }
 }

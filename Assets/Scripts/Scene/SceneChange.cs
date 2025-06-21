@@ -31,6 +31,7 @@ public class SceneChange : MonoBehaviour
 
     public ScreenText screenText;
     public PickupItem pickupItem;
+    public EnemyManager enemyManager;
 
     void Start()
     {
@@ -136,7 +137,7 @@ public class SceneChange : MonoBehaviour
     
         void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && enemyManager.dungeonExit && Dungeon)
         {
             BeforeCustomerSceneChange();
         }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2149128298071890947}
   - component: {fileID: 7305915650164851470}
-  - component: {fileID: 5456783298315505295}
   - component: {fileID: 6585932105990112586}
+  - component: {fileID: 4609901875313994061}
   m_Layer: 0
   m_Name: Door (08)
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.52992415, g: 0.7660377, b: 0.3916909, a: 1}
+  m_Color: {r: 1, g: 0.09163653, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,23 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5456783298315505295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369826307471832639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9996b32759da3e640bc73f867c4122b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorPosition: 1
-  roomType: 2
-  closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
-  openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
-  StartDoor: 1
 --- !u!61 &6585932105990112586
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.29538608}
+  m_Offset: {x: 0, y: -0.3898189}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -146,8 +129,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5907722}
+  m_Size: {x: 1, y: 1.7796378}
   m_EdgeRadius: 0
+--- !u!114 &4609901875313994061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369826307471832639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb1612b9e9f825478b27b256838319d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
 --- !u!1 &1897349184353578368
 GameObject:
   m_ObjectHideFlags: 0

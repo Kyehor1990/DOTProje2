@@ -225,7 +225,7 @@ MonoBehaviour:
   "kiraSaya\xE7": 0
   kira: 10
   Kovuldun: {fileID: 929836914}
-  player: {fileID: 0}
+  player: {fileID: 701841963}
 --- !u!4 &50076906
 Transform:
   m_ObjectHideFlags: 0
@@ -7004,6 +7004,7 @@ MonoBehaviour:
   duration: 3.5
   screenText: {fileID: 1463445166}
   pickupItem: {fileID: 701841971}
+  enemyManager: {fileID: 1739887870}
 --- !u!1 &1265177909
 GameObject:
   m_ObjectHideFlags: 0
@@ -8791,6 +8792,7 @@ MonoBehaviour:
   audioSource: {fileID: 1739887872}
   doorSound: {fileID: 8300000, guid: 7c89900c9aefcf943927dbf5da76f3dd, type: 3}
   SceneChange: {fileID: 1248564009}
+  dungeonExit: 0
 --- !u!4 &1739887871
 Transform:
   m_ObjectHideFlags: 0
