@@ -31,7 +31,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private float slotSize = 50f;
     
     // Döndürme durumunu takip et
-    private bool isRotated = false; // Basit true/false kontrolü
+    private bool isRotated = false;
 
     void Start()
     {
@@ -77,19 +77,22 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
         
-        // Boyutu ayarla
-        rectTransform.sizeDelta = new Vector2(currentWidth * slotSize, currentHeight * slotSize);
+        // RectTransform boyutunu her zaman orijinal item boyutuna göre ayarla
+        // Döndürme durumunda bile RectTransform boyutu değişmez, sadece rotation uygulanır
+        rectTransform.sizeDelta = new Vector2(item.width * slotSize, item.height * slotSize);
         
-        // Orijinal kodunuzdaki pivot ve anchor ayarlarını koruyorum
+        // Pivot ve anchor ayarlarını koru
         rectTransform.pivot = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         
-        // Orijinal kodunuzdaki offset hesaplamasını koruyorum
+        // Offset hesaplamasını grid pozisyonuna göre ayarla (döndürme durumu değil)
+        // currentWidth ve currentHeight grid'deki yer kaplama durumunu gösterir
         Vector2 offset = new Vector2(
             (currentWidth - 1) * slotSize * 0.5f,
             -(currentHeight - 1) * slotSize * 0.5f
         );
+        
         rectTransform.anchoredPosition = offset;
     }
 
@@ -243,39 +246,37 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Dönmeden önce eski alanı temizle
         manager.ClearSpace(posX, posY, currentWidth, currentHeight);
 
-        // Boyutları değiştir
-        int temp = currentWidth;
-        currentWidth = currentHeight;
-        currentHeight = temp;
+        // Geçici değişkenler ile yeni boyutları hesapla (sadece grid için)
+        int newWidth = currentHeight;
+        int newHeight = currentWidth;
 
-        // Rotation durumunu tersine çevir
-        isRotated = !isRotated;
-
-        // Yeni boyutla eski pozisyon sığabiliyor mu?
-        if (manager.CheckSpace(posX, posY, currentWidth, currentHeight))
+        // Yeni boyutla eski pozisyon sığabiliyor mu kontrol et
+        if (manager.CheckSpace(posX, posY, newWidth, newHeight))
         {
+            // Grid boyutlarını güncelle (sadece yer kaplama için)
+            currentWidth = newWidth;
+            currentHeight = newHeight;
+            
+            // Rotation durumunu tersine çevir
+            isRotated = !isRotated;
+
             // RectTransform referansı al
             RectTransform rect = GetComponent<RectTransform>();
             
-            // Boyutu güncelle
+            // Rotasyonu uygula (RectTransform boyutu değişmez)
+            rect.localRotation = isRotated ? Quaternion.Euler(0, 0, 90f) : Quaternion.identity;
+            
+            // Pozisyonu güncelle (boyut sabit kalır)
             UpdateItemSize();
             
-            // Rotasyonu uygula
-            rect.localRotation = isRotated ? Quaternion.Euler(0, 0, 90f) : Quaternion.Euler(0, 0, 0f);
-            
+            // Yeni alanı işgal et
             manager.OccupySpace(posX, posY, currentWidth, currentHeight);
             
-            Debug.Log($"Item rotated. New size: {currentWidth}x{currentHeight}, Rotated: {isRotated}");
+            Debug.Log($"Item rotated. Grid size: {currentWidth}x{currentHeight}, Visual rotated: {isRotated}");
         }
         else
         {
-            // Eğer sığmıyorsa boyutları ve rotation durumunu geri al
-            temp = currentWidth;
-            currentWidth = currentHeight;
-            currentHeight = temp;
-            
-            isRotated = !isRotated;
-
+            // Eğer sığmıyorsa eski alanı geri işgal et
             manager.OccupySpace(posX, posY, currentWidth, currentHeight);
 
             Debug.Log("Rotation failed: new size doesn't fit in current position.");
