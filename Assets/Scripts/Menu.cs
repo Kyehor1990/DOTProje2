@@ -15,17 +15,28 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(DelayedExit());
     }
 
+    public void OpenTutorial()
+    {
+        StartCoroutine(DelayedTutorial());
+    }
+
     IEnumerator DelayedSceneLoad()
     {
         yield return new WaitForSeconds(delay); // Sesin süresi kadar bekle
         SceneManager.LoadScene("Gameplay");
 
     }
-    
+
     IEnumerator DelayedExit()
     {
         yield return new WaitForSeconds(delay);
         Debug.Log("Oyun kapatılıyor...");
         Application.Quit();
+    }
+    
+    IEnumerator DelayedTutorial()
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("Tutorial");
     }
 }
