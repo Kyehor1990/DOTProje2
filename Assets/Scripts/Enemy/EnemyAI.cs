@@ -37,6 +37,14 @@ public class EnemyAI : MonoBehaviour
     void FixedUpdate()
     {
         agent.SetDestination(player.position);
+
+        if (player == null) return;
+
+        Vector3 direction = player.position - transform.position;
+    
+        Vector3 scale = transform.localScale;
+        scale.x = -Mathf.Sign(direction.x) * Mathf.Abs(scale.x); // Sağdaysa pozitif, soldaysa negatif
+        transform.localScale = scale;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -73,24 +81,25 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
     }
-    
-    IEnumerator PlayRandomSoundLoop()
-{
-    while (true)
-    {
-        float waitTime = Random.Range(5f, 10f); // 5-10 saniye bekle
-        yield return new WaitForSeconds(waitTime);
 
-        if (randomSounds.Length > 0 && audioSource != null)
+    IEnumerator PlayRandomSoundLoop()
+    {
+        while (true)
         {
-            int index = Random.Range(0, randomSounds.Length);
-            AudioClip selectedClip = randomSounds[index];
-            if (selectedClip != null)
+            float waitTime = Random.Range(5f, 10f); // 5-10 saniye bekle
+            yield return new WaitForSeconds(waitTime);
+
+            if (randomSounds.Length > 0 && audioSource != null)
             {
-                audioSource.PlayOneShot(selectedClip);
+                int index = Random.Range(0, randomSounds.Length);
+                AudioClip selectedClip = randomSounds[index];
+                if (selectedClip != null)
+                {
+                    audioSource.PlayOneShot(selectedClip);
+                }
             }
         }
     }
-}
+
 
 }
