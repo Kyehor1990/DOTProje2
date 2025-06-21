@@ -30,6 +30,7 @@ public class UpgradeManager : MonoBehaviour
 
     void Start()
     {
+        player.SetActive(true);
         Kovuldun.SetActive(false);
         UpdateSlotUpgradeUI();
     }
@@ -54,6 +55,7 @@ public class UpgradeManager : MonoBehaviour
 
         if (kiraSayaç >= 3)
         {
+            player.SetActive(false);
             Kovuldun.SetActive(true);
         }
     }

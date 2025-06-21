@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     private Vector2 attackDirection;
     private bool isOnCooldown = false;
+    private Coroutine currentAttackCoroutine; // Aktif coroutine referansı
 
     [SerializeField] private Animator animator;
 
@@ -21,35 +22,57 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     private int lastPlayedIndex = -1;
 
+    void Start()
+    {
+        // Başlangıçta durumları sıfırla
+        isAttacking = false;
+        isOnCooldown = false;
+    }
 
     void Update()
     {
+        // Debug için durumları konsola yazdır (geliştirme sırasında)
+        // Debug.Log($"IsAttacking: {isAttacking}, IsOnCooldown: {isOnCooldown}");
+
         if (isAttacking || isOnCooldown)
             return;
 
+        Vector2 inputDirection = Vector2.zero;
+        bool hasInput = false;
+
+        // Input kontrolü daha temiz hale getirildi
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            attackDirection = Vector2.up;
-            SetAttackVisual(Vector2.up);
-            StartCoroutine(AttackRoutine());
+            inputDirection = Vector2.up;
+            hasInput = true;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            attackDirection = Vector2.down;
-            SetAttackVisual(Vector2.down);
-            StartCoroutine(AttackRoutine());
+            inputDirection = Vector2.down;
+            hasInput = true;
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            attackDirection = Vector2.left;
-            SetAttackVisual(Vector2.left);
-            StartCoroutine(AttackRoutine());
+            inputDirection = Vector2.left;
+            hasInput = true;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            attackDirection = Vector2.right;
-            SetAttackVisual(Vector2.right);
-            StartCoroutine(AttackRoutine());
+            inputDirection = Vector2.right;
+            hasInput = true;
+        }
+
+        if (hasInput)
+        {
+            // Önceki coroutine'i durdur (güvenlik için)
+            if (currentAttackCoroutine != null)
+            {
+                StopCoroutine(currentAttackCoroutine);
+            }
+
+            attackDirection = inputDirection;
+            SetAttackVisual(inputDirection);
+            currentAttackCoroutine = StartCoroutine(AttackRoutine());
         }
     }
 
@@ -89,29 +112,65 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator AttackRoutine()
     {
+        // Durumları açıkça ayarla
         isAttacking = true;
-        animator.SetTrigger("Attack");
+        isOnCooldown = false;
 
+        // Animator null kontrolü
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+        }
+
+        // Attack duration bekle
         yield return new WaitForSeconds(attackDuration);
 
+        // Attack bittiği zaman durumu güncelle
         isAttacking = false;
         isOnCooldown = true;
 
+        // Cooldown bekle
         yield return new WaitForSeconds(attackCooldown);
 
+        // Cooldown bittiği zaman durumu güncelle
         isOnCooldown = false;
+        currentAttackCoroutine = null; // Referansı temizle
     }
 
     public void ApplyAttackDamage() // Called by animation event
     {
+        // Sadece saldırı sırasında hasar ver
+        if (!isAttacking)
+            return;
+
         PlayRandomAttackSound();
+        
+        // AttackPoint null kontrolü
+        if (attackPoint == null)
+        {
+            Debug.LogWarning("AttackPoint is null!");
+            return;
+        }
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            if (enemy == null) continue;
 
-            Vector2 knockbackDir = enemy.transform.position - transform.position;
-            enemy.GetComponent<EnemyFeedback>().TakeHit(knockbackDir);
+            Enemy enemyComponent = enemy.GetComponent<Enemy>();
+            EnemyFeedback feedbackComponent = enemy.GetComponent<EnemyFeedback>();
+
+            if (enemyComponent != null)
+            {
+                enemyComponent.TakeDamage(attackDamage);
+            }
+
+            if (feedbackComponent != null)
+            {
+                Vector2 knockbackDir = (enemy.transform.position - transform.position).normalized;
+                feedbackComponent.TakeHit(knockbackDir);
+            }
         }
     }
 
@@ -128,26 +187,52 @@ public class PlayerAttack : MonoBehaviour
     {
         attackDamage += amount;
     }
-private void PlayRandomAttackSound()
-{
-    if (attackSounds.Length == 0 || audioSource == null)
-        return;
 
-    int newIndex;
-
-    // Aynı ses üst üste çalmasın
-    do
+    private void PlayRandomAttackSound()
     {
-        newIndex = Random.Range(0, attackSounds.Length);
-    } while (attackSounds.Length > 1 && newIndex == lastPlayedIndex);
+        if (attackSounds.Length == 0 || audioSource == null)
+            return;
 
-    lastPlayedIndex = newIndex;
-    AudioClip selectedClip = attackSounds[newIndex];
+        int newIndex;
 
-    if (selectedClip != null)
-    {
-        audioSource.PlayOneShot(selectedClip);
+        // Aynı ses üst üste çalmasın
+        do
+        {
+            newIndex = Random.Range(0, attackSounds.Length);
+        } while (attackSounds.Length > 1 && newIndex == lastPlayedIndex);
+
+        lastPlayedIndex = newIndex;
+        AudioClip selectedClip = attackSounds[newIndex];
+
+        if (selectedClip != null)
+        {
+            audioSource.PlayOneShot(selectedClip);
+        }
     }
-}
 
+    // Debug için manuel reset fonksiyonu
+    [ContextMenu("Reset Attack States")]
+    public void ResetAttackStates()
+    {
+        if (currentAttackCoroutine != null)
+        {
+            StopCoroutine(currentAttackCoroutine);
+            currentAttackCoroutine = null;
+        }
+        isAttacking = false;
+        isOnCooldown = false;
+        Debug.Log("Attack states reset!");
+    }
+
+    // GameObject deaktif edildiğinde coroutine'leri temizle
+    void OnDisable()
+    {
+        if (currentAttackCoroutine != null)
+        {
+            StopCoroutine(currentAttackCoroutine);
+            currentAttackCoroutine = null;
+        }
+        isAttacking = false;
+        isOnCooldown = false;
+    }
 }
