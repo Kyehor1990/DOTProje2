@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyFeedback : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class EnemyFeedback : MonoBehaviour
 
     private Rigidbody2D rb;
     private EnemyAI aiScript;
+    private NavMeshAgent navMeshAgent;
+    private Vector3 lastValidPosition; // Son geçerli pozisyonu kaydet
 
     void Start()
     {
@@ -21,10 +24,11 @@ public class EnemyFeedback : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (isKinematic)
         {
-        rb.bodyType = RigidbodyType2D.Kinematic;
-
+            rb.bodyType = RigidbodyType2D.Kinematic;
         }
         aiScript = GetComponent<EnemyAI>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        lastValidPosition = transform.position;
     }
 
     public void TakeHit(Vector2 hitDirection)
@@ -32,6 +36,21 @@ public class EnemyFeedback : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(FlashWhite());
 
+        // NavMeshAgent'ı önce durdur
+        if (navMeshAgent != null && navMeshAgent.enabled)
+        {
+            navMeshAgent.ResetPath();
+            navMeshAgent.velocity = Vector3.zero;
+            navMeshAgent.enabled = false;
+        }
+
+        // AI'yi devre dışı bırak
+        if (aiScript != null)
+        {
+            aiScript.enabled = false;
+        }
+
+        // Knockback uygula
         if (rb != null)
         {
             if (isKinematic)
@@ -42,12 +61,8 @@ public class EnemyFeedback : MonoBehaviour
             rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
         }
 
-        if (aiScript != null)
-        {
-            aiScript.enabled = false;
-            Invoke(nameof(EnableAI), disableAIDuration);
-        }
-
+        // AI'yi yeniden etkinleştir
+        Invoke(nameof(EnableAI), disableAIDuration);
         Invoke(nameof(ResetRigidbody), disableAIDuration);
     }
 
@@ -56,6 +71,26 @@ public class EnemyFeedback : MonoBehaviour
         if (aiScript != null)
         {
             aiScript.enabled = true;
+        }
+
+        // NavMeshAgent'ı yeniden etkinleştir
+        if (navMeshAgent != null)
+        {
+            // Pozisyonu NavMesh üzerinde geçerli bir yere ayarla
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(transform.position, out hit, 5f, NavMesh.AllAreas))
+            {
+                transform.position = hit.position;
+            }
+            else
+            {
+                // Eğer geçerli pozisyon bulunamazsa, son geçerli pozisyona geri dön
+                transform.position = lastValidPosition;
+            }
+
+            navMeshAgent.enabled = true;
+            navMeshAgent.ResetPath();
+            navMeshAgent.velocity = Vector3.zero;
         }
     }
 
@@ -66,6 +101,9 @@ public class EnemyFeedback : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
+        
+        // Son geçerli pozisyonu güncelle
+        lastValidPosition = transform.position;
     }
 
     private IEnumerator FlashWhite()
@@ -73,5 +111,14 @@ public class EnemyFeedback : MonoBehaviour
         spriteRenderer.color = Color.white;
         yield return new WaitForSeconds(colorChangeDuration);
         spriteRenderer.color = originalColor;
+    }
+
+    void Update()
+    {
+        // NavMeshAgent aktifse ve hareket ediyorsa pozisyonu kaydet
+        if (navMeshAgent != null && navMeshAgent.enabled && navMeshAgent.isOnNavMesh)
+        {
+            lastValidPosition = transform.position;
+        }
     }
 }

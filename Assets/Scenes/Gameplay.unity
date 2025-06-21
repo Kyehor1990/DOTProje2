@@ -4888,7 +4888,7 @@ MonoBehaviour:
   attackRange: 1
   attackDamage: 4
   attackDuration: 0.3
-  attackCooldown: 0.5
+  attackCooldown: 0.7
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -4956,7 +4956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eff421618e177f458bdad9c7848db4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
+  maxHealth: 20
   currentHealth: 0
   isInvincible: 0
   invincibilityTime: 1

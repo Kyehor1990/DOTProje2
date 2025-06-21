@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c204b740c1183479b3dd9d3c5df4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 14
   lootPrefab: {fileID: 6526691575487761189, guid: 1132b6026c085644eab74cbd8c96ebc1, type: 3}
 --- !u!50 &7681354919870071931
 Rigidbody2D:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  damage: 1
+  damage: 4
   attackRange: 1.05
   attackCooldown: 1.01
   randomSounds:
