@@ -367,6 +367,9 @@ MonoBehaviour:
   kira: 10
   Kovuldun: {fileID: 929836914}
   player: {fileID: 701841963}
+  para1: {fileID: 965653764}
+  para2: {fileID: 1072292350}
+  para3: {fileID: 1428134279}
 --- !u!4 &50076906
 Transform:
   m_ObjectHideFlags: 0

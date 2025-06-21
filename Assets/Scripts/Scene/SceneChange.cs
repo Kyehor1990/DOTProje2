@@ -144,9 +144,5 @@ public class SceneChange : MonoBehaviour
         {
             BeforeCustomerSceneChange();
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            BeforeDungeonSceneChange();
-        }
     }
 }

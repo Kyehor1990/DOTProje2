@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: f027b25e05e8cc847a9157b80dcf35ea, type: 3}
   itemName: Sosis
-  stock: 31
-  price: 5
+  stock: 26
+  price: 10
   itemPrefab: {fileID: 5817000624085076653, guid: 227570318d67d374dac8907409c32791, type: 3}
   width: 2
   height: 2

@@ -23,11 +23,13 @@ public class UpgradeManager : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject para1;
+    public GameObject para2;
+    public GameObject para3;
 
 
     void Start()
     {
-        Time.timeScale = 1f; // Oyunu başlat
         Kovuldun.SetActive(false);
         UpdateSlotUpgradeUI();
     }
@@ -37,13 +39,22 @@ public class UpgradeManager : MonoBehaviour
         UpdateSlotUpgradeUI();
 
         kiraText.text = "Kira: " + kira.ToString();
+        if (kiraSayaç >= 1)
+        {
+            para1.SetActive(false);
+        }
+        if (kiraSayaç >= 2)
+        {
+            para2.SetActive(false);
+        }
+        if (kiraSayaç >= 3)
+        {
+            para3.SetActive(false);
+        }
 
         if (kiraSayaç >= 3)
         {
             Kovuldun.SetActive(true);
-            Destroy(player);
-            Time.timeScale = 0f; // Oyunu durdur
-            
         }
     }
 

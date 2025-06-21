@@ -11,6 +11,6 @@ public class RestartGame : MonoBehaviour
     IEnumerator DelayedRestart()
     {
         yield return new WaitForSeconds(0.2f); // Sesin süresi kadar bekle
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("StartMenu");
     }
 }
