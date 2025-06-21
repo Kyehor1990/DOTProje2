@@ -66,7 +66,7 @@ public class SceneChange : MonoBehaviour
 
             if (cameraTransform != null)
             {
-                cameraTransform.position = new Vector3(3.21f, 0, -10);
+                cameraTransform.position = new Vector3(3.21f, -0.58f, -10);
             }
             player.SetActive(true);
             playerHealth.currentHealth = playerHealth.maxHealth;

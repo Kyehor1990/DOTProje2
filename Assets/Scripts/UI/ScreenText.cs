@@ -24,7 +24,7 @@ public class ScreenText : MonoBehaviour
     void Update()
     {
         textMeshPro.text = "Kısır: " + kisir.stock.ToString() + "\n" + "Patates: " + patates.stock.ToString() + "\n" + "Turşu:" + turşu.stock.ToString() + "\n" + "Sosis: " + sosis.stock.ToString() + "\n" +
-        "\n" + "Money: " + stockManager.playerMoney.ToString();
+        "\n" + "Para: " + stockManager.playerMoney.ToString();
 
         energyText.text = ": " + playerEnergy.currentEnergy.ToString() + "/" + playerEnergy.maxEnergy.ToString();
     }

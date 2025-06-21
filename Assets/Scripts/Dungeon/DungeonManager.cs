@@ -85,7 +85,7 @@ private Vector3 GetDoorPosition(Vector3 roomPosition, DoorPosition doorPos)
 {
 
     Debug.Log("GetDoorPosition: " + roomPosition + " " + doorPos);
-    mainCamera.transform.position = new Vector3(roomPosition.x +3.21f, roomPosition.y, -10);
+    mainCamera.transform.position = new Vector3(roomPosition.x +3.21f, roomPosition.y -0.58f, -10);
     if (generatedRooms.ContainsKey(roomPosition))
     {
         Door[] doors = generatedRooms[roomPosition].GetComponentsInChildren<Door>();
