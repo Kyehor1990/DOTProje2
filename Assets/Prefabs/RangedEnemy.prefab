@@ -138,6 +138,8 @@ MonoBehaviour:
   attackCooldown: 2
   projectilePrefab: {fileID: 4212888107062015550, guid: a9a239cbf46cda843b9cd9728ebb7aa5, type: 3}
   firePoint: {fileID: 3039154565919837761}
+  prepareSound: {fileID: 8300000, guid: a0443c98dc22f734aad66d2f733aa2e5, type: 3}
+  shootSound: {fileID: 8300000, guid: 0b8fc436816199f469003c3cdaccf3f1, type: 3}
 --- !u!114 &4664526926889592410
 MonoBehaviour:
   m_ObjectHideFlags: 0

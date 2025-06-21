@@ -11,11 +11,20 @@ public class RangedEnemyAI : MonoBehaviour
     private Transform player;
     private float lastAttackTime;
     private Animator animator;
+    [SerializeField] private AudioClip prepareSound;
+[SerializeField] private AudioClip shootSound;
+private AudioSource audioSource;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.volume = 0.05f;
     }
 
     void Update()
@@ -41,12 +50,21 @@ public class RangedEnemyAI : MonoBehaviour
 
     void StartAttack()
     {
+        if (prepareSound != null && audioSource != null)
+    {
+        audioSource.PlayOneShot(prepareSound);
+    }
         animator.SetTrigger("Attack");
     }
 
     // Bu fonksiyonu animasyonun ortasında Animation Event olarak çağır
     public void ShootProjectile()
     {
+        if (shootSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(shootSound);
+        }
+
         if (projectilePrefab != null && firePoint != null)
         {
             Vector2 direction = (player.position - firePoint.position).normalized;
