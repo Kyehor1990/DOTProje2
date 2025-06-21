@@ -9105,7 +9105,7 @@ Transform:
   m_GameObject: {fileID: 1699451569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9141,8 +9141,8 @@ MonoBehaviour:
   audioSource: {fileID: 1699451572}
   customerRequestAudioSource: {fileID: 1699451573}
   customerRequestSounds:
-  - {fileID: 8300000, guid: b602ab09c0c6ec745a63b5cfb521804c, type: 3}
-  - {fileID: 8300000, guid: 925398e18bb6708469900a5750178abb, type: 3}
+  - {fileID: 8300000, guid: 1f92bfd6237fc754e86d1351c7cd5f24, type: 3}
+  - {fileID: 8300000, guid: bc0ae512ceead3340aa0ff7a8ed70fb1, type: 3}
 --- !u!82 &1699451572
 AudioSource:
   m_ObjectHideFlags: 0

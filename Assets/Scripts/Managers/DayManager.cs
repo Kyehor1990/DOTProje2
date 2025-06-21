@@ -5,7 +5,7 @@ using TMPro;
 
 public class DayManager : MonoBehaviour
 {
-    int dayCount = 6;
+    int dayCount = 1;
     public TextMeshProUGUI textMeshPro;
     public UpgradeManager upgradeManager;
 
