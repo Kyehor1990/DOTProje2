@@ -37,6 +37,7 @@ public class SceneChange : MonoBehaviour
     {
         Dungeon = true;
         DungeonMusicManager.instance?.PlayDungeonMusic();
+        CustomerMusicManager.instance?.StopCustomerMusic();
     }
     public void CustomerSceneChange()
     {
@@ -76,6 +77,7 @@ public class SceneChange : MonoBehaviour
             playerHealth.isInvincible = false;
             Dungeon = true;
             DungeonMusicManager.instance?.PlayDungeonMusic();
+            CustomerMusicManager.instance?.StopCustomerMusic();
             screenText.DungeonText();
 
 
@@ -112,6 +114,7 @@ public class SceneChange : MonoBehaviour
         {
             Dungeon = false;
             DungeonMusicManager.instance?.StopDungeonMusic(); 
+            CustomerMusicManager.instance?.PlayCustomerMusic();
             pickupItem.ResetPickupItems();
             screenText.DungeonText();
 

@@ -17,6 +17,10 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private AudioClip[] attackSounds;
+    [SerializeField] AudioSource audioSource;
+
+
     void Update()
     {
         if (isAttacking || isOnCooldown)
@@ -99,6 +103,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void ApplyAttackDamage() // Called by animation event
     {
+        PlayRandomAttackSound();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -117,9 +122,22 @@ public class PlayerAttack : MonoBehaviour
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
     }
-    
+
     public void UpgradeAttack(int amount)
     {
         attackDamage += amount;
     }
+    private void PlayRandomAttackSound()
+{
+    if (attackSounds.Length > 0 && audioSource != null)
+    {
+        int index = Random.Range(0, attackSounds.Length);
+        AudioClip selectedClip = attackSounds[index];
+        if (selectedClip != null)
+        {
+            audioSource.PlayOneShot(selectedClip);
+        }
+    }
+}
+
 }

@@ -17,7 +17,7 @@ public class DungeonMusicManager : MonoBehaviour
             audioSource.clip = dungeonMusic;
             audioSource.loop = true;
             audioSource.playOnAwake = false;
-            audioSource.volume = 0.1f;
+            audioSource.volume = 0.05f;
         }
     }
 
