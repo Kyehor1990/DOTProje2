@@ -11,7 +11,7 @@ public class CanText : MonoBehaviour
 
     void Update()
     {
-        textMeshPro.text = "Can: " + playerHealth.currentHealth.ToString();
+        textMeshPro.text = ": " + playerHealth.currentHealth.ToString();
     }
 
 }
