@@ -220,7 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorPosition: 3
-  roomType: 1
+  roomType: 5
+  StartDoor: 0
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
 --- !u!61 &945416630713945392
@@ -368,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorPosition: 2
   roomType: 3
+  StartDoor: 0
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
 --- !u!61 &1556608174614665449
@@ -790,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorPosition: 0
   roomType: 2
+  StartDoor: 0
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
 --- !u!61 &5603291550971302895
@@ -1648,6 +1651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorPosition: 1
   roomType: 4
+  StartDoor: 0
   closedSprite: {fileID: 21300000, guid: 3e6fc232c9df6f64ca64a60ada762aa8, type: 3}
   openSprite: {fileID: 21300000, guid: a1680f771d64ef34bad7fdbdc7639685, type: 3}
 --- !u!61 &8552199392750645
