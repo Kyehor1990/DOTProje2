@@ -12,7 +12,10 @@ public class EnemyAI : MonoBehaviour
     private Transform player;
     private float lastAttackTime;
     NavMeshAgent agent;
-    
+
+    [SerializeField] private AudioClip[] randomSounds;
+    private AudioSource audioSource;
+
 
     void Start()
     {
@@ -20,7 +23,14 @@ public class EnemyAI : MonoBehaviour
         agent.speed = moveSpeed;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.volume = 0.3f;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        StartCoroutine(PlayRandomSoundLoop());
     }
 
 
@@ -63,4 +73,24 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
     }
+    
+    IEnumerator PlayRandomSoundLoop()
+{
+    while (true)
+    {
+        float waitTime = Random.Range(5f, 10f); // 5-10 saniye bekle
+        yield return new WaitForSeconds(waitTime);
+
+        if (randomSounds.Length > 0 && audioSource != null)
+        {
+            int index = Random.Range(0, randomSounds.Length);
+            AudioClip selectedClip = randomSounds[index];
+            if (selectedClip != null)
+            {
+                audioSource.PlayOneShot(selectedClip);
+            }
+        }
+    }
+}
+
 }

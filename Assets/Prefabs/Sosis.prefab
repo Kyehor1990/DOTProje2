@@ -148,6 +148,9 @@ MonoBehaviour:
   damage: 1
   attackRange: 1.05
   attackCooldown: 1.01
+  randomSounds:
+  - {fileID: 8300000, guid: cf54926df4346c84c8df75d4b154c129, type: 3}
+  - {fileID: 8300000, guid: 5620b54c9fba61b478ea160092b62cea, type: 3}
 --- !u!114 &4945086734232395632
 MonoBehaviour:
   m_ObjectHideFlags: 0

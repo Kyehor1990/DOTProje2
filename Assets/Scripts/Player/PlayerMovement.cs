@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAttack _playerAttack;
 
     float speed2;
+    [SerializeField] private AudioClip[] footstepSounds; // 7 farklı ses
+    public AudioSource audioSource;
+    private int lastPlayedIndex = -1;
+    private float footstepInterval = 0.4f; // her adım arası süre
+    private float footstepTimer = 0f;
+
 
     void Awake()
     {
@@ -39,6 +45,20 @@ public class PlayerMovement : MonoBehaviour
             scale.x = movement.x > 0 ? 1 : -1;
             transform.localScale = scale;
         }
+
+        if (!_playerAttack.isAttacking && movement.sqrMagnitude > 0.01f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                PlayRandomFootstepSound();
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f; // durunca sıfırla
+        }
     }
 
     void FixedUpdate()
@@ -58,4 +78,19 @@ public class PlayerMovement : MonoBehaviour
         speed2 = moveSpeed * 0.10f;
         moveSpeed += speed2;
     }
+    
+    private void PlayRandomFootstepSound()
+{
+    if (footstepSounds.Length == 0) return;
+
+    int newIndex;
+    do
+    {
+        newIndex = Random.Range(0, footstepSounds.Length);
+    } while (newIndex == lastPlayedIndex && footstepSounds.Length > 1);
+
+    lastPlayedIndex = newIndex;
+    audioSource.PlayOneShot(footstepSounds[newIndex]);
+}
+
 }

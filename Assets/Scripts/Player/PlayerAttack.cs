@@ -19,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] private AudioClip[] attackSounds;
     [SerializeField] AudioSource audioSource;
+    private int lastPlayedIndex = -1;
 
 
     void Update()
@@ -127,16 +128,25 @@ public class PlayerAttack : MonoBehaviour
     {
         attackDamage += amount;
     }
-    private void PlayRandomAttackSound()
+private void PlayRandomAttackSound()
 {
-    if (attackSounds.Length > 0 && audioSource != null)
+    if (attackSounds.Length == 0 || audioSource == null)
+        return;
+
+    int newIndex;
+
+    // Aynı ses üst üste çalmasın
+    do
     {
-        int index = Random.Range(0, attackSounds.Length);
-        AudioClip selectedClip = attackSounds[index];
-        if (selectedClip != null)
-        {
-            audioSource.PlayOneShot(selectedClip);
-        }
+        newIndex = Random.Range(0, attackSounds.Length);
+    } while (attackSounds.Length > 1 && newIndex == lastPlayedIndex);
+
+    lastPlayedIndex = newIndex;
+    AudioClip selectedClip = attackSounds[newIndex];
+
+    if (selectedClip != null)
+    {
+        audioSource.PlayOneShot(selectedClip);
     }
 }
 
