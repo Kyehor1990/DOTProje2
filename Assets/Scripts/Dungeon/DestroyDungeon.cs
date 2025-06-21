@@ -5,69 +5,122 @@ using NavMeshPlus.Components;
 
 public class DestroyDungeon : MonoBehaviour
 {
-
+    [Header("References")]
     public GameObject player;
-    private string tagRoom = "room";
-
-    public List<GameObject> roomPrefabs;
-    public Vector3 spawnPosition;
-
     public SceneChange sceneChange;
-
     public PlayerHealth playerHealth;
+    public DungeonManager dungeonManager;
+
+    [Header("Room Creation")]
+    public List<GameObject> roomPrefabs;
+    public Vector3 spawnPosition = Vector3.zero;
+
+    private readonly string[] tagsToDestroy = { "room", "Kisir", "Patates", "Sosis", "Turşu" };
 
     public void DungeonDestroy()
     {
-Debug.Log("Dungeon Silindi.");
-GameObject[] items = GameObject.FindGameObjectsWithTag(tagRoom);
-GameObject[] items2 = GameObject.FindGameObjectsWithTag("Kisir");
-GameObject[] items3 = GameObject.FindGameObjectsWithTag("Patates");
-GameObject[] items4 = GameObject.FindGameObjectsWithTag("Sosis");
-GameObject[] items5 = GameObject.FindGameObjectsWithTag("Turşu");
+        Debug.Log("Dungeon siliniyor...");
 
-// Doğru boyutta array oluştur (tüm itemlar için)
-GameObject[] combinedItems = new GameObject[items2.Length + items3.Length + items4.Length + items5.Length];
+        // Tüm dungeon objelerini topla ve sil
+        List<GameObject> objectsToDestroy = new List<GameObject>();
 
-// Doğru indexlerle kopyala
-items2.CopyTo(combinedItems, 0);
-items3.CopyTo(combinedItems, items2.Length);
-items4.CopyTo(combinedItems, items2.Length + items3.Length);
-items5.CopyTo(combinedItems, items2.Length + items3.Length + items4.Length);
-
-        foreach (GameObject obj in combinedItems)
+        foreach (string tag in tagsToDestroy)
         {
-            Destroy(obj);
+            GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+            objectsToDestroy.AddRange(taggedObjects);
         }
 
-            foreach (GameObject obj in items)
+        // Objeleri sil
+        foreach (GameObject obj in objectsToDestroy)
         {
-            Destroy(obj);
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+
+        // DungeonManager'ı tamamen resetle
+        if (dungeonManager != null)
+        {
+            dungeonManager.ResetDungeon();
+        }
+
+        // Oyuncuyu başlangıç pozisyonuna taşı
+        if (player != null)
+        {
+            player.transform.position = spawnPosition;
+        }
+
+        Debug.Log($"Toplam {objectsToDestroy.Count} obje silindi ve dungeon resetlendi.");
+    }
+
+    public void DungeonCreate()
+    {
+        if (roomPrefabs == null || roomPrefabs.Count == 0)
+        {
+            Debug.LogError("Room prefab listesi boş! Inspector'dan prefab ataması yapın.");
+            return;
+        }
+
+        // Rastgele bir starting room seç
+        GameObject selectedRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
+        GameObject newRoom = Instantiate(selectedRoom, spawnPosition, Quaternion.identity);
+
+        // DungeonManager'da yeni dungeon'u başlat
+        if (dungeonManager != null)
+        {
+            dungeonManager.InitializeNewDungeon(newRoom);
+        }
+
+        // NavMesh'i güncelle
+        StartCoroutine(UpdateNavMeshAfterFrame());
+
+        // Oyuncuyu başlangıç pozisyonuna taşı
+        if (player != null)
+        {
+            player.transform.position = spawnPosition;
+        }
+
+        Debug.Log("Yeni dungeon oluşturuldu ve başlatıldı.");
+    }
+
+    private IEnumerator UpdateNavMeshAfterFrame()
+    {
+        // Bir frame bekle ki objeler tam olarak instantiate olsun
+        yield return null;
+        
+        NavMeshSurface surface = FindObjectOfType<NavMeshSurface>();
+        if (surface != null)
+        {
+            surface.BuildNavMesh();
+            Debug.Log("NavMesh güncellendi.");
+        }
+        else
+        {
+            Debug.LogWarning("NavMeshSurface bulunamadı. NavMesh oluşturulamadı.");
         }
     }
 
-public void DungeonCreate()
-{
-    if (roomPrefabs == null || roomPrefabs.Count == 0)
+    // Utility method - gerekirse kullanabilirsiniz
+    public void ResetDungeon()
     {
-        Debug.LogError("Room prefab listesi boş! Inspector'dan atama yapmayı unutma.");
-        return;
+        DungeonDestroy();
+        StartCoroutine(CreateDungeonAfterDestroy());
     }
 
-    GameObject selectedRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-    Instantiate(selectedRoom, spawnPosition, Quaternion.identity);
-
-    NavMeshSurface surface = FindObjectOfType<NavMeshSurface>();
-    if (surface != null)
+    private IEnumerator CreateDungeonAfterDestroy()
     {
-        surface.BuildNavMesh();
-    }
-    else
-    {
-        Debug.LogWarning("NavMeshSurface bulunamadı. NavMesh oluşturulamadı.");
+        // Destruction'ın ve DungeonManager reset'inin tamamlanması için bekle
+        yield return new WaitForSeconds(0.2f);
+        DungeonCreate();
     }
 
-    player.transform.position = new Vector3(0, 0, 0);
-}
-
-
+    // Debug için - dungeon durumu kontrolü
+    public void LogDungeonStatus()
+    {
+        if (dungeonManager != null)
+        {
+            Debug.Log($"Dungeon Status - Room Count: {dungeonManager.GetRoomCount()}, Current Position: {dungeonManager.GetCurrentRoomPosition()}");
+        }
+    }
 }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class TutorialController : MonoBehaviour

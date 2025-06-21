@@ -27,25 +27,25 @@ public class PlayerAttack : MonoBehaviour
         if (isAttacking || isOnCooldown)
             return;
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             attackDirection = Vector2.up;
             SetAttackVisual(Vector2.up);
             StartCoroutine(AttackRoutine());
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             attackDirection = Vector2.down;
             SetAttackVisual(Vector2.down);
             StartCoroutine(AttackRoutine());
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             attackDirection = Vector2.left;
             SetAttackVisual(Vector2.left);
             StartCoroutine(AttackRoutine());
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             attackDirection = Vector2.right;
             SetAttackVisual(Vector2.right);

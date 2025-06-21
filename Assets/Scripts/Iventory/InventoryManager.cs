@@ -81,15 +81,17 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"Active slots: {unlockedCount}/{inventorySlots.Length}");
     }
 
-    public bool CanUpgradeSlots()
-    {
-        // Tüm slotlar açık mı kontrol et
-        for (int i = 0; i < slotsUnlocked.Length; i++)
-        {
-            if (!slotsUnlocked[i]) return true;
-        }
+public bool CanUpgradeSlots()
+{
+    if (slotsUnlocked == null || slotsUnlocked.Length == 0)
         return false;
+
+    for (int i = 0; i < slotsUnlocked.Length; i++)
+    {
+        if (!slotsUnlocked[i]) return true;
     }
+    return false;
+}
 
     public int GetSlotUpgradePrice()
     {

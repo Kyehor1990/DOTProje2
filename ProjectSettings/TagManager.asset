@@ -12,6 +12,7 @@ TagManager:
   - Sosis
   - Patates
   - "Tur\u015Fu"
+  - StartRoom
   layers:
   - Default
   - TransparentFX
